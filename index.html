@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Homepage of Antoine Mottet
+</title>
+<meta name="author" content="Antoine Mottet"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="style.css"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="script.js"></script>
+<script src="jquery.js"></script>
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+
+
+
+<body>
+    <!--<div id="particles"></div>-->
+    <h1>Antoine Mottet</h1>
+
+        <div id="navigation">
+        <span class="navigation_items">Home</span>
+        <span class="navigation_items"><a href="publications.html" class="nocolor">Research</a></span>
+        <span class="navigation_items"><a href="teaching.html" class="nocolor">Teaching</a></span>
+        <span class="navigation_items"><a href="resume.pdf" class="nocolor">Curriculum Vitae</a></span>
+        </div>
+
+    <div id="main-document" style="width:75%">
+        <p style="margin: 50px 100px 50px 50px; text-align:justify;"><!--Since September 2018, I am a postdoctoral researcher involved in the project <a href="http://www.karlin.mff.cuni.cz/~barto/cocosym.html">Symmetry in Computational Complexity</a>
+        at the Charles University in Prague. Before that, I was a doctoral student at the Institute of Algebra at TU Dresden
+            and defended my thesis on August 14, 2018 with the title "Dichotomies in Constraint Satisfaction: Canonical Functions and Numeric CSPs".-->
+
+        I am interested in applications of algebraic and model-theoretic methods to the study of problems
+            from theoretical computer science, such as the study of constraint satisfaction problems
+            over infinite domains.
+            I am currently assistant professor in the <a href="http://tuhh.de/tcs">research group on theoretical computer science</a> at the Hamburg University of Technology.
+        </p>
+
+        <h2>Selected Papers</h2>
+        <ul>
+            <li><h3>Smooth Approximations and CSPs over finitely bounded homogeneous structures</h3>
+            Antoine Mottet, Michael Pinsker.<br />
+            To appear in Proceedings of LICS 2022. <a href="https://arxiv.org/abs/2011.03978">Preprint</a>
+            <a onclick="show_bibtex('smooth-approximations')">Abstract</a><br />
+            <p class="publication_box" id="smooth-approximations">
+                We develop the novel machinery of <em>smooth approximations</em> and use it to rederive the known P/NP-complete dichotomy results within the scope of the infinite-domain CSP conjecture.
+                Using the same techniques, we also obtain classification results about CSPs solvable by local consistency methods.
+            </p>
+            </li>
+            <li><h3>Discrete Temporal Constraint Satisfaction Problems.</h3> Manuel Bodirsky, Barnaby Martin, Antoine Mottet.<br />
+         In <em>Journal of the ACM 65(2)</em>.
+            <a onclick="show_bibtex('discrete-temporal')">Abstract</a><br />
+            <p class="publication_box" id="discrete-temporal">
+                A discrete temporal constraint satisfaction problem is a constraint satisfaction problem (CSP) over the set of
+    integers whose constraint language consists of relations that are first-order definable over the order of the
+    integers. We prove that every discrete temporal CSP is in P or NP-complete, unless it can be formulated as a
+    finite domain CSP, in which case the computational complexity is not known in general.
+            </p>
+        </li>
+        <li><h3>$\omega$-categorical structures avoiding height 1 identities.</h3>
+        Manuel Bodirsky, Antoine Mottet, Mirek Olšák, Jakub Opršal, Michael Pinsker, Ross Willard.<br/>
+        In <em>Transactions of the AMS 374</em>. <a onclick="show_bibtex('topology')">Abstract</a><br />
+            <p class="publication_box" id="topology">
+                The algebraic dichotomy conjecture for Constraint Satisfaction Problems (CSPs) of reducts of (infinite) finitely bounded homogeneous structures states that such CSPs are polynomial-time tractable
+  when the model-complete core of the template has a pseudo-Siggers polymorphism, and NP-complete otherwise.
+
+One of the important questions related to this conjecture is whether,
+similarly to the case of finite structures, the condition of having a
+pseudo-Siggers polymorphism can be replaced by the condition of having polymorphisms satisfying a fixed set of
+identities of height 1, i.e., identities which do not contain any nesting of functional symbols. We provide a negative answer to this question by constructing for each non-trivial set of height 1 identities a structure whose polymorphisms do not satisfy these identities, but whose CSP is tractable nevertheless.
+
+An equivalent formulation of the dichotomy conjecture characterizes tractability of the CSP via the local satisfaction of non-trivial height 1 identities by polymorphisms of the structure. We show that local satisfaction and global satisfaction of non-trivial height 1 identities differ for $\omega$-categorical structures with less than double exponential orbit growth, thereby resolving one of the main open problems in the algebraic theory of such structures.
+            </p>
+         </li>
+        </ul>
+        See also the <a href="publications.html">full list</a> of publications.
+
+        <h2>Seminars, conferences, workshops</h2>
+        Future events:
+        <ul>
+            <li>19-23/09/2022: <a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a>.</li>
+        </ul>
+        Past events (invited talks and invitational events in bold):
+      <ul id="list_of_talks">
+      </ul>
+
+    <!--<div style="width: 100%;">
+       <svg viewBox="0 0 1400 1000" id="svg_map">
+        <use xlink:href="map-plain.svg#layer1" x="0" y="0"/>
+    </svg>
+    </div>-->
+    <div style="width: 100%;">
+       <object data="world.svg#svg" type="image/svg+xml" height="500" width="1000" id="svg_map2">
+
+    </object>
+    </div>
+    </div>
+
+        <div class="picture-right">
+            <img width="200" height="266" src="colloquium_logicum.jpg" alt="Me" /><br />
+            <!--<img width="200" src="karlin2.png" alt="Me" /><br />-->
+        <h3>Contact:</h3>
+        firstname.lastname at tuhh.de<br />
+ <br/>
+    <a href="https://tcs4f.org" style="display: inline-block;background-color: white; border: 2px solid #CCCCCC;padding: 5px; margin: 10px; border-radius: 5px;">
+        <img width="100" src="https://tcs4f.org/themes/tcs4f/img/logo.svg" alt="Theoretical Computer Scientists for Future" />
+    </a>
+    </div>
+
+</body>
+    <script type="text/javascript">window.addEventListener("load", init, false);</script>
+</html>
