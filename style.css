@@ -1,0 +1,103 @@
+body {
+    font-family: "Arial", sans-serif;
+    margin: 0;
+    background-color: white;
+}
+
+#main-document {
+    position: relative;
+    margin-left: 50px;
+    padding: 0px;
+    display:inline-block;
+}
+
+h1 {
+    background-color: #e13300;
+    margin: auto;
+    padding: 10px;
+    padding-left: 60px;
+    color: white;
+}
+
+h2{
+    width: 70%;
+    border-bottom: 2px solid black;
+}
+
+h3{
+    font-weight: normal;
+    margin-bottom: 0px;
+}
+
+.publication_box {
+    display: none;
+    width: 800px;
+    text-align: justify;
+}
+
+.picture-right {
+    vertical-align: top;
+    margin-top: 50px;
+    margin-left:14px;
+    width: 18%;
+    display: inline-block;
+}
+
+a.nocolor {
+    text-decoration: none;
+    color: inherit;
+}
+
+a.coauthor {
+    color: inherit;
+    text-decoration: none;
+}
+
+a {
+    text-decoration: none;
+    color: #e13300;
+}
+
+
+#navigation{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-items: baseline;
+    margin: auto;
+    margin-bottom: 20px;
+    padding: 10px;
+    background-color: #288585;
+    color: white;
+}
+
+.navigation_items {
+    flex: 1 1 auto;
+    text-align: center;
+    font-size: 1.4em;
+}
+
+#particles{
+    z-index: 1;
+    position: absolute;
+    top:0;
+    left:0;
+    width:100%;
+    height: 100px;
+    pointer-events: none;
+}
+
+.invited {
+    font-weight:bold;
+}
+
+table{
+    border-collapse: collapse;
+}
+
+td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    padding: 10px;
+}
