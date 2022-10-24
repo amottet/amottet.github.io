@@ -1,0 +1,103 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf200
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+{\info
+{\author Antoine Mottet}}\margl1440\margr1440\vieww27240\viewh14660\viewkind0
+\deftab720
+\pard\tx720\tx1440\tx2160\tx2880\tx3600\tx4320\tx5040\tx5760\tx6480\tx7200\tx7920\tx8640\pardeftab720\qj\partightenfactor0
+
+\f0\fs60 \cf0 1 
+\fs24 Thanks very much for the introduction and also for the invitation. So, I was tasked to give you an introduction to constraint satisfaction problems. The study of CSPs involves quite a number of concepts that are usually not taught in a typical CS or maths degree and the direct corollary of this is that, usually, talks about CSPs (even introductory talks like this one) become very hard to follow after a short while. In order to prevent this to happen, I encourage you to ask each and every question that comes to your mind. There are no stupid questions, and if you are here to slow my pace down then it can make this talk useful for more than the 4 or 5 persons here that already know what I will talk about. Also I will make sure to ask you some questions. ;)\
+\
+
+\fs60 2 
+\fs24  Let\'92s start with a definition that, despite its name, is not the central definition of the talk. Let us fix a finite set D. The constraint satisfaction problem on D is a decision problem whose input is a set of variables, and a set of constraints. Each constraint takes the form of a tuple of variables and a relation on D whose arity is the length of the tuple of variables. The meaning of a constraint is that the variables in the tuple should be mapped to D in a way that the resulting tuple belongs to the relation. Formally, we ask for the existence of map h from V to D such that for every constraint of the input, this is true.\
+\
+Let\'92s see of examples to make this more intuitive. Take D to consist of the numbers from 1 to 9. We consider the following instance of the CSP on D: we have 81 variables (that we arrange in our mind on a 9x9 grid), and we add to the instance the following constraints: for each row, we ask that the 9 variables in this row are mapped to distinct values. Formally, we add the constraint ((x_1,1,\'85,x_1,9), R_\{AllDiff\}) where R_AllDiff is a 9-ary relation on D that contains precisely the tuples that do not repeat. Similarly, for each column we add a similar constraint, and finally for each such square. By definition, a satisfying assignment to this system of constraints is exactly a valid sudoku. Of course starting from an empty grid it is quite easy to satisfy the constraints. So one can also add some additional constraints of the form ((x_\{4,3\}), \{5\}) so that we focus on satisfying assignments that additionally map x_4,3 to 5.\
+\
+Let\'92s look at a second example, this time on the set D=\{0,1\}. Let\'92s take 3 variables and add two constraints like so. Can anyone see what the satisfying assignments should be? Note that the relation R_000 can be defined as x\\/y\\/z and R_111 can be defined as not(x) \\/ not(y) \\/ not(z). So what we are doing here is encoding 3-SAT instances as instances of the constraint satisfaction problem. In particular, we obtain that the CSP is NP-hard as long as there are at least two elements in the domain.\
+\
+\
+
+\fs60 3
+\fs24  
+\fs60  
+\fs24 To get more intuition about how to encode problems let\'92s see a couple more examples. As a reminder, the k-colourability problem on graphs takes as input a graph with vertices V and edges E and asks for the existence of a proper colouring of the vertices of the graph. A proper k-colouring is an assignment of the vertices to \{1,\'85,k\} such that two adjacent vertices are not mapped to the same colour. Note that this is precisely saying that we have a CSP instance whose variables are the vertices of the graph, and where for each edge \{v,w\} in the graph we have a constraint of the form ((v,w),\\neq). Since k-colourability is NP-complete, this gives another proof that the general CSP is NP-complete.\
+\
+Finally, let\'92s look at the reachability problem for directed graphs. The input of this problem consists of a digraph and two special vertices s and t in this graph. The question is whether there is a path going from s to t. Now it\'92s not clear at first sight how to express this as a CSP instance (what should be the domain?). One way to do it is to look at the CSP on a two-element set, and to encode the graph as follows. For each arc (v,w), we add a constraints v\\leq w. We also force s to be mapped to 1 and t to 0. Note that if this instance is satisfiable, there is no way that a path from s to t exists, because this path would force t to be 1. Conversely, if no path from s to t exists, one can see that the instance is satisfiable by assigning 1 to all the vertices that s can reach and 0 to the others. Therefore, we have reduced the complement of the reachability problem to the CSP.\
+\
+
+\fs60 4 
+\fs24 What we just saw is that many problems can be reduced, often very naturally, to the constraint satisfaction problem. Moreover, in those reductions one only needs a restricted number of relations to appear in the constraints. In the Sudoku case, we saw that all we needed was the 9-ary \'93Not-all-different\'94 relation and singletons to specify the starting position, for 3-SAT we only needed those ternary relations R_\{i,j,k\}, colourability uses the relation \'93different\'94, reachability uses the order, and so on. This motivates the definition of the CSP where not only the domain, but also the input relations are fixed. More precisely, let us fix a set D and some relations on D. An input to the CSP(D;R_1,\'85,R_p) is now as before, except that here every constraint can only use a relation from R_1 to R_p.\
+\
+What\'92s important now is that the complexity of this decision problem depends on the relations that we have fixed. Actually, by picking an infinite set and picking the relations in the right way, one can obtain CSPs with any kind of complexity that we want. In particular, some CSPs are undecidable. This naturally raises the question: when is a CSP in P, NP-hard, undecidable? How to understand the complexity of the problem just by looking at the relations? This will be the central question of this lecture. In particular, I think it is a good time to make the following remarks: constraint satisfaction is historically close to artificial intelligence and people from AI tend to consider different questions that I will not talk about during this talk: namely, we will not be interested here in optimising Ptime algorithms, or in obtaining good algorithms for NP-hard problems.\
+\
+Also, we are rarely interested in any particular CSP. There are some famous exceptions, such as the CSPs that Manuel will talk about tomorrow, because these problems have a particular status in complexity theory or are important problems in areas like verification.\
+\
+
+\fs60 5 
+\fs24 So let\'92s focus on this question: why is a given CSP hard? why is it easy? In general asking the question of the \'93why\'94 is meaningless. A problem is hard because one has found a proof of NP-hardness, and a problem is easy because one has found a Ptime algorithm. But in some cases, one can find a deeper reason. Immermann himself (the dude who proved that NL=coNL, among other things) wrote this:\
+\
+He wrote this in 2015, and about 2 years later his prediction became true and CSP people indeed found a deeper meaning to tractability and NP-hardness. I want to take you on this path with me, see how one can take this very computer-sciency question, put it on very firm grounds using notions from logic and see how one can provide some satisfying answers to this question using notions from algebra. There are also some notions from other fields that play a role in this area but probably we will not get to them as time does not really permit it.\
+\
+
+\fs60 6 
+\fs24 The first step on this journey is actually a very simple one, but that gets us very far. We reformulate the CSP as a particular kind of model-checking problem. Note that one can reformulate an instance of the CSP as a particular kind of first-order formula: each variable in the instance is taken to be existentially quantified, and each constraint is simply an atom in a big conjunction. This gives us the second formulation of the CSP, that now takes as input a first-order sentence that only uses existential quantifiers and conjunctions (no negations), and the question is whether this sentence is true in the template. We call primitive positive the formulas that have this form, that is, those formulas that avoid negations, disjunctions, and universal quantifiers.\
+\
+From this second formulation, which is equivalent to the original one, one immediately see that the complexity of the CSP can only depend on the primitive positive sentences that are true in that structure. In other words, if we are given two structures that satisfy exactly the same pp-sentences, then their CSP has the same complexity. Our goal to understand the complexity of CSPs in a more systematic way is then to find other invariants, other constructions that leave the complexity unchanged. Is this clear?\
+\
+
+\fs60 7 
+\fs24 One natural thing one could attempt, given the notation, would be to try to add new relations to the template. So here is a question for you: when doing so, what does that do to the complexity of the CSP?\
+\
+So in principle one cannot add an arbitrary relation without increasing the complexity of the problem. But let us consider a particular example. The template is this time a graph on 5 elements whose edges for a cycle. I denote by E the edge relation of this graph. Let E\'92 be the relation defined by the following formula. This formula says that two vertices x,y should be linked by E\'92 if and only if there is a walk of length 3 from x to y. Now, I can transform any primitive positive formula that involves E\'92 into a new formula that only involves E, simply by replacing E\'92 by its definition and renaming the variables if necessary. So any input to the CSP of (D,E,E\'92) can be turned into an equivalent instance to the CSP of (D,E).\
+\
+Let\'92s finish this example by actually computing what this relation E\'92 is.\
+As you probably figured out, E\'92 contains all pairs (x,y) where x and y are distinct. Therefore, we get that CSP(D;E,\\neq) reduces to CSP(D;E). Since CSP(D;\\neq) is the 5-colorability problem, we get that CSP(D;E) is NP-hard.\
+\
+We can summarise the situation like this: given any relation R that can be defined from A using a primitive positive formula, one has a reduction from CSP(A,R) to CSP(A) so that the two CSPs have the same complexity.\
+\
+
+\fs60 8 
+\fs24 We can take this one step further: now, we allow to look at tuples of elements from the domain, say n-tuples. One can then use a primitive positive formula to define a k-ary relation on n-tuples in this way. It\'92s getting a bit abstract now so here is an example to make things concrete. Say we start with this digraph on 3-elements whose arcs for a directed cycle. Let us define a new directed graph, whose vertices are triples of vertices from the original graph (so that n=3). Since a directed graph is a binary relation, we have k=2. So we now need to provide a pp-formula with 6-variables (6=2x3) and let us look at this particular example. You can now check that the digraph we obtain has 27 vertices (because 3^3 = 27) and looks like the disjoint union of 3 directed cycles of length 9. \
+\
+
+\fs60 9 
+\fs24 To summarise what we have seen so far, we have seen three ways of changing the template without increasing the complexity: taking a new template that satisfies the same sentences as the original one, taking a power of the template, and defining new relations by using pp-formulas. Let us put all this in one definition: we say that B is pp-constructible from A if one can find an intermediate structure C such that C and B satisfy the same pp-sentences, and such that C lives on a power of A and the relations of C are pp-definable from the relations of A.\
+Note that we are doing the reductions in a particular order: first we take a power, define some relations on this power, and then take a structure that satisfies the same pp-sentences. It can be shown that this is the most general way of doing the reductions, in the sense that if you were to take a power after that, then you could reorder the reductions to make it fit this definition. \
+\
+And we now know that we have the following invariant: if B is pp-constructible from A, then the CSP of B reduces to the CSP of A.\
+\
+
+\fs60 10 
+\fs24 So ok, let\'92s look back at what we did so far. We have a quasi-order (reflexive and transitive) relation on relational structures that behaves well with respect to complexity. Namely, when A < B, then we have a reduction from the CSP of A to the CSP of B. In particular, if 3-SAT is below A in this quasi-order, then the CSP of A is NP-hard. The interesting thing about this quasi-order is that it is actually doable to disprove that A is less than B (and I will show this to you in the section). This might sound stupid, but compare the situation with the case in complexity theory. We similarly have a quasi-order on decision problems, obtained for example by logspace reductions or polynomial-time reductions. But there people have no clue how to disprove that a problem is below some other problem. This is the essence of problems like P vs. NP.\
+\
+Finally, it was conjectured in 93 that being above 3-SAT was the only way for a CSP to be NP-hard. In other words, it was conjectured that a finite structure that is not above 3-SAT has a tractable CSP. This conjecture was finally proved recently by Bulatov and Zhuk.\
+\
+30 minutes\
+
+\fs60 11 
+\fs24 We are now leaving the logical side for a while and entering the algebraic part of this lecture. The motivation for this is to understand when is a structure not able to pp-construct 3-SAT, for example.\
+\
+Let\'92s start with something much simpler. Consider this example: we again take this structure on 5 elements whose edge relation forms a 5-cycle. Here is a question for you: does there exist a first-order formula phi with a single free variable x such that phi(x) holds if and only if x is the pink vertex of this graph? How would you approach this problem? Intuitively, do you think that such a formula exists?\
+\
+The answer is no, the reason being that intuitively all the vertices look the same in this graph. There is nothing that can distinguish the pink vertex from, say, the purple vertex. There are several ways of formalising this (for example using Ehrenfeucht-Fraiss\'e9 games) but the one that I will use here use the notion of automorphisms.\
+\
+An automorphism of a structure is a permutation of the domain such that for every relation R from the structure (say, the edge relation for a graph), and for every tuple of elements from the domain, the tuple is in the relation iff its image under the function is in the relation. So for a graph, we would require that the f(pink) is adjacent to f(blue) but not adjacent to f(red).\
+\
+Now it is an easily proved fact that if you take an arbitrary formula, this formula holds on some (a_1,\'85,a_k) iff it holds on the image of this tuple under an arbitrary automorphism of the structure. You can prove this by induction on the formula, although this fact is not restricted to first-order logic and should be understood as something more fundamental (that also holds for extensions of FO like second-order logic).\
+\
+The idea on how to use this fact is that we can now turn the non-existence of a formula into a statement about the existence of an automorphism. Indeed, suppose that a formula phi as in the example exists. Since this formula holds for pink (by assumption), it should also hold for any element that is the image of pink under some automorphism of the structure. Therefore, the only task remaining is to provide an automorphism of this graph that maps pink to some different vertex. For example, this map here can be checked to be an automorphism, and it maps pink to a different vertex. So no formula phi exists. Actually we can say something stronger: if you take a formula with one free variable, then either this formula is not satisfiable at all, or it is satisfied by all the vertices.\
+\
+
+\fs60 12 
+\fs24 Our objective now is to understand how to have a similar technique for pp-formulas. Remember that pp is the fragment of first-order that only uses existential quantifiers and conjunctions. I presented you how to witness failure of fo-definability on the previous slide, using automorphisms. It is worth noting that for other fragments of first-order, one obtains similar algebraic characterisations. For example, when we look at existential logic we obtain a characterisation by embeddings (which are like automorphisms but not surjective), and existential-positive corresponds to endomorphisms. In particular all these functions are maps from the domain of the structure to itself. The striking difference when one considers primitive positive formulas is that we now have to look at functions on powers of the domain.\
+\
+Formally, a polymorphism of a structure A is a function from A^m to A for some m such that whenever you take a relation from A (say, the edge relation for a graph), and whenever you take m edges from this relation (that I draw here horizontally), the resulting tuple obtained by applying the function component-wise is again a tuple in the relation.\
+\
+Forgetting about the definition for a minute, one can see polymorphisms simply as a way to combine several solutions into one. In particular, if you take an arbitrary pp-formula and satisfying assignments to this formula, when applying a polymorphism to these tuples one obtains again a satisfying assignment to the formula. And conversely, we have the following important theorem which is basically the foundation of the theory of CSPs: when A has a finite domain, then a relation R is NOT pp-definable iff one can prove it by exhibiting a polymorphism of A and tuples from R such that the result is not in R.\
+\
+42 minutes\
+\
+}

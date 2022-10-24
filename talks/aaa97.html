@@ -1,0 +1,199 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Topology is relevant</title>
+
+    <meta name="description" content="Dichotomies in Constraint Satisfaction" />
+    <meta name="author" content="Antoine Mottet" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/svg-group-slide.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  $\def\Csp{\text{CSP}}$
+  $\def\Pol{\text{Pol}}$
+  $\def\End{\text{End}}$
+  $\def\Inv{\text{Inv}}$
+  $\def\Aut{\text{Aut}}$
+  $\def\Age{\text{Age}}$
+
+<div id="flides">
+
+    <div id="title" class="step" data-duration="0" data-x="-1500" data-y="0">
+	<h3>Topology is relevant<br /><span style="font-size:0.3em;">(in the dichotomy conjecture for infinite-domain CSPs)</span></h3>
+
+	<br/>
+
+	<h4>Antoine Mottet</h4>
+  <h4>AAA97</h4>
+  <h4>02.03.2019</h4>
+        <h4 style="margin-top:80px;margin-bottom:80px;">Joint work with Bodirsky, Olšák, Opršal, Pinsker, Willard.</h4>
+        
+        <img src="LOGO_ERC.jpg" style="display:block; width:200px;margin-left: auto; margin-right: auto;"/>
+    </div>
+    
+    <div id="intro" class="step remain" data-x="0" data-y="0" data-scale="1">
+        <h3>Clones, Identities &amp; Homomorphisms</h3>
+        <ul>
+            <li class="slide_step"><span class="alert">Clone</span> $\mathscr C$: set of operations on a set closed under composition and containing the projection operations.</li>
+            <li class="slide_step">Typically: set of <span class="alert">polymorphisms</span> of relational structures.</li>
+            <li class="slide_step">$\mathscr P$: the clone on $\{0,1\}$ containing only projections.</li>
+        </ul>
+        <div class="slide_step">Triviality of clones measured by:
+        <svg width="1024" height="500" style="margin-top:-20px;">
+        <text x="250" y="150" fill="black">Identities</text>        
+        <text x="550" y="150" fill="black">Homomorphisms</text>
+            <g class="slide_step">
+            <text x="260" y="120" fill="red">Height 1</text>        
+            <text x="610" y="120" fill="red">Minion</text>
+            </g>
+            <g class="slide_step">
+            <text x="280" y="90" fill="red">Local</text>        
+            <text x="510" y="90" fill="red">Uniformly continuous</text>
+            </g>
+            </svg></div>
+    </div>
+    
+    <div id="identities" class="step remain" style="padding-bottom:300px;" data-x="-200" data-y="75" data-scale="0.1">
+    <ul>
+        <li class="slide_step"><span class="alert">Identity</span>: statement $\forall \overline{x}, s(\overline y)=t(\overline z)$
+        where $s,t$ are terms, $\overline y,\overline z\subseteq\overline x$.</li>  
+        <li class="slide_step">Often written $s(\overline y)\approx t(\overline z)$.</li>
+        <li class="slide_step">Set $\Sigma$ of identities is <span class="alert">trivial</span> if it can be satisfied by projections.</li>
+    </ul>
+    
+        <table class="slide_step"><tr><td>$m(y,x,x)\approx m(x,x,y)$?</td><td></td></tr>
+            <tr><td>$f(x,y,z)\approx f(y,z,x)$?</td><td>$s(s(x,y),s(x,z))\approx s(z,y)$?</td></tr></table>
+        
+        <ul><li class="slide_step"><span class="alert">Height 1 Identity</span>: identity where $s,t$ are symbols from the signature (=terms of height 1)</li>
+        <li class="slide_step"><span class="alert">Local</span> Identity: identity where $\forall$ is restricted to a finite subset.</li>
+        </ul>
+    </div>
+    
+    <div id="homomorphisms" class="step remain"  style="padding-bottom:0px;" data-x="150" data-y="75" data-scale="0.1">
+    <ul>
+        <li class="slide_step"><span class="alert">Homomorphism</span>: map $\xi\colon\mathscr C\to\mathscr D$ preserving arities and
+            \[ \xi(pr_i) = pr_i\]
+        \[ \xi(f\circ(g_1,\dots,g_m)) = \xi(f)\circ(\xi(g_1),\dots,\xi(g_m))\]</li>
+        <li class="slide_step">There exists a homomorphism $\mathscr C\to\mathscr D$ iff every $\Sigma$ satisfiable in $\mathscr C$ is satisfiable in $\mathscr D$.</li>
+        <li class="slide_step">$\mathscr C\to\mathscr P$ iff every $\Sigma$ satisfiable in $\mathscr C$ is trivial.</li>
+        <li class="slide_step"><span class="alert">Minion</span> homomorphism: map $\xi\colon\mathscr C\overset{m}{\longrightarrow}\mathscr D$ preserving arities and
+        \[ \xi(f\circ(pr_{i_1},\dots,pr_{i_k})) = \xi(f)\circ(pr_{i_1},\dots,pr_{i_k})\]</li>
+        <li class="slide_step"><span class="alert">Uniformly continuous</span> map $\mathscr C\to\mathscr D$:
+        \[\forall S\subset_{fin} D, \exists T\subset_{fin} C, \forall f,g : f|_T=g|_T\Rightarrow \xi(f)|_S=\xi(g)|_S\]</li>
+        <li class="slide_step">$\mathscr C\overset{u.c.m}{\longrightarrow}\mathscr P$ iff $\exists S\subset_{fin} C$ on which
+        no non-trivial identity holds.</li>
+    </ul>
+    </div>
+    
+     <div id="overview1" class="step remain" data-x="0" data-y="0" data-scale="1">
+         <div class="lemma" style="margin-top:420px; padding-left: 50px;">
+         <ul>
+             <li class="slide_step">Suppose that $\mathscr C\overset{m}{\longrightarrow}\mathscr P$. Does $\mathscr C\overset{\color{red}{u.c.}m}{\longrightarrow}\mathscr P$?</li>
+             <li class="slide_step">Suppose that $\mathscr C$ satisfies non-trivial height 1 identities <span class="alert">locally</span>.<br />
+                 Does it <span class="alert">globally</span> satisfy a non-trivial set of height 1 identities?</li>
+             </ul>
+         </div>
+    </div>
+    
+    <div id="csp" class="step remain" data-y="520" data-scale="1">
+        <div style="padding-top:40px;">
+    <ul><li class="slide_step">Motivated by study of <span class="alert">constraint satisfaction problems</span> over <span class="alert">$\omega$-categorical</span> structures.</li>
+        <li class="slide_step">$\Csp(\Bbb G)$: input finite $\Bbb H$, does there exist a homomorphism $\Bbb H\to\Bbb G$?</li>
+        <li class="slide_step">If $\Bbb G$ is $\omega$-categorical, complexity of $\Csp(\Bbb G)\leftrightarrow$ polymorphisms of $\Bbb G$</li>
+        <li class="slide_step"><strong>Conjecture:</strong> If $\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.m}{\longrightarrow}\mathscr P$, then $\Csp(\Bbb G)$ is in P. <span class="citation">[Barto-Opršal-Pinsker, '15]</span></li>
+        <li class="slide_step">Known: If $\Pol(\Bbb G)\overset{u.c.m}{\longrightarrow}\mathscr P$, then $\Csp(\Bbb G)$ is NP-hard.</li></ul>
+        </div>
+        
+        <div class="lemma slide_step">If $\Pol(\Bbb G)\longrightarrow\mathscr P$, then there exist $c_1,\dots,c_n$ such that
+            $\Pol(\Bbb G,c_1,\dots,c_n)\overset{u.c.}\longrightarrow\mathscr P$.<br />
+            <div class="citation" align="right"><em>Topology is irrelevant</em> [Barto-Pinsker]</div></div>
+    </div>
+
+    <div id="previously" class="step remain" data-x="1500" data-y="0" data-scale="1">
+        <h4>Previously...</h4>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; left: 75px; padding-left: 10px; background-color: white; width: 170px;">Jakub's talk</div>
+        <ul style="margin-top:-20px;">
+            <li>Graph $\Bbb H \rightarrow$ identities $\Sigma_{\Bbb H}$ of height 1.</li>
+            <li>If $\Bbb H$ is not 3-colorable then $\Sigma_{\Bbb H}$ is non-trivial.</li>
+            <li>A sequence $\Bbb H_1,\Bbb H_2,\dots$ such that $\Sigma_{\Bbb H_n}\Rightarrow \Sigma_{\Bbb H_{n+1}}$ and such that any non-trivial $\Sigma$ implies $\Sigma_{\Bbb H_n}$ for some $n$.</li>
+        </ul>
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; left: 75px; padding-left: 10px; background-color: white; width: 200px;">Manuel's talk</div>
+        <ul style="margin-top:-20px;">
+            <li>For all $n$, $\Sigma_{\Bbb H_{n+1}}\not\Rightarrow\Sigma_{\Bbb H_n}$.</li>
+            <li>There exists a graph $\Bbb G_n = (V, E_n)$ such that $\Pol(\Bbb G_n)$ does not satisfy $\Sigma_{\Bbb H_n}$
+            but $\Pol(\Bbb G_n)\mathrel{\rlap{\hskip .5em/}}\overset{m}{\longrightarrow}\mathscr P$.</li>
+            <li>$\Bbb G_n$ is <span class="alert">$\omega$-categorical</span> and has a <span class="alert">finitely bounded homogeneous</span> expansion by finitely many relations.</li>
+            </ul>
+        </div>
+        
+    </div>
+    
+    <div id="construction" class="step remain" data-x="1500" data-y="320" data-scale="1" style="padding-top:350px;">
+        <span  class="slide_step"><strong>Goal: </strong> obtain an $\omega$-categorical graph $\Bbb G$ such that
+        $\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.m}{\longrightarrow}\mathscr P$ and $\Pol(\Bbb G)\overset{m}{\longrightarrow}\mathscr P$.</span><br />
+        <span  class="slide_step"><strong>Idea: </strong> superpose the $\Bbb G_n$, obtain something of the form $(V; E_1, E_2, \dots)$.</span><br />
+        <div  class="slide_step"><strong>Problems: </strong>
+        <table style="width:1300px;margin-left:-100px;">
+        <tr style="border-top: solid 1px black; border-bottom: solid 1px black;">
+        <td>$\omega$-categoricity?</td>
+        <td>$\Pol(\Bbb G)\overset{m}{\longrightarrow}\mathscr P$?</td>
+            <td>$\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.m}{\longrightarrow}\mathscr P$?</td>
+            </tr>
+            <tr>
+            <td>Make $E_n$ live on $n$-tuples</td>
+            <td>$\Pol(\Bbb G)\models\Sigma$<br />$\Rightarrow \exists n: \Pol(\Bbb G)\models\Sigma_{\Bbb H_n}$</td>
+                <td>
+                    
+                </td>
+            </tr>
+            </table>   
+    </div>
+    </div>
+    
+    <div id="construction2" class="step" data-x="2000" data-y="700" data-scale="0.5">
+    <ul>
+        <li class="slide_step">$f_{\Bbb G}(n)=$ number of orbits of $n$-tuples under $\Aut(\Bbb G)$</li>
+        <li class="slide_step">By sparsifying, one gets $f_{\Bbb G}(n)<2^{2^n}$</li>
+        <li class="slide_step">$\Pol(\Bbb G)$ satisfies
+        \[\alpha s(x,y,x,z,y,z)\approx \beta s(y,x,z,x,z,y)\]
+        so that $\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\longrightarrow\mathscr P$.</li>
+    </ul>
+        
+    <div class="slide_step lemma">If $\Bbb G$ has less than double-exponential orbit-growth
+                and $\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\longrightarrow\mathscr P$,
+                    then $\Pol(\Bbb G)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.m}{\longrightarrow}\mathscr P$.
+            <div class="citation" align="right">[Barto-Kompatscher-Olsak-Pinsker-Van Pham '17]</div></div>
+    </div>
+    
+
+    <div id="overview" class="step"  data-x="0" data-y="0" data-scale="2.8">
+        </div>
+</div>
+    
+    
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script src="MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+</body>
+</html>

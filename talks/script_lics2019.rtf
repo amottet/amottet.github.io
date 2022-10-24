@@ -1,0 +1,54 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1671\cocoasubrtf500
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+{\*\expandedcolortbl;;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww23960\viewh13120\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs36 \cf0 1)
+\fs24  The result that I am going to present is something about a conjecture about some constraint satisfaction problems that have an infinite template. I am not going to present a proof of this conjecture, I am only going to talk about some meta-questions about this conjecture, like \'93can one change this and this in the statement (without changing the conjecture) so that the conjecture is easier to work with?\'94. The motivation for this is that there used to be a similar conjecture about finite-domain constraint satisfaction problems (the Feder-Vardi conjecture). This conjecture was eventually solved and part of the solution (albeit a tiny part of the solution) was to rephrase the statement to make it more workable. So the question we investigated in this work is whether similar rephrasings of the infinite-domain CSP conjecture were possible.\
+\
+
+\fs36 2)
+\fs24  Let me start by recalling the definition of constraint satisfaction problems. In this talk, I will use blackboard bold letters to denote relational structures. Most of the time in this talk the signatures will be finite (so each structure has only finitely many relations), but the domains themselves will be infinite unless mentioned otherwise.\
+\
+Fix a relational structure A. The constraint satisfaction problem of A is the problem of given a finite relational structure X as input (with the same signature as A), decide whether there exists a homomorphism from X to A. A homomorphism is map from the domain of X to the domain of A that satisfies that whenever some tuple is in some relation of X then by applying the map componentwise we obtain a tuple that is in the corresponding relation of A.\
+\
+So for each relational structure we have a problem, and the relational structure is called the template of the problem. Also note that this is a class of decision problems, one does not ask about constructing a homomorphism from X to A. And it so happens that for a large class of structures, the complexity of a CSP depends solely on the symmetries of the template.\
+\
+
+\fs36 3)
+\fs24  Let us see some examples of such problems. Consider the CSP of the complete graph on 3 vertices (which we can of course see as a relational structure with one binary relation). One can see that a graph has a homomorphism to K_3 if and only if it is 3-colourable. Indeed, if you have an edge-preserving map to K_3, any two adjacent vertices in X have to be mapped to different vertices of the triangle. And this gives us a proper colouring of the graph.\
+\
+Another nice example is the S-T reachability problem, where one is given a directed graph as input with two subsets S and T of its vertices, and the question is whether some vertex in S can reach a vertex in T. One can encode this problem as a CSP over a boolean structure that has three relations. One binary relation is the weak linear order and we have one unary relation for each element.\
+\
+Finally, one can see that the problem of deciding whether a digraph has a directed cycle is exactly the constraint satisfaction problem of the structure (N,<), or actually any infinite linear order. Note that here is an example of a CSP with an infinite template, and it can be proved that it is not a CSP with a finite template.\
+\
+
+\fs36 4)
+\fs24  Let us now talk a bit about the history of finite-domain CSPs. In 1993, Feder and Vardi had this extremely influential paper in which they were looking at natural subsets of NP, trying  to find classes in which the diagonalization method of Ladner to construct NP-intermediate problems fails. After probing that many of these natural subsets were actually computationally as expressive as NP, they showed that the class of finite-domain CSPs was note one of these examples. Namely, it looked like one could not produce a finite-domain CSP which was NP-intermediate. So among other conjectures in this paper, they conjectured that the class of finite-domain CSPs had a complexity dichotomy: every problem in this class is in P or NP-complete. Let me call this \'93step 0\'94, finding a natural scope in which to investigate a possible complexity dichotomy.\
+\
+Step 1 was achieved a few years later by Bulatov, Jeavons and Krokhin. They observed that all the known NP-hard CSPs obeyed a single algebraic condition, and they conjectured that CSPs that did not satisfy this condition were polynomial-time tractable. So they refined the Feder-Vardi conjecture by additionally conjecturing a borderline for tractability.\
+\
+This conjecture was very influential and led to a lot of research in universal algebra, and over the next few years this algebraic criterion was given several reformulations that made the borderline somehow clearer. This was step 2, a very important that led to step 3, which is the positive resolution of the conjecture in two independent proofs by Bulatov and Zhuk.\
+\
+So we learn from this that finite-domain CSPs obey a complexity dichotomy, and that the way to explain this dichotomy is by the so-called \'93algebraic method\'94. A natural question is then to what other classes of problems one can apply this algebraic method to obtain other deep complexity results like the Bulatov-Zhuk theorem. It turns out that there is a wide variety of problems that one can study with algebra, for example you have seen promise CSPs in the previous talk, but one can also look at counting problems, optimisation problems, and more importantly for this talk one can keep looking at decision problems. Indeed remember that some decision problems are CSPs, but not CSPs with a finite template. The class of infinite-domain CSPs is much richer, and by a result of Bodirsky and Grohe actually every decision problem is equivalent to an infinite-domain CSP. So it is definitely interesting to consider the class of infinite-domain CSPs in a systematic way, much like it was done for finite structures.\
+\
+
+\fs36 5)
+\fs24  So this ends my introduction, and let me know explain what the algebraic method actually is. The whole idea is to look at symmetries. On a meta-level, you already know that symmetries are important in order to solve problems. Probably in high-school when you had to compute some integrals there were some tricky cases where you had to realize that the integrand had some symmetries and that you had to exploit these symmetries to compute the integral. It is definitely the case that symmetric things are easier to compute or to reason about. Well for complexity theory the same holds: instances that have symmetric solution spaces tend to be easier to solve. Think about solving linear equations, we know that solutions spaces are linear subspaces which makes them nice to think about and allows us to apply Gaussian elimination to solve them. Similarly, linear programming over the reals is in some way tractable because we are considering convex sets. On the other hand, a lack of symmetries makes a problem hard. You might have heard about SAT. You might even have heard that it is an NP-hard problem. And you might even have heard that one can prove that SAT is NP-complete by encoding computations of Turing machines into propositional formulas. But this is not the right perspective! The right perspective is that solution sets to SAT instances have the least amount of symmetries and therefore are the most difficult instances to solve.\
+\
+The notion of symmetry that I am talking about here is called \'93polymorphism\'94 in this area. Say that we have a graph G, and an operation with finite arity on the set of vertices. We say that this operation is a polymorphism of the graph if the following holds: whenever I pick some edges in the graph (where the number of edges that I pick is equal to the arity of the function), if I apply the function to the endpoints of these edges then the pair that I obtain has to again be an edge of the graph. You can imagine how this works for an arbitrary relational structure, where we then have a condition about not edges but tuples in a relation of the structure.\
+Note that there is an easy way to obtain a polymorphism of a structure, namely one can take f to simply be a projection.\
+\
+A polymorphism can be seen as a way to combine solutions to the constraint satisfaction problem. If I have an instance X that has some homomorphisms h_1,\'85,h_n to A, and I have an n-ary polymorphism f of A, then the map defined this way is again a homomorphism from X to A. In this sense, the polymorphisms of a structure become symmetries of the solution sets of instances to the CSP of that structure.\
+\
+
+\fs36 6) 
+\fs24 Let me know explain in what sense are polymorphisms relevant for the study of constraint satisfaction problems. First, let\'92s focus on constraint satisfaction problems over finite templates. If a structure B has more polymorphisms than the structure A, then the CSP of B reduces to the CSP of A.\
+\
+And actually, it is not that one has to check that every polymorphism of A is a polymorphism of B to obtain such a reduction, one can forget completely about the function values and only remember the abstract relationships between these functions. Namely we only have to remember what \'93identities\'94 hold on such functions, where an identity is a statement of this form:\
+\
+This is enough for complexity purposes in the following sense: if I can assign to every function in Pol(A) a function in Pol(B) of the same arity, in a way that when such an equation holds in Pol(A) then it also holds in the image, then there is a reduction from CSP(B) to CSP(A). The observation by Bulatov Jeavons and Krokhin that I mentioned before was then that all NP-hardness proofs for finite-domain CSPs could be phrased as the existence of such a map.\
+\
+7) }

@@ -1,0 +1,1265 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Dichotomies in Constraint Satisfaction: Canonical Functions and Numeric CSPs</title>
+
+    <meta name="description" content="Dichotomies in Constraint Satisfaction" />
+    <meta name="author" content="Antoine Mottet" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/svg-group-slide.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  $\def\Csp{\text{CSP}}$
+  $\def\Pol{\text{Pol}}$
+  $\def\End{\text{End}}$
+  $\def\Inv{\text{Inv}}$
+  $\def\Aut{\text{Aut}}$
+  $\def\Age{\text{Age}}$
+
+<div id="flides" data-transition-duration="42" data-duration="0">
+
+    <div id="title" class="step" data-duration="0" data-x="-1250" data-y="0">
+	<h3>Dichotomies in Constraint Satisfaction:<br />Canonical Functions and Numeric CSPs</h3>
+
+	<br/>
+
+	<h3>Antoine Mottet</h3>
+  <h4>CSL 2020</h4>
+  <h4>15.01.2020</h4>
+    </div>
+
+    <div id="intro" class="step" data-x="0" data-y="0" data-scale="1">
+    </div>
+
+    <div id="navigation" class="step" data-x="0" data-y="0" data-fixed="1" data-section="Introduction">
+	     <svg width="1024px" height="900">
+         <line x1="150" y1="320" x2="300" y2="410" style="stroke:black;stroke-width:2"/>
+         <line x1="315" y1="270" x2="400" y2="410" style="stroke:black;stroke-width:2"/>
+         <line x1="500" y1="270" x2="470" y2="410" style="stroke:black;stroke-width:2"/>
+         <line x1="700" y1="320" x2="600" y2="410" style="stroke:black;stroke-width:2"/>
+         <line x1="460" y1="760" x2="460" y2="660" style="stroke:black;stroke-width:2"/>
+         <text x="275" y="250" fill="black">Logic</text>
+         <text x="50" y="300" fill="black">Model Theory</text>
+         <text x="400" y="250" fill="black">Universal Algebra</text>
+         <text x="700" y="300" fill="black">Ramsey Theory</text>
+         <text x="250" y="440" fill="black">Constraint Satisfaction Problems</text>
+         <text x="290" y="800" fill="black">Computational Complexity</text>
+       </svg>
+    </div>
+    
+    <div id="thecsp" class="step" data-x="-400" data-y="90"  data-scale="0.25">
+    <h3>The Constraint Satisfaction Problem</h3>
+        $D$: finite set.
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 80px;">$\Csp$</div>
+        <ul style="margin-top:-20px;">
+            <li><strong>Input:</strong> variables $V$, <span class="alert">constraints</span> $((z_1,\dots,z_k),R)$<br /> where $z_1,\dots,z_k\in V$, $R\subseteq D^k$
+            <li><strong>Question:</strong> $\exists h\colon V\to D$ s.t.
+            $(h(z_1),\dots,h(z_k))\in R$ for every constraint?</li>
+        </ul>
+        </div>
+        
+        <table>
+        <tr>
+        <td><div class="slide_step">$D=\{1,\dots,9\}$:
+            <ul><li>$V=\{x_{1,1},\dots,x_{9,9}\}$</li>
+            </ul>
+            <svg width="300" height="300">
+                <line x1="0" y1="0" x2="270" y2="0" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="30" x2="270" y2="30" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="60" x2="270" y2="60" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="90" x2="270" y2="90" style="stroke:black;stroke-width:4"/>
+                <line x1="0" y1="120" x2="270" y2="120" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="150" x2="270" y2="150" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="180" x2="270" y2="180" style="stroke:black;stroke-width:4"/>
+                <line x1="0" y1="210" x2="270" y2="210" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="240" x2="270" y2="240" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="270" x2="270" y2="270" style="stroke:black;stroke-width:2"/>
+                    
+                <line x1="0" y1="0" x2="0" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="30" y1="0" x2="30" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="60" y1="0" x2="60" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="90" y1="0" x2="90" y2="270" style="stroke:black;stroke-width:4"/>
+                <line x1="120" y1="0" x2="120" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="150" y1="0" x2="150" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="180" y1="0" x2="180" y2="270" style="stroke:black;stroke-width:4"/>
+                <line x1="210" y1="0" x2="210" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="240" y1="0" x2="240" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="270" y1="0" x2="270" y2="270" style="stroke:black;stroke-width:2"/>
+                
+                <g class="slide_step">
+                <circle cx="19" cy="11" r="5" fill="blue" />
+                <circle cx="45" cy="15" r="5" fill="blue" />
+                <circle cx="75" cy="15" r="5" fill="blue" />
+                <circle cx="105" cy="15" r="5" fill="blue" />
+                <circle cx="135" cy="15" r="5" fill="blue" />
+                <circle cx="165" cy="15" r="5" fill="blue" />
+                <circle cx="195" cy="15" r="5" fill="blue" />
+                <circle cx="225" cy="15" r="5" fill="blue" />
+                <circle cx="255" cy="15" r="5" fill="blue" />
+                </g>
+                
+                <g class="slide_step">
+                <circle cy="19" cx="11" r="5" fill="green" />
+                <circle cy="45" cx="15" r="5" fill="green" />
+                <circle cy="75" cx="15" r="5" fill="green" />
+                <circle cy="105" cx="15" r="5" fill="green" />
+                <circle cy="135" cx="15" r="5" fill="green" />
+                <circle cy="165" cx="15" r="5" fill="green" />
+                <circle cy="195" cx="15" r="5" fill="green" />
+                <circle cy="225" cx="15" r="5" fill="green" />
+                <circle cy="255" cx="15" r="5" fill="green" />
+                </g>
+                
+                <g class="slide_step">
+                <circle cx="105" cy="105" r="5" fill="red" />
+                <circle cx="135" cy="105" r="5" fill="red" />
+                <circle cx="165" cy="105" r="5" fill="red" />
+                <circle cx="105" cy="135" r="5" fill="red" />
+                <circle cx="135" cy="135" r="5" fill="red" />
+                <circle cx="165" cy="135" r="5" fill="red" />
+                <circle cx="105" cy="165" r="5" fill="red" />
+                <circle cx="135" cy="165" r="5" fill="red" />
+                <circle cx="165" cy="165" r="5" fill="red" />
+                </g>
+                
+                
+                </svg><br />
+            <span class="slide_step">Solutions = Valid sudokus</span>
+        </div></td> 
+            <td><div class="slide_step" style="width:auto;">$D=\{0,1\}$:
+            <ul><li>$V=\{x_1,x_2,x_3,x_4\}$</li>
+                <li>$((x_1,x_2,x_3), R_{000})$</li>
+                <li>$((x_1,x_2,x_3), R_{111})$</li>
+                <li>$((x_1,x_2,x_3), R_{011})$</li>
+                <li>$((x_1,x_3,x_4), R_{001})$</li>
+                <li>$((x_2,x_3,x_4), R_{000})$</li>
+            </ul>
+                
+            <span style="font-size:0.8em;">(where $R_{i,j,k}=\{0,1\}^3\setminus\{(i,j,k)\}$).</span><br />
+            <span class="slide_step">Solution = ?</span>
+        </div></td> 
+        </tr></table>
+            
+        <div align="center">
+        <span class="slide_step">Complexity?</span> <span class="slide_step"><span class="alert">NP-complete</span> (if $|D|>1$).</span>
+            </div>
+    </div>
+    
+    <div id="more-examples" class="step" data-x="-25" data-y="90" data-duration="1000" data-scale="0.25">
+    <h3>More examples</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">k-colourability</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> vertices $V$, edges $E$</li>
+                <li><strong>Question:</strong> exists proper colouring of $V$ with $k$ colours?</li>
+            </ul>
+            </div>
+        <div class="slide_step">
+        CSP with domain $D=\{1,\dots,k\}$.<br />
+            Instance: $V=V$, edge $\{v,w\}\leadsto$ constraint $((v,w),\neq)$.
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 230px;">$s$-$t$ Reachability</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> vertices $V$, directed edges $E$, $s,t\in V$</li>
+                <li><strong>Question:</strong> does there exist a path from $s$ to $t$?</li>
+            </ul>
+        </div>
+        <div class="slide_step">
+        Domain: $\{0,1\}$, instance:
+            <ul>
+            <li>Variables: $V$,</li>
+            <li>Constraints: $(v,w)\in E\leadsto ((v,w),\leq)$, $((s),\{1\})$, $((t),\{0\})$</li>
+            </ul>
+            Satisfiable iff no path from $s$ to $t$.
+        </div>
+
+        <!--<ul>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 270px;">Digraph acyclicity</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> directed graph $G=(V,E)$</li>
+                <li><strong>Question:</strong> does $G$ contain a directed cycle?</li>
+            </ul>
+        </div>
+        <div class="slide_step">
+        Domain: $\Bbb N$, instance:
+            <ul>
+            <li>Variables: $V$,</li>
+            <li>Constraints: $(v,w)\in E\leadsto ((v,w),\lt)$</li>
+            </ul>
+            Satisfiable iff no directed cycle in $G$.
+        </div>
+        </ul>-->
+    </div>
+
+    <div id="homprob" class="step" data-x="350" data-y="90"  data-duration="1000" data-scale="0.25">
+<ul>
+        <li>Restricting the relations allowed in inputs give more precise encodings of problems:
+            <ul>
+                <li>Sudoku: $R_{All-Diff}(x_1,\dots,x_9)$ and unary singletons,</li>
+                <li>3-SAT $\rightarrow R_{ijk}(x,y,z)$</li>
+                <li>colourability  $\rightarrow{} \neq$</li>
+                <li>$s$-$t$ reachability $\rightarrow{} \leq, \{0\},\{1\}$</li>
+                </ul>
+            <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 30px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 280px;">$\Csp(D;R_1,\dots,R_p)$</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> variables $V$, tuples $((z_1,\dots,z_k),T)$ where $T\,\color{red}{\in \{R_1,\dots,R_p\}}$</li>
+                <li><strong>Question:</strong> $\exists h\colon V\to D$ s.t.
+                $(h(z_1),\dots,h(z_k))\in T$ for every constraint?</li>
+            </ul>
+            </div>
+        </li>
+        <li class="slide_step">Complexity depends on $\Bbb A=(D;R_1,\dots,R_p)$</li>
+        <div align="center" class="slide_step">
+            $\Csp\Biggl($<svg style="margin-left: 0pt; margin-bottom:-20pt;" id="animation_complexity_svg" width="100" height="100" viewBox="0 0 512 256">
+	<g id="k3" transform="translate(0,-10)">
+    <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+    <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+		<circle cx="40" cy="250" fill="red" r="40"></circle>
+		<circle cx="450" cy="250" fill="green" r="40"></circle>
+		<circle cx="250" cy="50" fill="blue" r="40"></circle>
+	</g>
+  <g id="c4" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k3k3" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k33" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="k33b" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="c5">
+    <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+    <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+    <circle cx="140" cy="300" fill="red" r="40"></circle>
+    <circle cx="360" cy="300" fill="green" r="40"></circle>
+    <circle cx="50" cy="100" fill="blue" r="40"></circle>
+    <circle cx="450" cy="100" fill="purple" r="40"></circle>
+    <circle cx="245" cy="-50" fill="yellow" r="40"></circle>
+  </g>
+</svg>$\Biggr)$ is <span id="animation_complexity">
+  <span>NP-hard</span>
+  <span style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-91pt;">NP-hard</span>
+</span>
+        </div>
+        <li class="slide_step">If $D$ allowed to be infinite, <strong>every</strong> problem is polytime Turing-equivalent to a CSP. <span class="citation"?>[Bodirsky-Grohe '08]</span></li>
+        </ul>
+        
+        <div align="center" class="slide_step" style="border: 2px solid #e13300;">When is $\Csp(D; R_1, \dots, R_p)$ in P? NP-hard? undecidable? ...</div>
+    </div>
+
+    <div id="complexity" class="step" data-x="-25" data-y="500" data-scale="0.5">
+	<div>
+		<ul>
+			<li class="slide_step">If P$\neq$NP, there are problems in NP, not in P, and not NP-hard <span class="citation">[Ladner '75]</span></li>
+			<li class="slide_step">"Finite-domain CSPs do not seem to allow for diagonalization techniques" <span class="citation">[Feder, Vardi '93]</span></li>
+		</ul>
+	</div>
+
+  <div class="slide_step lemma" align="center">
+    Finite-domain CSPs are in P or NP-complete.<br />
+      Given $\Bbb A$, the question "$\Csp(\Bbb A)$ is in P?" is in NP.<br /><span class="citation">[Bulatov '17, Zhuk '17]</span>
+  </div>
+
+  <div class="slide_step" align="center">$\Csp\Biggl($
+	<svg style="margin-left: -7pt; margin-bottom:-30pt;" id="animation_complexity_svg2" width="100" height="100" viewBox="0 0 512 256">
+	<g id="k3" transform="translate(0,-10)">
+    <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+    <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+		<circle cx="40" cy="250" fill="red" r="40"></circle>
+		<circle cx="450" cy="250" fill="green" r="40"></circle>
+		<circle cx="250" cy="50" fill="blue" r="40"></circle>
+	</g>
+  <g id="c4" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k3k3" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k33" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="k33b" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="c5">
+    <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+    <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+    <circle cx="140" cy="300" fill="red" r="40"></circle>
+    <circle cx="360" cy="300" fill="green" r="40"></circle>
+    <circle cx="50" cy="100" fill="blue" r="40"></circle>
+    <circle cx="450" cy="100" fill="purple" r="40"></circle>
+    <circle cx="245" cy="-50" fill="yellow" r="40"></circle>
+  </g>
+</svg>$\Biggr)$ is <span id="animation_complexity2">
+  <span>NP-hard</span>
+  <span style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-91pt;">NP-hard</span>
+</span>
+</div>
+        
+    <div class="slide_step para" align="center" style="border: 2px solid #e13300; margin-top: 50px;">
+          What about CSPs with infinite templates?
+        </div>
+    </div>
+
+    <div id="coclones" class="step" data-x="-190" data-y="-300" data-scale="0.15">
+	<h3>Coclones</h3>
+
+    <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 190px;">Observation</div>
+        If $R\subseteq A^m$ is $\color{red}{\{\exists,\land\}}$-definable in $\Bbb A$,
+        then $\Csp(\Bbb A,R)$ and $\Csp(\Bbb A)$ have the same complexity.
+        </div>
+
+    <div class="slide_step example"><em>Example:</em>
+      <div align="center" style="margin-left: -7pt; margin-top:-30pt; margin-bottom: 30pt;">$\Csp\Biggl($
+      <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="100" height="100" viewBox="0 0 512 256">
+      <g id="c5">
+        <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+        <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+        <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+        <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+        <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+        <circle cx="140" cy="300" fill="red" r="40"></circle>
+        <circle cx="360" cy="300" fill="green" r="40"></circle>
+        <circle cx="50" cy="100" fill="blue" r="40"></circle>
+        <circle cx="450" cy="100" fill="purple" r="40"></circle>
+        <circle cx="245" cy="-50" fill="yellow" r="40"></circle>
+      </g>
+    </svg>$\Biggr)$ is NP-hard.
+      </div>
+
+     <div class="slide_step">
+      The formula $\phi(x,y):=\exists u,v (E(x,u)\land E(u,v)\land E(v,y))$
+    defines $x\neq y$.<br />
+        $\Rightarrow$ reduction from 5-colourability.
+        </div>
+    </div>
+
+        <div class="slide_step">$\leadsto$ complexity of $\Csp(\Bbb A)$ determined by the <span class="alert">coclone</span> $\langle\Bbb A\rangle$.</div>
+        <div class="slide_step">
+        \[ \langle\Bbb A\rangle := \{R\subseteq A^m \mid m\geq 1, R \text{ is } \{\exists,\land\}\text{-definable in } \Bbb A\}\]</div>
+        <div class="slide_step para" align="center" style="border: 2px solid #e13300;">
+          Study of CSPs = Study of coclones.
+        </div>
+    </div>
+    
+    <div id="powers" class="step" data-x="-190" data-y="-450" data-duration="1000" data-scale="0.15">
+        <h3>More reductions</h3>
+        
+        <ul>
+            <li class="slide_step">If $\Bbb A$ and $\Bbb B$ are <span class="alert">homomorphically equivalent</span>, they have same CSP</li>
+            <li class="slide_step">$\psi(x_{1,1},\dots,x_{1,n};\dots;x_{k,1},\dots,x_{k,n})$ defines $k$-ary relation $R$ on $D^n$:
+            \[(\underline{a^1},\dots,\underline{a^k})\in R\Leftrightarrow \Bbb A\models \psi(a^1_1,\dots,a^1_n,\dots,a^k_1,\dots,a^k_n)\]</li>
+            <li class="slide_step">$\Csp(D^n; R)$ reduces to $\Csp(\Bbb A)$.</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Example</div>
+        $\Bbb A=(\{{\color{vermillion}{\bullet}},{\color{green}{\bullet}},{\color{blueish}{\bullet}}\}$, 
+    <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="70" height="80" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+    <marker id="arrow" viewBox="0 0 100 100" refX="100" refY="50"
+        markerWidth="60" markerHeight="60"
+        orient="auto-start-reverse">
+      <path d="M 0 0 L 100 50 L 0 100 z" />
+    </marker>
+  </defs>
+    <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+    <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+    <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+    <circle cx="100" cy="570" fill="green" r="40"></circle>
+    <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+</svg>), $n=3,k=2$, $\psi(x_1,x_2,x_3;y_1,y_2,y_3) := (y_2=x_1\land y_3=x_2\land E(x_3,y_1))$.
+            
+        <svg class="slide_step" style="margin-left: -7pt; margin-bottom:-30pt;" width="800" height="200" viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+            <marker id="arrow2" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7"
+                orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" />
+            </marker>
+          </defs>
+        <g transform="translate(-300 0)">
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+            
+        <g transform="translate(0 0)">
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+            
+        <g transform="translate(300 0)">
+        <text x="100" y="0" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+        </svg><br />
+        <div class="slide_step">Therefore CSP($\vec{C_9}$) reduces to CSP($\vec{C_3}$).</div>
+        </div>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 310px;">Tractability theorem</div>
+            If 3-SAT cannot be simulated by powers of $\Bbb A$, then CSP($\Bbb A$) is in P.
+            <div class="citation" align="right">[Bulatov FOCS'17, Zhuk FOCS'17]</div>
+        </div>
+    </div>
+
+    <!--<div id="end_intro" class="step" data-x="0" data-y="0" data-scale="1.8">
+    </div>-->
+
+    <div id="dissertation_overview" class="step" data-x="1350" data-y="130" style="height: 800px;">
+	<h3>Overview</h3>
+  <div align="center">
+    <svg style="margin-left:0; position:absolute; left:-220px;" width="1400" height="700" viewBox="-250 0 1150 800">
+      
+      
+
+      <rect x="260" y="25" width="300" height="60" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+
+
+      <text x="285" y="50" font-size="20">CSPs with infinite templates</text>
+      <foreignObject width="300" height="100px" x="260" y="55">
+        <div style="font-size: 13px;">$(\Bbb Q;\lt)$, $(\Bbb Z; +,\times,1)$, $(\Bbb R;+,\times,\leq)$, ...</div></foreignObject>
+        
+      <g class="slide_step">
+        <rect x="25" y="572" width="220" height="40" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+        <text x="50" y="600" font-size="20">Finite-domain CSPs</text>
+        <line x1="250" y1="600" x2="320" y2="640" style="stroke-width:1; stroke:rgb(100,100,50);" />
+        <text x="310" y="660" font-size="18">Feder-Vardi conjecture</text>
+      </g>
+
+      <g class="slide_step">
+          <rect x="-10" y="160" width="330" height="80" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+          <line x1="310" y1="85" x2="150" y2="160" style="stroke:black;stroke-width:2;"/>
+          <text x="0" y="200" font-size="20">CSPs with &omega;-categorical templates</text>
+          <text x="45" y="220" font-size="12">(temporal reasoning, spatial reasoning, ...)</text>
+      </g>
+        
+      <g class="slide_step">
+        <rect x="-13" y="320" width="326" height="60" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+        <line x1="150" y1="240" x2="150" y2="320" style="stroke:black;stroke-width:2;"/>
+        <text x="-5" y="345" font-size="20">CSPs of reducts of finitely bounded</text>
+        <text x="35" y="370" font-size="20">homogeneous structures</text>
+        <line x1="-15" y1="330" x2="-80" y2="300" style="stroke-width:1; stroke:rgb(100,100,50);" />
+        <text x="-180" y="290" font-size="18">Bodirsky-Pinsker conjecture</text>
+      </g>
+
+      <g class="slide_step">
+        <line x1="310" y1="520" x2="155" y2="572" style="stroke:black;stroke-width:2;"/>
+        <line x1="10" y1="520" x2="125" y2="572" style="stroke:black;stroke-width:2;"/>
+        <line x1="10" y1="470" x2="150" y2="380" style="stroke:black;stroke-width:2;"/>
+        <line x1="310" y1="470" x2="150" y2="380" style="stroke:black;stroke-width:2;"/>
+        <rect x="-115" y="470" width="250" height="50" style="fill:white;stroke-width:3;stroke:rgb(255,0,0)" />
+        <rect x="190" y="470" width="270" height="50" style="fill:white;stroke-width:3;stroke:rgb(255,0,0)" />
+        <text x="-100" y="500" font-size="20">Monotone Monadic SNP</text>
+        <text x="200" y="500" font-size="20">Reducts of Unary Structures</text>
+      </g>
+
+      <g id="contribution_numeric" transform="translate(100,150)">
+        <g class="slide_step">
+          <line x1="310" y1="-65" x2="550" y2="10" style="stroke:black;stroke-width:2;"/>
+          <rect x="400" y="10" width="300" height="80" style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+          <text x="425" y="50" font-size="20">CSPs with numeric templates</text>
+          <text x="425" y="70" font-size="12">(linear programming, diophantine equations, ...)</text>
+        </g>    
+        
+      <g class="slide_step">
+          <line x1="590" y1="90" x2="590" y2="180" style="stroke:black;stroke-width:2;"/>
+          <rect x="410" y="180" width="390" height="60"  style="fill:white;stroke-width:3;stroke:rgb(0,0,0)" />
+        <text x="430" y="210" font-size="20">CSPs of Presburger-definable templates</text>
+        <foreignObject width="300" height="100px" x="460" y="217">
+        <div style="font-size: 13px;">Definable in $(\Bbb Z; +, \lt)$</div></foreignObject>
+        <line x1="450" y1="155" x2="490" y2="180" style="stroke-width:1; stroke:rgb(100,100,50);"/>
+        <text x="340" y="150" font-size="18">Jonsson-Lööw programme</text>
+      </g>  
+          
+          
+        <g class="slide_step">
+            <rect x="640" y="315" width="240" height="80" style="fill:white;stroke-width:3;stroke:rgb(255,0,0)" />
+            <line x1="755" y1="315" x2="590" y2="240" style="stroke:black;stroke-width:2;"/>
+                <text x="0" y="310" font-size="20">
+                <tspan x="680" dy="1.4em">Disjunctive Linear</tspan>
+                <tspan x="650" dy="1.2em">Diophantine Constraints</tspan>
+                </text>
+            <foreignObject width="300" height="100px" x="610" y="370"><div style="font-size: 13px;">Definable in $(\Bbb Z; +, 1)$</div></foreignObject>
+        
+          <line x1="505" y1="325" x2="590" y2="240" style="stroke:black;stroke-width:2;"/>
+          <rect x="390" y="320" width="230" height="50" style="fill:white;stroke-width:3;stroke:rgb(255,0,0)" />
+          <text x="400" y="345" font-size="20">Discrete Temporal CSPs</text>
+        <foreignObject width="300" height="100px" x="350" y="350">
+        <div style="font-size: 13px;">Definable in $(\Bbb Z; \lt)$</div></foreignObject>
+       </g>
+      </g>      
+    </svg>
+  </div>
+    </div>
+    
+    <div id="part1" class="step" data-x="-2000" data-y="-2000" data-duration="0">
+        <h2>Part 1:<br /> structures that don't count</h2>
+    </div>
+
+    <div id="homogeneity" class="step" data-x="-370" data-y="-280" data-scale="0.15" data-section="The Bodirsky-Pinsker conjecture">
+      <h3>$\omega$-categoricity</h3>
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">$\omega$-categoricity</div>
+        $\Bbb A$ is <span class="alert">$\omega$-categorical</span>
+            if for all $n\geq 1$, there are only finitely many $n$-ary fo-formulas up to equivalence.
+        </div>
+        
+        <div class="slide_step example"><em>Examples:</em>
+        <ul>
+          <li>$(\Bbb N; =)$: maximal $n$-ary first-order formula $\leftrightarrow$ partition of $\{1,\dots,n\}$</li>
+          <li>$(\Bbb Q; \lt)$: weak linear order on $\{1,\dots,n\}$</li>
+          <li>Nominal sets: $\left( \binom{\Bbb N}{2}; \{ (S,T) \mid |S\cap T|=1 \} \right)$</li>
+          <li>$(\Bbb Z; y=x+1)$: <span class="slide_step">$y=x+1, y=x+2, \dots$</span></li>
+        </ul>
+        </div>
+            
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        For every problem $L$, there exists an $\omega$-categorical $\Bbb A$ such that $L$ reduces to $\Csp(\Bbb A)$,
+            and $\Csp(\Bbb A)$ is in $coNP^L$.<br />
+            If $P\neq NP$, there is an $\omega$-categorical $\Bbb A$ with a coNP-intermediate CSP.
+        <div align="right" class="citation">[Bodirsky-Grohe, ICALP'08]<br />
+            [Gillibert-Jonušas-Kompatscher-M-Pinsker, '19]<br />
+        </div>
+      </div>
+        
+        <!--
+<div>$\alpha$ is an <span class="alert">automorphism</span> of $\Bbb A$
+if for every relation $R^{\Bbb A}$ and $\overline a\in A^n$,
+  <div align="center">$\overline a\in R^{\Bbb A}\Longleftrightarrow \alpha(\overline a)\in R^{\Bbb A}$.</div>
+        </div>
+
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">Definition</div>
+        $\Bbb A$ is <span class="alert">homogeneous</span>
+        if every partial isomorphism $\Bbb A\to\Bbb A$ with finite domain
+        extends to an automorphism.
+        </div>
+
+      <p class="slide_step">Uniquely identified by the set $\Age(\Bbb A)$ of its finite substructures. <span class="citation">[Fraïssé '53]</span></p>
+      <div class="slide_step example"><em>Examples:</em>
+        <ul>
+          <li>$(\Bbb Q; \lt)$ is homogeneous; its finite substructures are precisely the finite linear orders.</li>
+          <li>The random graph (finite simple undirected graphs).</li>
+          <li>The Henson graph $H_3$ (finite undirected triangle-free graphs).</li>
+        </ul>
+      </div>
+        
+    <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">Definition</div>
+        $\Bbb A$ is <span class="alert">finitely bounded</span>
+        if TODO
+        </div>   --> 
+        
+    </div>
+
+    <div id="clones" class="step" data-x="0" data-y="-320" data-scale="0.15">
+      <h3>Polymorphisms: the algebraic approach</h3>
+
+      <p class="slide_step para">$f\colon\Bbb A^n\to\Bbb A$ is a <span class="alert">polymorphism</span>
+        of $\Bbb A$
+      if it preserves every relation of $\Bbb A$.</p>
+      <div align="center" class="slide_step"><img src="polymorphism.png" style="width:350px;display:block;" /></div>
+      
+
+      <p class="slide_step para">$\Pol(\Bbb A)$ is a clone: it contains projections and is closed under composition.</p>
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        If $\Bbb A$ is $\omega$-categorical, then
+        $\langle\Bbb A\rangle = \Inv(\Pol(\Bbb A))$.
+        <div align="right" class="citation">[Geiger '68; Bodnar&ccaron;uk, Kalu&zcaron;nin, Kotov, Romov '69; Bodirsky, Ne&scaron;et&rcaron;il '06]</div>
+        </div>
+
+      <div class="slide_step para" align="center" style="border: 2px solid #e13300;">
+        $\leadsto$ For $\omega$-categorical structures,<br />
+          Study of CSPs = study of coclones = study of clones.
+      </div>
+    </div>
+
+    <div id="schaefer" class="step" data-x="0" data-y="-480" data-duration="1000" data-scale="0.15">
+        <h3>Example: Schaefer's dichotomy</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        Let $\Bbb A$ be a structure over $\{0,1\}$.
+        CSP($\Bbb A$) is in P or NP-complete.
+          <div align="right" class="citation">[Schaefer, STOC'78]</div>
+        </div>
+        
+        <table class="slide_step" style="border:1px solid black;border-collapse: collapse;">
+            <tr>
+            <td style="border-bottom:1px solid black; padding-left: 10px;">If $\Pol(\Bbb A)$ contains...</td>
+            <td style="border-bottom:1px solid black;">$\langle\Bbb A\rangle$ is contained in...</td>
+            </tr>
+            <tr><td style="padding-left: 10px;">$\min$</td><td>$\langle \bigl(\{0,1\}; x\land y\rightarrow z, 0,1\bigr)\rangle$</td></tr>
+            <tr><td style="padding-left: 10px;">$\max$</td><td>$\langle \bigl(\{0,1\}; \bar x\land \bar y\rightarrow \bar z, 0,1\bigr)\rangle$</td></tr>
+            <tr><td style="padding-left: 10px;">$x+y+z$</td><td>$\langle \bigl(\{0,1\}; x+y+z=0, x+y+z=1\bigr)\rangle$</td></tr>
+            <tr><td style="padding-left: 10px;">majority</td><td>$\langle 2\text{-SAT}\rangle$</td></tr>
+        </table>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 120px;">Lemma</div>
+        If 3-SAT is not simulated by a power of $\Bbb A$, then $\Pol(\Bbb A)$ contains one of the operations above.
+            <div class="citation" align="right">[Post, '41]</div>
+        </div>
+        
+    </div>    
+    <div id="equations" class="step" data-x="0" data-y="-640" data-duration="1000" data-scale="0.15">
+        <h3>Algebraic Hardness</h3>
+        <div class="slide_step">$\xi\colon\mathscr C\to\mathscr D$ is a <span class="alert">homomorphism</span>
+        if for all $f\in\mathscr C$ and $\pi_{i_1},\dots,\pi_{i_m}$,
+        we have
+        <div align="center">$\xi(f\circ (\pi_{i_1},\dots,\pi_{i_m})) = \xi(f)\circ (\pi_{i_1},\dots,\pi_{i_m})$.</div></div>
+
+        <div class="slide_step">$\mathscr P$: clone of projections on $\{0,1\}$.</div>
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+            Let $\Bbb A$ be $\omega$-categorical.<br />
+        If $\Pol(\Bbb A)\to\mathscr P$ is uniformly continuous,
+          then $\Csp(\Bbb A)$ is NP-hard.
+          <div align="right" class="citation">[Barto-Opršal-Pinsker '16]</div>
+        </div>
+        
+        <div class="slide_step">Bodirsky-Pinsker: a dichotomy for all $\omega$-categorical structures is impossible,
+        but some interesting subclass seems to prevent diagonalization techniques.</div>
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 170px;">Conjecture</div>
+        $\Bbb A$ definable in a finitely bounded homogeneous structure.<br />
+          If $\Pol(\Bbb A)$ does not <span class="alert">unif. continuously</span> maps to $\mathscr P$,
+          then $\Csp(\Bbb A)$ is in P.
+          <div align="right" class="citation">[Bodirsky-Pinsker '11; Barto-Opršal-Pinsker '16]</div>
+        </div>
+        <div class="slide_step">
+        One <span class="alert">cannot</span> remove uniform continuity from the statement.
+        <div align="right" class="citation">[Bodirsky-M.-Olšak-Opršal-Pinsker-Willard, LICS'19]</div>
+        </div>
+    </div>
+
+    <div id="canonical" class="step" data-x="290" data-y="-260" data-scale="0.15">
+        <h3>Canonical Functions</h3>
+        $\overline a\sim_{\Bbb B} \overline b$: $\exists\alpha\in\Aut(\Bbb B) : \alpha(\overline a)=\overline b$.<br />
+        <div class="slide_step">If $\Bbb B$ is $\omega$-categorical, $\sim_{\Bbb B}$ has finite index for all length of tuples.</div>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 280px;">Canonical function</div>
+        $f\colon B^n\to B$ is <span class="alert">canonical</span> with respect to $\Bbb B$ if it preserves $\sim_{\Bbb B}$.
+        </div>
+
+      <div class="slide_step definition">
+          If $\Bbb A$ is definable in $\Bbb B$, then $\Aut(\Bbb B) \subseteq \Pol(\Bbb A,\sim_{\Bbb B}) \subseteq \Pol(\Bbb A)$.
+      </div>
+
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        $\Bbb A$ definable in a finitely bounded homogeneous structure $\Bbb B$.<br />
+        If $\Pol(\Bbb A,\sim_{\Bbb B})$ has no uniformly continuous homomorphism to $\mathscr P$,
+        then $\Csp(\Bbb A)$ is in P.
+        <div align="right" class="citation">[Bodirsky-M., LICS'16]</div>
+      </div>
+    <ul>
+      <li class="slide_step">The Bodirsky-Pinsker conjecture holds for clones of canonical functions.</li>
+      <li class="slide_step">Unification of several tractability results.</li>
+    </ul>
+    </div>
+
+    <div id="homextension" class="step" data-x="290" data-y="-400" data-scale="0.15">
+      <h3>The Homomorphism Extension Problem</h3>
+      <div class="slide_step">Recall:
+      <ul>
+        <li>If $\Pol(\Bbb A,\sim_{\Bbb B})\not\rightarrow\mathscr P$, $\Csp(\Bbb A)$ is in P.</li>
+        <li>If $\Pol(\Bbb A)\rightarrow\mathscr P$, $\Csp(\Bbb A)$ is NP-hard.</li>
+      </ul></div>
+        
+        
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 0px 0px 20px; margin-top: 30px; margin-bottom:30px;">
+        <div style="margin-bottom:-30px;position: relative; top:-25px; padding-left: 10px; background-color: white; width: 520px;">Homomorphism Extension Problem</div>
+        <div>Let $\xi\colon\Pol(\Bbb A,\sim_{\Bbb B})\rightarrow\mathscr P$ be a uniformly continuous homomorphism.
+          Does $\xi$ admit a uniformly continuous extension $\Pol(\Bbb A)\rightarrow\mathscr P$?</div>
+      </div>
+
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        Suppose that $\Bbb B$ is a <span class="alert">Ramsey</span> structure.
+        Let $f\colon B^n\to B$.<br />
+        Then $\exists g\in\overline{\Aut(\Bbb B)f\Aut(\Bbb B)}$ canonical with respect to $\Bbb B$.
+        <div class="citation" align="right">[Bodirsky-Pinsker-Tsankov '12]</div>
+      </div>
+
+      <div class="slide_step">A solution to the homomorphism extension problem..?
+        <ul>
+          <li>Assume $\xi\colon\Pol(\Bbb A,\sim_{\Bbb B})\rightarrow\mathscr P$ is a homomorphism.</li>
+          <li>For $f\in\Pol(\Bbb A)$, define $\tilde{\xi}(f)$ to be $\xi(g)$,
+            where $g$ is a canonical friend of $f$.</li>
+        </ul>
+      </div>
+
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 250px;">Sad observation</div>
+          In general, $\tilde{\xi}$ is not well-defined.<br />
+          The homomorphism extension problem has a negative answer.
+        </div>
+    </div>
+
+    <div id="pos" class="step"     data-x="290" data-y="-580" data-scale="0.15">
+      <h3>Positive answers to HEP</h3>
+    
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+      The Homomorphism Extension Problem has a positive answer in the following cases:
+      <ul>
+        <li>Reducts of unary structures: the <span class="alert">mashup</span> technique, <span class="citation">[Bodirsky-M., LICS'16]</span></li>
+          <li>MMSNP: hybrid relational approach. <span class="citation">[Bodirsky-Madelaine-M., LICS'18]</span></li>
+      </ul>
+        </div>
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 220px;">Open problem</div>
+          Classify the structures $\Bbb B$ for which HEP has a positive answer.
+      </div>
+    </div>
+
+    <div id="mmsnp" class="step"   data-x="800" data-y="375" data-scale="0.15">
+        <h3>Monotone Monadic SNP</h3>
+
+        <div class="slide_step" style="padding: 10px;border: 1px solid black;">
+          <strong>Input:</strong> a finite graph $G$,<br />
+          <strong>Question:</strong> can $G$ be colored with
+            <svg width="22" height="40">
+              <circle r="10" cx="11" cy="29" stroke="black" fill="red" />
+            </svg>
+            and
+            <svg width="22" height="40">
+              <circle r="10" cx="11" cy="29" stroke="black" fill="blue" />
+            </svg>
+            in a way to avoid monochromatic triangles?
+        </div>
+        <div class="slide_step">
+            Complexity: NP-complete.
+        </div>
+
+        <div class="slide_step lemma" style="padding: 10px;border: 1px solid black;">
+          <strong>Input:</strong> a finite graph $G$,<br />
+          <strong>Question:</strong> can $G$ be colored with
+            <svg width="22" height="40">
+              <circle r="10" cx="11" cy="29" stroke="black" fill="red" />
+            </svg>
+            and
+            <svg width="22" height="40">
+              <circle r="10" cx="11" cy="29" stroke="black" fill="blue" />
+            </svg>
+            in a way to avoid the following patterns?<br />
+            <svg width="800" height="300" viewBox="0 0 800 800">
+              <g id="k3red" transform="scale(0.8,0.8)">
+                <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+                <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+                <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+                <circle cx="40" cy="250" stroke="black" fill="red" r="40"></circle>
+                <circle cx="450" cy="250" stroke="black" fill="red" r="40"></circle>
+                <circle cx="250" cy="50" stroke="black" fill="red" r="40"></circle>
+              </g>
+              <g id="k31" transform="translate(500,0) scale(0.8,0.8)">
+                <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+                <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+                <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+                <circle cx="40" cy="250" stroke="black" fill="red" r="40"></circle>
+                <circle cx="450" cy="250" stroke="black" fill="blue" r="40"></circle>
+                <circle cx="250" cy="50" stroke="black" fill="blue" r="40"></circle>
+              </g>
+              <g id="k32" transform="translate(1000,0) scale(0.8,0.8)">
+                <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+                <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+                <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+                <circle cx="40" cy="250" stroke="black" fill="red" r="40"></circle>
+                <circle cx="450" cy="250" stroke="black" fill="red" r="40"></circle>
+                <circle cx="250" cy="50" stroke="black" fill="blue" r="40"></circle>
+              </g>
+              <g id="k4" transform="translate(530,400) scale(0.8,0.8)">
+                <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+                <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+                <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+                <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+                <line x1="80" y1="300" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+                <line x1="380" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+
+                <circle cx="80" cy="0" stroke="black" fill="blue" r="40"></circle>
+                <circle cx="380" cy="0" stroke="black" fill="blue" r="40"></circle>
+                <circle cx="380" cy="300" stroke="black" fill="blue" r="40"></circle>
+                <circle cx="80" cy="300" stroke="black" fill="blue" r="40"></circle>
+              </g>
+            </svg>
+        </div>
+        <div class="slide_step">Complexity: in P.</div>
+    </div>
+
+    <div id="mmsnp2" class="step"  data-x="800" data-y="540" data-scale="0.15">
+        <ul>
+            <li>Coloring problems with <span class="alert">forbidden patterns</span>.</li>
+            <li class="slide_step">No-mono-triangle is <span class="alert">not</span> a finite-domain CSP.</li>
+        </ul>
+    
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+          Every finite-domain CSP can be seen as such a coloring problem.<br />
+          Every coloring problem is ptime equivalent to a finite-domain CSP.
+          <div class="citation" align="right">[Feder-Vardi '93; Kun '13]</div>
+      </div>
+
+      <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 190px;">Observation</div>
+          Every coloring problem is $\Csp(\Bbb A)$ for some $\Bbb A$
+          in the Bodirsky-Pinsker class.
+          <div class="citation" align="right">[Bodirsky-Dalmau '12]</div>
+      </div>
+
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        The Homomorphism Extension Problem has a positive answer for the MMSNP structures.
+          <div align="right" class="citation">[Bodirsky-Madelaine-M., LICS'18]</div>
+        </div>
+        <ul>
+        <li class="slide_step">The Bodirsky-Pinsker conjecture is true for CSPs in MMSNP.</li>
+        <li class="slide_step">New proof of the Feder-Vardi-Kun result.</li>
+        </ul>
+    </div>
+    
+    <div id="part2" class="step" data-x="4000" data-y="1000" data-duration="0">
+        <h2>Part 2:<br />
+        structures that count</h2>
+    </div>
+    <div id="numeric" class="step" data-x="1525" data-y="380" data-scale="0.15" data-section="The Jonsson-Lööw programme">
+    <h3>Structures with semilinear relations</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 390px;">Jonsson-Lööw Programme</div>
+        Classify the complexity of all CSPs of templates $(\Bbb Z; R_1,\dots,R_p)$ where
+        $R_1,\dots,R_p$ are definable in Presburger arithmetic $(\Bbb Z; +, \leq, 1)$.
+        </div>
+        
+        <div>
+        <ul>
+        <li class="slide_step">Difference logic: $(\Bbb Z; \{\{(x,y) \mid y-x\leq c\} \mid c\in\Bbb Z\})$
+            \[\begin{cases}x-y &\leq 4\\
+            y-z &\leq 5\\
+            z-x &\leq -10\end{cases}\]
+            </li>
+        <li class="slide_step">Solving linear diophantine equations: $(\Bbb Z; x+y=z, 1)$</li>
+        <li class="slide_step">Max-Atoms: $(\Bbb Z; x\leq\max(y,z), y=x+1)$
+            \[\begin{cases}x &\leq \max(y+1,z-1)\\
+            y &\leq \max(z,t)\\
+            t &\leq x\end{cases}\]
+            </li>
+        <li class="slide_step">Solving mean-payoff games!</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="meanpayoff" class="step" data-x="1525" data-y="520" data-duration="1000" data-scale="0.15">
+        <h3>Mean-Payoff Games</h3>
+        <div align="center">
+        <img src="mpg.png" style="display:block; width: 500px;"/>
+        </div>
+        <div class="slide_step">Value of run $e_1,e_2,\dots$: $\liminf_{n} \frac1n\sum_{i=1}^n w(e_i)$<br />
+        $P$ wins if against every adversary, the value of every run is positive
+        </div>
+        
+        <div class="slide_step lemma" style="padding: 20px;">
+        <div class="lemmatitle">Mean-Payoff Games</div>
+          <strong>Input:</strong> a finite game $G$,<br />
+          <strong>Question:</strong> does P win?
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+            Mean-payoff games is ptime equivalent to $\Csp(\Bbb Z; x\leq\max(y,z), y=x+1,y=x+2,\dots)$ with constants encoded in binary.
+            <div align="right" class="citation">[Atserias-Maneva, '09]</div>
+        </div>
+        <div class="slide_step">Note: $(\Bbb Z; x\leq\max(y,z), y=x+1,y=x+2,\dots)$ is definable in $(\Bbb Z;\lt)$.</div>
+    </div>
+    
+    <div id="temporal" class="step" data-x="1525" data-y="660" data-duration="1000" data-scale="0.15">
+        <h3>Results</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        Let $\Bbb A$ be definable in $(\mathbb Z;\lt)$.<br />
+            Then $\Csp(\Bbb A)$ is in P or NP-complete and the meta-problem is decidable.
+        <div align="right" class="citation">[Bodirsky-Martin-M., ICALP'15]<br />
+            [Bodirsky-Dalmau-Martin-M.-Pinsker, Information and Computation 2016]<br />
+            [Bodirsky-Martin-M., Journal of the ACM 2018]</div>
+        </div>
+        
+        <div class="slide_step">Question: what about structures definable in $(\Bbb Z; \lt, 0)$?<br />Includes all finite-domain CSPs.</div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 150px;">Theorem</div>
+        Let $\Bbb A$ be definable in $(\mathbb Z;+,1)$ and contain $+$ in its language.<br />
+            Then $\Csp(\Bbb A)$ is in P or NP-complete and the meta-problem is decidable.
+        <div align="right" class="citation">[Bodirsky-Mamino-Martin-M., MFCS'18]</div>
+        </div>
+        
+        <div class="slide_step">Question: what about structures that don't contain $+$?</div>
+          <!--<h3>Discrete Temporal CSPs</h3>
+
+            <div class="slide_step" style="margin-top:30px;">Study of the structures definable in $(\Bbb Z; \lt)$.</div>
+  <div class="slide_step lemma">
+    Let $\Bbb A$ be definable in $(\Bbb Z;\lt)$.<br /> Then $\Csp(\Bbb A)$ is in P or NP-hard,
+    and the tractability border has an algebraic description in a saturated extension of $(\Bbb Z;\lt)$.
+    <div class="citation" align="right">[Bodirsky-Martin-M, JACM 2018]</div>
+  </div>
+  <div class="slide_step" style="margin-top:20px;">Use of the countable $\omega$-saturated extension $(\Bbb Q\times\Bbb Z;\lt)$:</div>
+
+          <div class="slide_step lemma">
+               $\Bbb A$ definable in $(\Bbb Q\times \Bbb Z;\lt)$ and $R\subseteq (\Bbb Q\times \Bbb Z)^n$ definable and <span class="alert">finitely generated</span>.
+              Then $R$ is $\{\exists,\land\}$-definable in $\Bbb A$ iff $R\in\Inv(\Pol(\Bbb A))$.
+              <div class="citation" align="right">[Bodirsky-Martin-M, ICALP'15]</div>
+          </div>
+
+          <div class="slide_step">Study of endomorphisms of such structures.</div>
+          <div class="slide_step">$\Rightarrow$ Reduce to the case where $y=x+1$ is $\{\exists,\land\}$-definable.</div>-->
+        </div>
+
+    <div class="step" id="conclusion" data-x="0" data-y="1100" data-scale="1" data-section="Conclusion">
+        <h3>Conclusion</h3>
+
+        <!--<div class="slide_step"  style="margin-top: 60px; margin-bottom: 60px;">-->
+          <ul style="margin-top:100px;"><li>CSPs with $\omega$-categorical templates:
+          <ul>
+              <li>New tools for the study of clone homomorphisms and canonical functions,</li>
+              <li>Generalisable methods towards a solution of the <br /><span class="alert">Bodirsky-Pinsker conjecture</span>,</li>
+              <li>New, algebraic proof of foundational result by Feder and Vardi.</li>
+          </ul></li>
+        
+
+        <!--<div class="slide_step" style="margin-top: 60px;">-->
+          <li>CSPs with numeric templates:
+          <ul>
+              <li>First systematic classifications in the <span class="alert">Jonsson-Lööw programme</span>,</li>
+              <li>New techniques (<span class="alert">$\omega$-saturation</span>),</li>
+              <li>Alternative approach to parity games/mean payoff games?</li>
+          </ul>
+              </li>
+            </ul>
+      </div>
+
+          <div id="overview" class="step"  data-x="0" data-y="400" data-scale="2.4" data-duration="1000">
+          </div>
+
+</div>
+<div id="section_name" style="position:fixed;bottom: 0.1em;left: 1%;"></div>
+<script src="js/flides.js"></script>
+<script src="js/svg-group-slide.js"></script>
+<script>
+  var config = {
+    selector: '#animation_complexity_svg',
+    selector_text: '#animation_complexity',
+    loop: true,
+    fadeOut: true
+  };
+  var config2 = {
+    selector: '#animation_complexity_svg2',
+    selector_text: '#animation_complexity2',
+    loop: true,
+    fadeOut: true
+  };
+  var groupSlide = new SVGGroupSlide(config);
+    var groupSlide2 = new SVGGroupSlide(config2);
+  groupSlide.start();
+  groupSlide2.start();
+</script>
+<script>flides().init('flides');</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  TeX: {
+   extensions: ["color.js"]
+   }
+  
+});
+
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["vermillion"] = '#d55300';
+     MathJax.Extension["TeX/color"].colors["blueish"] = '#56b4e9';
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script src="MathJax-2.7.5/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+</body>
+</html>

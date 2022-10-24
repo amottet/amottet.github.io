@@ -1,0 +1,1283 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Introduction to CSPs</title>
+
+    <meta name="description" content="Introduction to CSPs" />
+    <meta name="author" content="Antoine Mottet" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/svg-group-slide.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  $\def\Csp{\text{CSP}}$
+  $\def\Pol{\text{Pol}}$
+  $\def\End{\text{End}}$
+  $\def\Inv{\text{Inv}}$
+  $\def\Aut{\text{Aut}}$
+  $\def\Age{\text{Age}}$
+
+<div id="flides">
+
+    <div id="title" class="step" data-duration="0" data-x="3000" data-y="-2500" data-scale="3">
+	<h3>Introduction to Constraint Satisfaction Problems</h3>
+
+	<br/>
+
+	<h4>Antoine Mottet</h4>
+  <h4>QuantLA Spring School</h4>
+  <h4>27.03.2019 (Part 1) and 29.03.2019 (Part 2)</h4>
+        <!--<img src="LOGO_ERC.jpg" style="display:block; width:200px;margin-left: auto; margin-right: auto; margin-top: 100px;"/>-->
+    </div>
+    
+    <div id="intro" class="step remain" data-x="0" data-y="0" data-scale="1" data-section="Introduction">
+        <h3>The Constraint Satisfaction Problem</h3>
+        $D$: finite set.
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 80px;">$\Csp$</div>
+        <ul style="margin-top:-20px;">
+            <li><strong>Input:</strong> variables $V$, <span class="alert">constraints</span> $((z_1,\dots,z_k),R)$<br /> where $z_1,\dots,z_k\in V$, $R\subseteq D^k$
+            <li><strong>Question:</strong> $\exists h\colon V\to D$ s.t.
+            $(h(z_1),\dots,h(z_k))\in R$ for every constraint?</li>
+        </ul>
+        </div>
+        
+        <table>
+        <tr>
+        <td><div class="slide_step">$D=\{1,\dots,9\}$:
+            <ul><li>$V=\{x_{1,1},\dots,x_{9,9}\}$</li>
+            </ul>
+            <svg width="300" height="300">
+                <line x1="0" y1="0" x2="270" y2="0" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="30" x2="270" y2="30" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="60" x2="270" y2="60" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="90" x2="270" y2="90" style="stroke:black;stroke-width:4"/>
+                <line x1="0" y1="120" x2="270" y2="120" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="150" x2="270" y2="150" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="180" x2="270" y2="180" style="stroke:black;stroke-width:4"/>
+                <line x1="0" y1="210" x2="270" y2="210" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="240" x2="270" y2="240" style="stroke:black;stroke-width:2"/>
+                <line x1="0" y1="270" x2="270" y2="270" style="stroke:black;stroke-width:2"/>
+                    
+                <line x1="0" y1="0" x2="0" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="30" y1="0" x2="30" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="60" y1="0" x2="60" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="90" y1="0" x2="90" y2="270" style="stroke:black;stroke-width:4"/>
+                <line x1="120" y1="0" x2="120" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="150" y1="0" x2="150" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="180" y1="0" x2="180" y2="270" style="stroke:black;stroke-width:4"/>
+                <line x1="210" y1="0" x2="210" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="240" y1="0" x2="240" y2="270" style="stroke:black;stroke-width:2"/>
+                <line x1="270" y1="0" x2="270" y2="270" style="stroke:black;stroke-width:2"/>
+                
+                <g class="slide_step">
+                <circle cx="19" cy="11" r="5" fill="blue" />
+                <circle cx="45" cy="15" r="5" fill="blue" />
+                <circle cx="75" cy="15" r="5" fill="blue" />
+                <circle cx="105" cy="15" r="5" fill="blue" />
+                <circle cx="135" cy="15" r="5" fill="blue" />
+                <circle cx="165" cy="15" r="5" fill="blue" />
+                <circle cx="195" cy="15" r="5" fill="blue" />
+                <circle cx="225" cy="15" r="5" fill="blue" />
+                <circle cx="255" cy="15" r="5" fill="blue" />
+                </g>
+                
+                <g class="slide_step">
+                <circle cy="19" cx="11" r="5" fill="green" />
+                <circle cy="45" cx="15" r="5" fill="green" />
+                <circle cy="75" cx="15" r="5" fill="green" />
+                <circle cy="105" cx="15" r="5" fill="green" />
+                <circle cy="135" cx="15" r="5" fill="green" />
+                <circle cy="165" cx="15" r="5" fill="green" />
+                <circle cy="195" cx="15" r="5" fill="green" />
+                <circle cy="225" cx="15" r="5" fill="green" />
+                <circle cy="255" cx="15" r="5" fill="green" />
+                </g>
+                
+                <g class="slide_step">
+                <circle cx="105" cy="105" r="5" fill="red" />
+                <circle cx="135" cy="105" r="5" fill="red" />
+                <circle cx="165" cy="105" r="5" fill="red" />
+                <circle cx="105" cy="135" r="5" fill="red" />
+                <circle cx="135" cy="135" r="5" fill="red" />
+                <circle cx="165" cy="135" r="5" fill="red" />
+                <circle cx="105" cy="165" r="5" fill="red" />
+                <circle cx="135" cy="165" r="5" fill="red" />
+                <circle cx="165" cy="165" r="5" fill="red" />
+                </g>
+                
+                
+                </svg><br />
+            <span class="slide_step">Solutions = Valid sudokus</span>
+        </div></td> 
+            <td><div class="slide_step" style="width:auto;">$D=\{0,1\}$:
+            <ul><li>$V=\{x_1,x_2,x_3,x_4\}$</li>
+                <li>$((x_1,x_2,x_3), R_{000})$</li>
+                <li>$((x_1,x_2,x_3), R_{111})$</li>
+                <li>$((x_1,x_2,x_3), R_{011})$</li>
+                <li>$((x_1,x_3,x_4), R_{001})$</li>
+                <li>$((x_2,x_3,x_4), R_{000})$</li>
+            </ul>
+                
+            <span style="font-size:0.8em;">(where $R_{i,j,k}=\{0,1\}^3\setminus\{(i,j,k)\}$).</span><br />
+            <span class="slide_step">Solution = ?</span>
+        </div></td> 
+        </tr></table>
+            
+        <div align="center">
+        <span class="slide_step">Complexity?</span> <span class="slide_step"><span class="alert">NP-complete</span> (if $|D|>1$).</span>
+            </div>
+    </div>
+    
+    <div id="more-examples" class="step" data-x="0" data-y="1000" data-scale="1">
+    <h3>More examples</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">k-colourability</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> vertices $V$, edges $E$</li>
+                <li><strong>Question:</strong> exists proper colouring of $V$ with $k$ colours?</li>
+            </ul>
+            </div>
+        <div class="slide_step">
+        CSP with domain $D=\{1,\dots,k\}$.<br />
+            Instance: $V=V$, edge $\{v,w\}\leadsto$ constraint $((v,w),\neq)$.
+        </div>
+        <ul>
+            
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 230px;">$s$-$t$ Reachability</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> vertices $V$, directed edges $E$, $s,t\in V$</li>
+                <li><strong>Question:</strong> does there exist a path from $s$ to $t$?</li>
+            </ul>
+            </div>
+        <div class="slide_step">
+        Domain: $\{0,1\}$, instance:
+            <ul>
+            <li>Variables: $V$,</li>
+            <li>Constraints: $(v,w)\in E\leadsto ((v,w),\leq)$, $((s),\{1\})$, $((t),\{0\})$</li>
+            </ul>
+            Satisfiable iff no path from $s$ to $t$.
+        </div>
+        </ul>
+    </div>
+    <div id="csp-exercise" class="step" data-x="0" data-y="2000" data-scale="1">
+        <h3>The Conference Dinner Problem</h3>
+    5 tables (infinitely big), $n$ persons want to sit for dinner.<br />
+    <strong>Problem:</strong> people want to optimise their dinner experience and have wishes:<br />
+        <ul>
+        <li>"If $x$ and $y$ sit together, $z$ wants to be with them"</li>
+        <li>"$x$ wants to sit with $y$ or $z$"</li>
+        <li>"$x$ wants to sit at table $T$" (e.g., because it's closer to the buffet)</li>
+        </ul>
+        
+        <strong>Your task:</strong> Find a table plan by reducing to a CSP.
+    </div>
+    
+    <div id="intro2" class="step remain" data-x="0" data-y="3000" data-scale="1">
+        <ul>
+        <li>Sudoku $\rightarrow R_{All-Diff}$ and unary singletons, 3-SAT $\rightarrow R_{ijk}$, colourability  $\rightarrow{} \neq$, ...
+            <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 280px;">$\Csp(D;R_1,\dots,R_p)$</div>
+            <ul style="margin-top:-10px;">
+                <li><strong>Input:</strong> variables $V$, tuples $((z_1,\dots,z_k),T)$ where $T\,\color{red}{\in \{R_1,\dots,R_p\}}$</li>
+                <li><strong>Question:</strong> $\exists h\colon V\to D$ s.t.
+                $(h(z_1),\dots,h(z_k))\in T$ for every constraint?</li>
+            </ul>
+            </div>
+        </li>
+        <li class="slide_step">Complexity depends on $\Bbb A=(D;R_1,\dots,R_p)$<br/> ($s$-$t$ reachability in NL, $k$-colourability is NP-hard)</li>
+        <div align="center" class="slide_step">
+            $\Csp($<svg style="margin-left: 0pt; margin-bottom:-20pt;" id="animation_complexity_svg" width="100" height="100" viewBox="0 0 512 256">
+	<g id="k3" transform="translate(0,-10)">
+    <line x1="40" y1="250" x2="450" y2="250" style="stroke:black;stroke-width:2" />
+    <line x1="40" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="250" x2="250" y2="50" style="stroke:black;stroke-width:2" />
+
+		<circle cx="40" cy="250" fill="red" r="40"></circle>
+		<circle cx="450" cy="250" fill="green" r="40"></circle>
+		<circle cx="250" cy="50" fill="blue" r="40"></circle>
+	</g>
+  <g id="c4" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k3k3" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="300" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="80" y2="0" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="300" x2="380" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+    <circle cx="380" cy="300" fill="blue" r="40"></circle>
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+  </g>
+  <g id="k33" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="k33b" transform="translate(30,0)">
+    <line x1="80" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="80" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="80" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="230" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="380" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="380" y1="0" x2="230" y2="0" style="stroke:black;stroke-width:2" />
+
+    <circle cx="80" cy="0" fill="red" r="40"></circle>
+    <circle cx="230" cy="0" fill="blue" r="40"></circle>
+    <circle cx="380" cy="0" fill="green" r="40"></circle>
+
+    <circle cx="80" cy="300" fill="purple" r="40"></circle>
+    <circle cx="230" cy="300" fill="#ff33cc" r="40"></circle>
+    <circle cx="380" cy="300" fill="#0066cc" r="40"></circle>
+  </g>
+  <g id="c5">
+    <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+    <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+    <circle cx="140" cy="300" fill="red" r="40"></circle>
+    <circle cx="360" cy="300" fill="green" r="40"></circle>
+    <circle cx="50" cy="100" fill="blue" r="40"></circle>
+    <circle cx="450" cy="100" fill="purple" r="40"></circle>
+    <circle cx="245" cy="-50" fill="yellow" r="40"></circle>
+  </g>
+</svg>$)$ is <span id="animation_complexity">
+  <span>NP-hard</span>
+  <span style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-90pt;">in P</span>
+<span  style="margin-left:-45pt;">NP-hard</span>
+<span  style="margin-left:-91pt;">NP-hard</span>
+</span>
+        </div>
+        <li class="slide_step">If $D$ allowed to be infinite, <strong>every</strong> problem is polytime Turing-equivalent to a CSP. <span class="citation"?>[Bodirsky-Grohe '08]</span></li>
+        </ul>
+        
+        <div align="center" class="slide_step" style="border: 2px solid #e13300;">When is $\Csp(D; R_1, \dots, R_p)$ in P? NP-hard? undecidable? ...</div>
+        
+        <div class="slide_step">
+        What this talk is not about:
+        <ul>
+        <li>Efficient implementations of polytime algorithms,</li>
+        <li>Efficient algorithms for NP-hard problems (SAT solvers, constraint solvers, ...)</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="intro3" class="step remain" data-x="0" data-y="4000" data-scale="1">
+        <div align="center"><span class="alert">Why</span> is $\Csp(D; R_1, \dots, R_p)$ in P? NP-hard? undecidable? ...</div>
+        
+        <div class="lemma slide_step" style="margin-top:50px;">While there is an infinite range of complexity classes, problems occurring in practice [are] complete for a handful of them.
+I used to say that no one knows why this happens. Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.
+        <div class="citation" align="right">Neil Immermann, 2015</div></div>
+        
+        <svg width="1100" height="480" class="slide_step">
+            <text x="50%" y="100" fill="black" text-anchor="middle">Computational Complexity</text>
+            <line x1="50%" y1="120" x2="50%" y2="220" style="stroke:black;stroke-width:2"/>
+            <text x="50%" y="240" fill="black" dominant-baseline="middle" text-anchor="middle">Logic</text>
+            <line x1="50%" y1="260" x2="50%" y2="360" style="stroke:black;stroke-width:2"/>
+            <text x="50%" y="400" fill="black" text-anchor="middle">Algebra</text>
+            
+            <g style="opacity: 0.2;">
+            <line x1="45%" y1="390" x2="40%" y2="430" style="stroke:black;stroke-width:2"/>
+            <text x="30%" y="450" fill="black" text-anchor="middle">Ramsey Theory</text>
+                
+            <line x1="44%" y1="240" x2="30%" y2="240" style="stroke:black;stroke-width:2"/>
+            <text x="20%" y="240" fill="black" dominant-baseline="middle" text-anchor="middle">Model Theory</text>
+                
+            <line x1="45%" y1="390" x2="36%" y2="370" style="stroke:black;stroke-width:2"/>
+            <text x="30%" y="380" fill="black" text-anchor="middle">Topology</text>
+                
+            <line x1="55%" y1="390" x2="63%" y2="390" style="stroke:black;stroke-width:2"/>
+            <text x="75%" y="400" fill="black" text-anchor="middle">Algebraic Topology</text>
+            </g>
+        </svg>
+    </div>
+    
+    <div id="reformulation" class="step remain" data-x="2000" data-y="0" data-scale="1" data-section="Relational Invariants">
+        <h3>Complexity $\to$ Logic</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 360px;">Example: $\Csp(\{0,1\},\neq)$</div>
+        <span style="color: #e13300;">$V=\{x_1,x_2,x_3,x_4\}$, $((x_1,x_2),\neq),((x_2,x_3),\neq),((x_1,x_3),\neq),((x_1,x_4,\neq))$</span>
+        $\leadsto$ <span style="color:#288585;">$\exists x_1\exists x_2\exists x_3\exists x_4 (x_1\neq x_2\land x_2\neq x_3\land x_1\neq x_3\land x_1\neq x_4)$</span>
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 320px;">CSP (2nd formulation)</div>
+        <ul style="margin-top:-20px;">
+            <li>Input: sentence $\phi:=\exists x_1\dots\exists x_n (\bigwedge_i R_i(z_{i1},\dots,z_{ik}))$</li>
+            <li>Question: Does $\Bbb A\models\phi$?</li>
+        </ul>
+        </div>
+        
+        <ul>
+        <li class="slide_step">$\{\exists,\land\}$-formulas called <span class="alert">primitive positive</span> (p.p.)</li>
+        
+        <div class="slide_step invariant" style=" padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">Invariant 1</div>
+        If $\Bbb A$ and $\Bbb B$ satisfy the <span class="alert">same pp-sentences</span>, then $\Csp(\Bbb A)$ and $\Csp(\Bbb B)$ have the same complexity.
+        </div>    
+        
+        <li class="slide_step">Goal: Find other <strong>invariants</strong>.</li>
+        </ul>
+    </div>
+    
+    <div id="core" class="step remain" data-x="2300" data-y="450" data-scale="0.15">
+    <h3>Cores</h3>
+        <div class="invariant" style=" padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">Invariant 1</div>
+        If $\Bbb A$ and $\Bbb B$ satisfy the <span class="alert">same pp-sentences</span>, then $\Csp(\Bbb A)$ and $\Csp(\Bbb B)$ have the same complexity.
+        </div>
+        
+        <div style="margin-left: -150px;width: 75%;float:left;">One can remove useless/redundant vertices from $\Bbb A$ using this:
+        <img class="slide_step" src="core.jpeg" alt="" style="width:300px;display:block;margin-left: auto; margin-right: auto;"/>
+        <ul>
+            <li class="slide_step">Every pp-sentence true in $\Bbb B$ is true in $\Bbb A$: because $\Bbb B\subseteq\Bbb A$</li>
+            <li class="slide_step">Every pp-sentence true in $\Bbb A$ is true in $\Bbb B$:
+            <img src="core2.jpeg" style="width: 300px;display:block;margin-left: auto; margin-right: auto;"/></li>
+        </ul> 
+        </div>
+        <span class="slide_step" style="position:relative;top:100px;width:38%;">$\Bbb B$ is the <span class="alert">core</span> of $\Bbb A$: minimal structure satisfying the same pp-sentences.</span>
+    </div>
+    
+    <div id="pp-def" class="step remain" data-x="2000" data-y="1000" data-scale="1">
+        <h3>Adding relations</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 320px;">$\Csp(D;R_1,\dots,R_p)$</div>
+        <ul style="margin-top:-20px;">
+            <li>Input: $\phi:=\exists x_1\dots\exists x_n (\bigwedge_i T_i(z_{i1},\dots,z_{ik}))$, $T_i\in\{R_1,\dots,R_p\}$</li>
+            <li>Question: Does $\Bbb A\models\phi$?</li>
+        </ul>
+        </div>
+        
+        <div class="slide_step">$\Csp(D;R_1,\dots,R_p,R_{p+1})$ is:
+        <ol><li>at most as hard as $\Csp(D;R_1,\dots,R_p)$?</li>
+            <li>at least as hard?</li>
+            <li>exactly as hard?</li>
+            </ol></div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 60px; margin-bottom:30px;">
+        <div style="position: relative; top:-50px; padding-left: 10px; background-color: white; width: 480px;">Example: CSP(
+            $\{{\color{red}{\bullet}},{\color{green}{\bullet}},{\color{blue}{\bullet}},{\color{purple}{\bullet}},{\color{magenta}{\bullet}}\}$, 
+    <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="100" height="100" viewBox="0 0 512 256"><g id="c5">
+    <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+    <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+    <circle cx="140" cy="300" fill="red" r="40"></circle>
+    <circle cx="360" cy="300" fill="green" r="40"></circle>
+    <circle cx="50" cy="100" fill="blue" r="40"></circle>
+    <circle cx="450" cy="100" fill="purple" r="40"></circle>
+    <circle cx="245" cy="-50" fill="magenta" r="40"></circle>
+  </g>
+</svg>)</div>
+        Let $E'(x,y):= \exists z\exists t(E(x,z)\land E(z,t)\land E(t,y))$.
+            
+            <div align="center" class="slide_step">$\exists x,y,z({\color{red}{E'(x,y)}}\land E(y,z)\land E(z,x))$<br />
+                $\leadsto$<br />
+                $\exists x,y,z,{\color{red}{u,v}}({\color{red}{E(x,u)\land E(u,v)}\land E(v,y)}\land E(y,z)\land E(z,x))$</div>
+            <div class="slide_step">Exercise:
+            <ol >
+                <li>Compute $E'$.</li>
+                <li>Show that $\Csp(\{{\color{red}{\bullet}},{\color{green}{\bullet}},{\color{blue}{\bullet}},{\color{purple}{\bullet}},{\color{magenta}{\bullet}}\}, E)$ is NP-hard.</li>
+            </ol>
+                </div>
+        </div>
+    </div>
+    
+    <div class="step remain" data-x="2000" data-y="1200" data-scale="1" style="padding-top: 700px;">
+    <div class="invariant" style="padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">Invariant 2</div>
+        If $R$ is <span class="alert">pp-definable</span> in $\Bbb A$, then $\Csp(\Bbb A,R)$ and $\Csp(\Bbb A)$ have the same complexity.
+        </div> 
+    </div>
+    
+    <div id="powers" class="step remain" data-x="2000" data-y="2200" data-scale="1">
+        <h3>Powers</h3>
+        
+        <ul>
+            <li>Same idea as previous reduction</li>
+            <li>$\psi(x_{1,1},\dots,x_{1,n};\dots;x_{k,1},\dots,x_{k,n})$ defines $k$-ary relation $R$ on $D^n$:
+            \[(\underline{a^1},\dots,\underline{a^k})\in R\Leftrightarrow \Bbb A\models \psi(a^1_1,\dots,a^1_n,\dots,a^k_1,\dots,a^k_n)\]</li>
+            <li>$\Csp(D^n; R)$ reduces to $\Csp(\Bbb A)$.</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Example</div>
+        $\Bbb A=(\{{\color{vermillion}{\bullet}},{\color{green}{\bullet}},{\color{blueish}{\bullet}}\}$, 
+    <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="70" height="80" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+    <marker id="arrow" viewBox="0 0 100 100" refX="100" refY="50"
+        markerWidth="60" markerHeight="60"
+        orient="auto-start-reverse">
+      <path d="M 0 0 L 100 50 L 0 100 z" />
+    </marker>
+  </defs>
+    <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+    <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+    <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+    <circle cx="100" cy="570" fill="green" r="40"></circle>
+    <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+</svg>), $n=3,k=2$, $\psi(x_1,x_2,x_3;y_1,y_2,y_3) := (y_2=x_1\land y_3=x_2\land E(x_3,y_1))$.
+            
+        <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="800" height="300" viewBox="-200 -200 400 400" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+            <marker id="arrow2" viewBox="0 0 10 10" refX="10" refY="5"
+                markerWidth="7" markerHeight="7"
+                orient="auto-start-reverse">
+              <path d="M 0 0 L 10 5 L 0 10 z" />
+            </marker>
+          </defs>
+        <g transform="translate(-300 0)">
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+            
+        <g transform="translate(0 0)">
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+            
+        <g transform="translate(300 0)">
+        <text x="100" y="0" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="100" y="0" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+        
+            
+        <text x="76.6" y="64.3" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.6" y="64.3" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.33" y="98.50" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-50.06" y="86.59" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-50.06" y="86.59" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-94.02" y="34.14" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-94.02" y="34.14" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="green" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-93.97" y="-34.30" fill="#d55300" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="-49.92" y="-86.70" fill="green" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#d55300" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="-49.92" y="-86.70" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="17.51" y="-98.51" fill="#d55300" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="17.51" y="-98.51" fill="#56b4e9" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="start" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="#56b4e9" dominant-baseline="middle" text-anchor="middle" font-size="75">&#8226;</text>
+        <text x="76.75" y="-64.20" fill="green" dominant-baseline="middle" text-anchor="end" font-size="75">&#8226;</text>
+            
+        <line transform="scale(0.8 0.8)" x2="76.6" y2="64.3" x1="100" y1="00" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.6" y1="64.3" x2="17.33" y2="98.5" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="17.33" y1="98.5"  x2="-50.06" y2="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-94.02" y2="34.14"  x1="-50.06" y1="86.59" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-94.02" y1="34.14"  x2="-93.97" y2="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="-49.92" y2="-86.70"  x1="-93.97" y1="-34.30" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="-49.92" y1="-86.70"  x2="17.51" y2="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x2="76.75" y2="-64.20"  x1="17.51" y1="-98.51" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        <line transform="scale(0.8 0.8)" x1="76.75" y1="-64.20"  x2="100" y2="0" style="stroke:black;stroke-width:2" marker-end="url(#arrow2)" />
+        </g>
+        </svg>
+        </div>
+    </div>
+    
+    <div id="exercise-power" class="step remain" data-x="2400" data-y="2500" data-scale="0.2">
+        <h3>Exercise</h3>
+        Show that $\Bbb A=(\{{\color{vermillion}{\bullet}},{\color{green}{\bullet}},{\color{blueish}{\bullet}}\}$, 
+    <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="70" height="80" viewBox="0 0 800 800" xmlns="http://www.w3.org/2000/svg">
+    <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+    <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+    <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+    <circle cx="100" cy="570" fill="green" r="40"></circle>
+    <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+        </svg>)
+        
+        can define
+        <div align="center" style="margin-top:150px;">
+        <svg width="600" height="300" viewBox="0 0 1000 1000">
+            <g transform=" translate(-400 0) scale(0.5)">
+            <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+    <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+    <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+    <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+    <circle cx="100" cy="570" fill="green" r="40"></circle>
+    <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+                <circle cx="40" cy="570" fill="#d55300" r="40"></circle>
+                <circle cx="490" cy="310" fill="#d55300" r="40"></circle>
+                <circle cx="40" cy="50" fill="#d55300" r="40"></circle>            
+            </g>
+            <g transform="translate(0 0) scale(0.5)">
+            <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+            <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+            <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+            <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+            <circle cx="100" cy="570" fill="green" r="40"></circle>
+            <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+            <circle cx="40" cy="570" fill="green" r="40"></circle>
+            <circle cx="490" cy="310" fill="green" r="40"></circle>
+            <circle cx="40" cy="50" fill="green" r="40"></circle>            
+            </g>
+            
+            <g transform="translate(400 0) scale(0.5)">
+            <line x2="550" y2="310" x1="100" y1="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+            <line x1="550" y1="310" x2="100" y2="570" style="stroke:black;stroke-width:2" marker-end="url(#arrow)"/>
+            <line x1="100" y1="570" x2="100" y2="50" style="stroke:black;stroke-width:2" marker-end="url(#arrow)" />
+
+            <circle cx="550" cy="310" fill="#d55300" r="40"></circle>
+            <circle cx="100" cy="570" fill="green" r="40"></circle>
+            <circle cx="100" cy="50" fill="#56b4e9" r="40"></circle>
+            <circle cx="40" cy="570" fill="#56b4e9" r="40"></circle>
+            <circle cx="490" cy="310" fill="#56b4e9" r="40"></circle>
+            <circle cx="40" cy="50" fill="#56b4e9" r="40"></circle>            
+            </g>
+        </svg>
+        </div>
+    </div>
+    
+    <div id="invariants" class="step remain" data-x="2000" data-y="3200" data-scale="1">
+    <h3>Summarizing: The Ultimate Invariant?</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 250px;">pp-constructions</div>
+        $\Bbb B$ is <span class="alert">pp-constructible</span> in $\Bbb A$ if there exists $\Bbb C$ such that:
+            <ul>
+            <li>$\Bbb C=(A^n; R_1,\dots,R_p)$ and each $R_i$ is pp-definable in $\Bbb A$,</li>
+            <li>$\Bbb B$ and $\Bbb C$ satisfy the same pp-sentences.</li>
+            </ul>
+        </div>
+        
+        <div class="slide_step invariant" style="padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 140px;">Invariant</div>
+            If $\Bbb B$ is <span class="alert">pp-constructible</span> in $\Bbb A$, then $\Csp(\Bbb B)$ reduces to $\Csp(\Bbb A)$.
+        </div>
+        <div align="center" class="slide_step">
+        <img src="quasiorder-1.png" style="border:1px solid black; height: 400px;width: 500px;"/>
+        </div>
+    </div>
+    
+    <div id="conclusion-1" class="step remain" data-x="2000" data-y="4200" data-scale="1">
+        <h3>Conclusion</h3>
+        <ul>
+        <li>A quasi-order $\leq_{pp}$ such that $\Bbb A\leq_{pp} \Bbb B \Rightarrow \Csp(\Bbb A)\leq_{log} \Csp(\Bbb B)$.</li>
+        <li>If 3-SAT $\leq_{pp} \Bbb A$, then $\Csp(\Bbb A)$ is NP-hard.</li>
+        <li>It is feasible to prove $\Bbb A\not\leq_{pp}\Bbb B$ (contrast with $\not\leq_{\log}$).</li>
+        </ul>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 380px;">Theorem <span class="citation">[Bulatov '17, Zhuk '17]</span></div>
+            If $\Bbb A$ is finite and 3-SAT $\not\leq_{pp}\Bbb A$, then $\Csp(\Bbb A)$ is in P.
+        </div>
+        <div class="slide_step">
+        When $\Bbb A$ is finite, there is a <span class="alert">unique</span> source of hardness!
+        </div>
+        <div align="center" class="slide_step">
+        <img src="quasiorder-2.png" style="border:1px solid black; height: 400px;width: 500px;"/>
+        </div>
+    </div>
+    
+    <div id="warmup-algebra" class="step remain" data-x="4000" data-y="0" data-scale="1" data-section="Polymorphism and <em>All That</em>">
+        <h3>Warm up</h3>
+        
+        <div style="border: 2px solid black; padding: 0px 10px 50px 50px; margin-top: 30px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 120px;">Exercise</div>
+            <svg style="margin-left: -7pt; margin-bottom:-30pt;" width="100" height="100" viewBox="0 0 512 256"><g id="c5">
+    <line x1="140" y1="300" x2="360" y2="300" style="stroke:black;stroke-width:2" />
+    <line x1="140" y1="300" x2="50" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="360" y1="300" x2="450" y2="100" style="stroke:black;stroke-width:2" />
+    <line x1="450" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+    <line x1="50" y1="100" x2="245" y2="-50" style="stroke:black;stroke-width:2" />
+
+    <circle cx="140" cy="300" fill="red" r="40"></circle>
+    <circle cx="360" cy="300" fill="green" r="40"></circle>
+    <circle cx="50" cy="100" fill="blue" r="40"></circle>
+    <circle cx="450" cy="100" fill="purple" r="40"></circle>
+    <circle cx="245" cy="-50" fill="magenta" r="40"></circle>
+  </g>
+</svg>
+            Is there an fo-formula $\phi(x)$ (using $=$ and $E$) s.t. $\phi(x)$ iff $x=\color{magenta}{\bullet}$?
+        </div>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">Automorphism</div>
+        $f\colon\Bbb A\to\Bbb A$ <span class="alert">automorphism</span> if it is a bijection and $\forall R^{\Bbb A}$ and $\forall (a_1,\dots,a_k),$
+            \[(a_1,\dots,a_k)\in R^{\Bbb A}\Leftrightarrow (f(a_1),\dots,f(a_k))\in R^{\Bbb A}\]
+        </div>
+        
+        <ul>
+            <li class="slide_step"><strong>Fact:</strong> for every formula $\phi(x_1,\dots,x_k)$ and automorphism $f$,
+            \[ \Bbb A\models\phi(a_1,\dots,a_k)\Leftrightarrow \Bbb A\models\phi(f(a_1),\dots,f(a_k))\]</li>
+            <li class="slide_step"><strong>Idea:</strong> turn negative statement (non-existence of a formula) into equivalent positive statement (existence of a particular automorphism)</li>
+            </ul>
+        
+        <div class="slide_step">\[ f({\color{magenta}{\bullet}}):={\color{purple}{\bullet}}, f({\color{purple}{\bullet}}):={\color{green}{\bullet}}, f({\color{green}{\bullet}}):={\color{red}{\bullet}}, f({\color{red}{\bullet}}):={\color{blue}{\bullet}}, f({\color{blue}{\bullet}}):={\color{magenta}{\bullet}}\]
+            </div>
+    </div>
+    
+    <div id="exercise-algebra" class="step remain" data-x="4500" data-y="500" data-scale="0.1">
+        <h3>Definability exercise</h3>
+        <div align="center">
+        <img src="fo-definability.png" style="width:300px;" />
+        </div>
+        Which sets are fo-definable (using $=$ and $E$)?
+        <ul>
+        <li>$\{1\}$</li>
+        <li>$\{1,3\}$</li>
+        <li>$\{2,4\}$</li>
+        <li>$\{5,6\}$</li>
+        </ul>
+    </div>
+    
+    <div id="algebraic-1" class="step remain" data-x="4000" data-y="1000" data-scale="1">
+    <h3>pp is the new fo</h3>
+        Primitive positive = $\{\exists,\land\}$-fragment of first-order logic
+    <div>
+        <strong>Goal:</strong> prove $\Bbb A\not\leq_{pp}\Bbb B$ (non-existence of pp-construction) by existence of algebraic objects.</div>
+    
+        <table>
+        <tr><td style="text-align:center;">$\{\forall,\exists,\land,\lor,\neg\}$</td><td>Automorphisms</td></tr>
+        <tr><td style="text-align:center;">$\{\exists,\land,\lor,\neg\}$</td><td>Embeddings</td></tr>
+        <tr><td style="text-align:center;">$\{\exists,\land,\lor\}$</td><td>Endomorphisms</td></tr>
+        <tr><td style="text-align:center;">$\{\exists,\land\}$</td><td>?</td></tr>
+        </table>
+        
+    <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+    <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">Polymorphism</div>
+    $f\colon\Bbb A^n\to\Bbb A$ <span class="alert">polymorphism</span> if $\forall R^{\Bbb A}$ of arity $m$
+        
+        <div align="center" class="slide_step">
+        \begin{matrix}
+        (a^1_1 & a^1_2 & \dots & a^1_m) & \in R^{\Bbb A}\\
+        \vdots & \vdots & & \vdots & \\
+        (a^n_1 & a^n_2 & \dots & a^n_m) & \in R^{\Bbb A}\\
+        & & \Downarrow& & \\
+        (f(a^1_1,\dots,a^n_1) & f(a^1_2,\dots,a^n_2) & \dots & f(a^1_m,\dots,a^n_m)) & \in R^{\Bbb A}
+        \end{matrix}
+      </div>
+    </div>
+    </div>
+        
+    <div id="algebraic-1-2" class="step remain" data-x="4000" data-y="1500" data-scale="1" style="padding-top:350px;">
+    For every <span class="alert">pp-</span>formula $\phi(x_1,\dots,x_k)$ and $\underline{a^1},\dots,\underline{a^n}$,
+    if $\phi(\underline{a^1}),\dots,\phi(\underline{a^n})$, then $\phi(f(\underline{a^1},\dots,\underline{a^n}))$.
+    
+    <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 700px;">Theorem <span class="citation">[Geiger '68; Bodnar&ccaron;uk, Kalu&zcaron;nin, Kotov, Romov '69]</span></div>
+        $\Bbb A$ finite.<br />
+        $R$ not pp-definable in $\Bbb A$ iff $\exists$ polymorphism $f\colon\Bbb A^n\to\Bbb A$ that proves it:
+        \[\underline{a^1},\dots,\underline{a^n}\in R, f(\underline{a^1},\dots,\underline{a^n})\not\in R\]
+    </div>
+        
+    <div class="slide_step">Note: 3-SAT pp-defines every relation on $\{0,1\}$. What can we conclude?</div>
+    </div>
+    
+    <div id="algebraic-2" class="step remain" data-x="4000" data-y="2500" data-scale="1">
+        <h3>Example</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+    <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">Polymorphism</div>
+    $f\colon \{0,1\}^2\to\{0,1\}$ <span class="alert">polymorphism</span> of $(\{0,1\}, R)$ iff
+        
+        <div align="center">
+        \begin{matrix}
+        (a_1 & b_1) & \in R\\
+        (a_2 & b_2) & \in R\\
+        & \Downarrow& & \\
+        (f(a_1,a_2) & f(b_1,b_2)) & \in R
+        \end{matrix}
+      </div>
+    </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+    <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Exercise</div>
+        Let $T=\{(1,0),(0,1)\}$, $R_0=\{(1,0),(0,1),(0,0)\}$, $R_1=\{(1,0),(0,1),(1,1)\}$.
+            <ul>
+            <li class="slide_step">Prove that $R_0$ and $R_1$ are not fo-definable in $(\{0,1\}, T)$.</li>
+            <li class="slide_step">Prove that $R_0$ is not pp-definable in $(\{0,1\}, R_1)$.<br />
+                <span class="citation">(Find a binary polymorphism of $(\{0,1\}, R_1)$ that violates $R_0$.)</span></li>
+            </ul>
+      </div>
+    </div>
+    
+    
+    <div id="algebraic-3" class="step remain" data-x="4000" data-y="3500" data-scale="1">
+        <h3>Operational view on pp-constructibility</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 250px;">pp-constructions</div>
+        $\Bbb B$ is <span class="alert">pp-constructible</span> in $\Bbb A$ if there exists $\Bbb C$ such that:
+            <ul>
+            <li>$\Bbb B$ and $\Bbb C$ satisfy the same pp-sentences,</li>
+            <li>$\Bbb C=(A^n; R_1,\dots,R_p)$ and each $R_i$ is pp-definable in $\Bbb A$.</li>
+            </ul>
+        </div>
+        <ul class="slide_step">
+            <li>We saw how to characterise pp-definability using polymorphisms</li>
+            <li>Generalise to pp-constructibility</li>
+        </ul>
+        <div align="center" class="slide_step">
+        fo-definability $\rightarrow$ pp-definability $\rightarrow$ pp-constructibility<br/>
+        Automorphisms $\rightarrow$ Polymorphisms $\rightarrow$ <span class="alert">Height 1 Identities</span>
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 160px;">h1 Identity</div>
+        Statement of the form 
+            $\forall x_1,\dots,x_n : f(\text{variables})=g(\text{variables})$
+        </div>
+        <div class="slide_step">
+        Example: $\forall x,y, f(x,y)=f(y,x)$.
+        </div>
+    </div>
+    
+    <div id="algebraic-4" class="step remain" data-x="4000" data-y="4500" data-scale="1">
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 440px;">Theorem <span class="citation">[Barto, Opršal, Pinsker, '18]</span></div>
+        Let $\Bbb A$ and $\Bbb B$ be <span class="alert">finite</span> structures.
+        Are equivalent:
+            <ol>
+            <li>$\Bbb B\leq_{pp} \Bbb A$ ($\Bbb B$ is pp-constructible in $\Bbb A$)</li>
+            <li>Every system of h1 identities satisfied by polymorphisms of $\Bbb A$
+            is satisfiable by polymorphisms of $\Bbb B$.</li>
+            </ol>
+        </div>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Example</div>
+        Let $T=\{(1,0),(0,1)\}$, $R_0=\{(1,0),(0,1),(0,0)\}$.
+        <ul>
+            <li>3-SAT $\not\leq_{pp} (\{0,1\}, T)$</li>
+            <li>3-SAT $\not\leq_{pp} (\{0,1\}, R_0)$</li>
+        </ul>
+        </div>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 460px;">Theorem <span class="citation">[Siggers '10; Barto, Kozik, '12]</span></div>
+        Let $\Bbb A$ be a <span class="alert">finite</span> structure.
+        Are equivalent:
+            <ol>
+            <li>3-SAT $\not\leq_{pp} \Bbb A$,</li>
+            <li>$\Bbb A$ has a polymorphism $f$ satisfying $f(x_1,\dots,x_n)=f(x_2,\dots,x_n,x_1)$,</li>
+                <li>$\Bbb A$ has a polymorphism $s$ satisfying $s(x,y,x,z,y,z)=s(y,x,z,x,z,y)$,</li>
+            </ol>
+        </div>
+    </div>
+    
+    <div id="arc-consistency" class="step remain" data-x="4200" data-y="4700" data-scale="0.1">
+        <h3>Arc-consistency</h3>
+        <div class="slide_step">
+        
+        <ol>
+        <li>For each variable $v$, let $D_v:= D$,</li>
+        <li>For every constraint $R(y_1,\dots,y_k)$ and $i$, \[D'_{y_i}:= pr_i(R\cap (D_{y_1}\times\dots\times D_{y_k}))\]</li>
+        <li>Repeat step 2. as long as something changes.</li>
+        <li class="slide_step">Reject if some $D_v=\emptyset$, accept otherwise.</li>
+        </ol>
+            $D=\{1,2,3,4,5,6\}$.
+         \[\exists x,y,z,t(x\lt\max(y,z) \land y\lt\max(z,t)\land x\lt\max(t,y)\land t\lt\max(x,z))\]
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Theorem</div>
+        Let $\Bbb A$ be a <span class="alert">finite</span> structure.
+        Arc-consistency solves $\Csp(\Bbb A)$ if and only if for all $n$, $\Bbb A$ has an $n$-ary totally symmetric polymorphism.
+        </div>
+    </div>
+    
+    <div id="datalog" class="step remain" data-x="4600" data-y="4700" data-scale="0.1">
+        <h3>Datalog</h3>
+        
+        <ul>
+        <li class="slide_step">Fragment of fixpoint first-order logic</li>
+        <li class="slide_step">Programs "Instance of $\Csp(\Bbb A)$" $\mapsto$ implied constraints</li>
+        <li class="slide_step">Evaluation of a fixed Datalog program/formula is in P.</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Theorem</div>
+        Let $\Bbb A$ be a <span class="alert">finite</span> structure.
+        Datalog solves $\Csp(\Bbb A)$ if and only if $\Bbb A$ has polymorphisms $f,g$ satisfying
+        \[ \begin{align*}f(x,x,y)&=f(x,y,x)=f(y,x,x)\\g(x,x,x,y)&=g(x,x,y,x)=g(x,y,x,x)=g(y,x,x,x)\\f(x,x,y)&=g(x,x,x,y).\end{align*}\]
+        </div>
+    </div>
+    
+    <div id="conclusion-algebraic" class="step remain" data-x="4000" data-y="5500" data-scale="1">
+        <h3>Conclusion</h3>
+        
+        <ul>
+        <li class="slide_step">Proving hardness by relational/combinatorial arguments, works for all structures.<br />
+            $\rightarrow$ <span class="alert">pp-constructibility</span>.</li>
+        <li class="slide_step">Proving non-pp-constructibility by algebraic arguments, works for finite structures.<br />
+            $\rightarrow$ <span class="alert">polymorphisms</span>.</li>
+        <li class="slide_step">Algorithms:
+            <ul style="margin-left:50px;">
+            <li>Use polymorphisms to design algorithms.</li>
+            <li><span class="alert">Characterise</span> the power of algorithms by polymorphism conditions.</li></ul>    
+            
+        </li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid #e13300; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 600px;">Meta-argument: the polymorphic principle</div>
+            Given a problem that one can solve non-deterministically.
+            <ol>
+                <li class="slide_step">Look at the "space of guesses/solutions",</li>
+                <li class="slide_step">Does it have non-trivial symmetries? $\approx$ polymorphisms</li>
+                <li class="slide_step">If yes, there is a better, deterministic algorithm.</li>
+            </ol>
+        </div>
+    </div>
+    
+    
+    <div id="variants" class="step remain" data-x="6000" data-y="0" data-scale="1" data-section="">
+        <h3>The CSP galaxy</h3>
+    <svg width="1000" height="800" style="margin-top:-100px;">
+    <g transform="translate(500 500)">
+    <rect x="-150" y="-60" width="300" height = "160" fill="gray" style="opacity:0.3;" />
+    <text x="0" y="0" fill="black" text-anchor="middle">Finite-Domain CSPs</text>
+    <text x="0" y="30" fill="#e13300" text-anchor="middle">Decision</text>
+    <text x="0" y="60" fill="#288585" text-anchor="middle">P, NP-complete</text>
+    </g>
+    
+    <g transform="translate(350 300)" class="slide_step">
+        <rect x="-135" y="-60" width="270" height = "160" fill="gray" style="opacity:0.3;" />
+        <text x="0" y="0" fill="black" text-anchor="middle">Valued CSPs</text>
+        <text x="0" y="30" fill="#e13300" text-anchor="middle">Optimisation</text>
+        <text x="0" y="60" fill="#288585" text-anchor="middle">P, NP-complete</text>
+    </g>
+    <g transform="translate(100 500)" class="slide_step">
+    <text x="0" y="0" fill="black" text-anchor="middle">Counting CSPs</text>
+    <text x="0" y="30" fill="#e13300" text-anchor="middle">Counting</text>
+    <text x="0" y="60" fill="#288585" text-anchor="middle">FP, #BIS, #P</text>
+    </g>
+    <g transform="translate(350 700)" class="slide_step">
+    <text x="0" y="0" fill="black" text-anchor="middle">Infinite-Domain CSPs</text>
+    <text x="0" y="30" fill="#e13300" text-anchor="middle">All decision problems</text>
+    <text x="0" y="60" fill="#288585" text-anchor="middle">All complexities</text>
+    </g>
+        
+    <g transform="translate(770 650)" class="slide_step">
+    <text x="0" y="0" fill="black" text-anchor="middle">Quantified CSPs</text>
+    <text x="0" y="30" fill="#e13300" text-anchor="middle">Decision</text>
+    <text x="0" y="60" fill="#288585" text-anchor="middle">P, NP-c, coNP-c, PSPACE-c</text>
+    </g>
+    <g transform="translate(700 300)" class="slide_step">
+    <text x="0" y="0" fill="black" text-anchor="middle">Promise CSPs</text>
+    <text x="0" y="30" fill="#e13300" text-anchor="middle">Approximation</text>
+    <text x="0" y="60" fill="#288585" text-anchor="middle">P, NP-complete</text>
+    </g>
+    </svg>
+    </div>
+    
+    <div id="infinite" class="step remain" data-x="6000" data-y="1000" data-scale="1" data-section="Infinite-Domain CSPs">
+        <h3>Infinite-Domain CSPs</h3>
+        Why?
+        <ul>
+        <li class="slide_step">Covers more decision problems than finite-domain CSPs<br />(linear programming, digraph acyclicity, mean-payoff games, ...)</li>
+        <li class="slide_step">Hope for a more systematic understanding of complexity theory via algebra</li>
+        </ul>
+        
+        <span  class="slide_step">What changes?</span>
+        <ul>
+        <li class="slide_step">Still doing pp-constructions to prove NP-hardness</li>
+        <li class="slide_step">The connection with polymorphisms breaks down</li>
+        <li class="slide_step">Many pathological cases</li>
+        <li class="slide_step">2 main research directions: <span class="alert">numeric CSPs</span> and <span class="alert">$\omega$-categorical CSPs</span>.</li>
+        </ul>
+    </div>
+    
+    <div id="categoricity" class="step remain" data-x="6000" data-y="2000" data-scale="1">
+        <h3>$\omega$-categoricity</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">Automorphism</div>
+        $f\colon\Bbb A\to\Bbb A$ <span class="alert">automorphism</span> if it is a bijection and $\forall R^{\Bbb A}$ and $\forall (a_1,\dots,a_k),$
+            \[(a_1,\dots,a_k)\in R^{\Bbb A}\Leftrightarrow (f(a_1),\dots,f(a_k))\in R^{\Bbb A}\]
+        </div>
+        <div class="slide_step">
+        \[(a_1,\dots,a_n)\sim (b_1,\dots,b_n) :\Leftrightarrow \exists f\colon (f(a_1),\dots,f(a_n))=(b_1,\dots,b_n)\]
+        </div>
+        <div class="slide_step">Equivalence class: <span class="alert">orbit</span>.</div>
+        
+        <div align="center" class="slide_step">
+        <img src="orbit.png" style="width:400px;border: 1px solid black;"/>
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 200px;">$\omega$-categorical</div>
+        $\Bbb A$ is <span class="alert">$\omega$-categorical</span> if $\sim$ has finite index  (finitely many orbits) for all $n$.
+        </div>
+    </div>
+    <div id="categoricity-2" class="step remain" data-x="6000" data-y="3000" data-scale="1">
+        <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 210px;">Automorphism</div>
+        $f\colon\Bbb A\to\Bbb A$ <span class="alert">automorphism</span> if it is a bijection and $\forall R^{\Bbb A}$ and $\forall (a_1,\dots,a_k),$
+            \[(a_1,\dots,a_k)\in R^{\Bbb A}\Leftrightarrow (f(a_1),\dots,f(a_k))\in R^{\Bbb A}\]
+        </div>
+        <h3>Example 1</h3>
+        \[\Bbb A = (\mathbb N, \{(x,y) \mid x\neq y\})\]
+        
+        <ul>
+        <li class="slide_step">Automorphisms = ?</li>
+        <li class="slide_step">$n\sim m \Leftrightarrow$ ?</li>
+        <li class="slide_step">$(n,n')\sim (m,m') \Leftrightarrow$ ?</li>
+        <li class="slide_step">$(n_1,\dots,n_k)\sim (m_1,\dots,m_k)\Leftrightarrow$ ?
+            <img src="orbit-2.png"  style="position:relative; top: -130px;float:right; border: 1px solid black; width: 500px;" /></li>
+        <li class="slide_step">
+        Is $\Bbb A$ $\omega$-categorical?</li>
+        </ul>
+    </div>
+    
+    <div id="categoricity-3" class="step remain" data-x="6000" data-y="4000" data-scale="1">
+        <h3>Example 2</h3>
+        \[ \Bbb A = (\Bbb N, \{(x,y)\mid y=x+1\})\]
+        
+        <ul>
+        <li class="slide_step">Automorphisms = ?</li>
+        <li class="slide_step">$n\sim m \Leftrightarrow$ ?</li>
+        <li class="slide_step">$\omega$-categorical?</li>
+        </ul>
+        
+        <div class="slide_step">
+        \[ \Bbb A = (\Bbb Z, \{(x,y)\mid y=x+1\})\]
+        </div>
+        <ul>
+        <li class="slide_step">Automorphisms = ?</li>
+        <li class="slide_step">$n\sim m \Leftrightarrow$ ?</li>
+        <li class="slide_step">$(n,n')\sim (m,m')\Leftrightarrow$ ?
+            <img src="orbit-3.png"  style="position:relative; top: -80px;float:right; border-left: 1px solid black; width: 500px;border-top: 1px solid black; width: 500px;border-bottom: 1px solid black; width: 500px;" /></li>
+        <li class="slide_step">$\omega$-categorical?</li>
+        </ul>
+    </div>
+    
+    <div id="categoricity-4"  class="step remain" data-x="6000" data-y="5000" data-scale="1">
+        <h3>What survives</h3>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 390px;">Theorem <span class="citation">[Bodirsky, Ne&scaron;et&rcaron;il '06]</span></div>
+        $\Bbb A$ <span class="alert">$\omega$-categorical</span>.<br />
+        $R$ not pp-definable in $\Bbb A$ iff $\exists$ polymorphism $f\colon\Bbb A^n\to\Bbb A$ that proves it:
+        \[\underline{a^1},\dots,\underline{a^n}\in R, f(\underline{a^1},\dots,\underline{a^n})\not\in R\]
+        </div>
+        <div class="slide_step">In principle, polymorphisms encode exactly the complexity of $\Csp(\Bbb A)$.
+        <ul>
+        <li>$\Csp(\Bbb A)$ is in P $\Leftrightarrow$ $\Pol(\Bbb A)$ satisfies ...</li>
+        <li>$\Csp(\Bbb A)$ is in PSPACE $\Leftrightarrow$ $\Pol(\Bbb A)$ satisfies ...</li>
+        <li>$\Csp(\Bbb A)$ is decidable $\Leftrightarrow$ $\Pol(\Bbb A)$ satisfies ...</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="homogeneity" class="step remain" data-x="6000" data-y="6000" data-scale="1">
+        <h3>Homogeneity</h3>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 200px;">Homogeneity</div>
+        $\Bbb A$ is <span class="alert">homogeneous</span> if for every finite $\Bbb B$ s.t.
+        <div align="center"><img src="homogeneous-2.png" style="width: 300px;"/></div>
+        <div class="slide_step">
+        there exists $f\in\Aut(\Bbb B)$ such that
+             <div align="center"><img src="homogeneous.png" style="width: 300px;" /></div>
+        </div>
+        </div>
+        <div class="slide_step">Fact: Homogeneous (with finitely many relations) $\Rightarrow$ $\omega$-categorical.</div>
+    </div>
+    
+    <div id="homogeneity-2" class="step remain" data-x="6000" data-y="7000" data-scale="1">
+        <h3>Taming CSPs</h3>
+        Homogeneity is not enough:
+    <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 360px;">Theorem <span class="citation">[Bodirsky, Grohe]</span></div>
+        For every decision problem $L$, there exists a homogeneous structure $\Bbb A$ such that $L\leq^m_p \Csp(\Bbb A)$
+        and $\Csp(\Bbb A)\leq coNP^{L}$.
+        </div>
+        
+        <div class="slide_step">$\leadsto$ finite boundedness: describing homogeneous structures by forbidding finitely many patterns.</div>
+        <ul class="slide_step">
+        <li>"most general" graph <span class="alert">without triangles</span>,</li>
+        <li>"most general linear order" $\rightarrow (\Bbb Q;\lt)$,</li>
+        <li>"most general binary branching tree"</li>
+        </ul>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 200px;">Observation</div>
+            Let $\Bbb A$ be a homogeneous finitely bounded structure.<br />
+            Then $\Csp(\Bbb A)$ is in NP.
+        </div>
+    </div>
+    
+    <div id="reducts" class="step remain" data-x="6000" data-y="8000" data-scale="1">
+        <h3>Reducts</h3>
+        <ul>
+        <li>Fix a <span class="alert">ground structure</span> $\Bbb B=(D,R_1,\dots,R_p)$,</li>
+        <li>Take fo-formulas $\phi_1,\dots,\phi_k$,</li>
+        <li>They define relations $T_1,\dots,T_k$,</li>
+        <li>$\Bbb A:=(D;T_1,\dots,T_k)$ is a <span class="alert">reduct</span> of $\Bbb B$.</li>
+        </ul>
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 130px;">Example</div>
+            <ul>
+            <li>$\Bbb B=(\Bbb Q,\lt)$</li>
+            <li>$\phi_1(x,y) := (x\lt y)$, $\phi_2(x,y,z) := (x\lt y\lt z)\lor (z\lt y\lt x)$,</li>
+            <li>$\Bbb A = (\Bbb Q,\lt,Betw)$</li>
+            </ul>
+        </div>
+        
+        <div class="slide_step" align="center">
+        Is $(\Bbb Q,\lt)$ a reduct of $(\Bbb Q,Betw)$?
+        </div>
+    </div>
+    
+    <div id="reducts-2" class="step remain" data-x="6000" data-y="9000" data-scale="1">
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 180px;">Observation</div>
+            Let $\Bbb A$ be a <span class="alert">reduct</span> of a homogeneous finitely bounded structure.<br />
+            Then $\Csp(\Bbb A)$ is in NP.
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 690px;">Conjecture <span class="citation">[Bodirsky, Pinsker '11, Barto, Opr&scaron;al, Pinsker '16]</span></div>
+            Let $\Bbb A$ be a <span class="alert">reduct</span> of a homogeneous finitely bounded structure.<br />
+            If <span class="alert">3-SAT $\not\leq_{pp} \Bbb A$</span>, then $\Csp(\Bbb A)$ is in P.
+        </div>
+        
+        <ul>
+        <li class="slide_step">A lot of evidence that the conjecture is true,</li>
+        <li class="slide_step">Many technical obstacles with interesting maths questions<br />(model theory, universal algebra, Ramsey theory)</li>
+        </ul>
+    </div>
+    
+    <div id="maltsev" class="step remain" data-x="6000" data-y="10000" data-scale="1">
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 440px;">Theorem <span class="citation">[Barto, Opr&scaron;al, Pinsker '16]</span></div>
+            Let $\Bbb A$ be $\omega$-categorical.<br />
+            <span class="alert">3-SAT $\not\leq_{pp} \Bbb A$</span> if and only if there does <span class="alert">not</span>
+            exist a <span class="alert">uniformly continuous</span> minion homomorphism $\Pol(\Bbb A)\to$ Pol(3-SAT).
+        </div>
+        <ul>
+        <li class="slide_step">Negative statement :(</li>
+        <li class="slide_step">Need to understand topology :( :(</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 650px;">Theorem <span class="citation">[Bodirsky-M-Opr&scaron;al-Ol&scaron;ák-Pinsker-Willard '19]</span></div>
+            There is no system of h1 identities that is equivalent to 3-SAT $\not\leq_{pp} \Bbb A$,
+            even for structures within the scope of the conjecture.
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 650px;">Theorem <span class="citation">[Bodirsky-M-Opr&scaron;al-Ol&scaron;ák-Pinsker-Willard '19]</span></div>
+            There exists $\Bbb A$ $\omega$-categorical such that:
+            <ul>
+            <li>There exists a minion homomorphism $\Pol(\Bbb A)\to$ Pol(3-SAT),</li>
+            <li>No such homomorphism is uniformly continuous.</li>
+            </ul>
+        </div>
+    </div>
+    
+    
+    <div id="test" class="step" data-fixed="1" data-x="850" data-y="400" data-z="-100" data-scale="3.5">
+        <svg width="3000" height="4000">
+            <text x="250" y="1650" fill="black" text-anchor="middle">Introduction</text>
+            <rect x="0" y="1700" width="500" height="1600" style="fill: none;stroke-width: 3px; stroke:black;"/>
+            
+            <text x="825" y="1650" fill="black" text-anchor="middle">Relational Invariants</text>
+            <rect x="575" y="1700" width="500" height="1600" style="fill: none;stroke-width: 3px; stroke:black;"/>
+            
+            <text x="1400" y="1650" fill="black" text-anchor="middle">Algebraic Approach</text>
+            <rect x="1150" y="1700" width="500" height="2000" style="fill: none;stroke-width: 3px; stroke:black;"/>
+            
+            <text x="1975" y="1650" fill="black" text-anchor="middle">Variants of CSPs</text>
+            <rect x="1725" y="1700" width="500" height="2500" style="fill: none;stroke-width: 3px; stroke:black;"/>
+        </svg>
+    </div>
+    
+    <div id="overview" class="step" data-x="2600" data-y="300" data-scale="9" data-section="">
+    
+    </div>
+</div>
+    
+        
+<div id="section_name" style="position:fixed;top: 98%;left: 1%;"></div>
+    
+    <div id="pingo" style="display:none;position:fixed;top: 94%;left: 72%;font-size:2em;" class="alert">pingo.coactum.de/968966</div>
+    
+<script src="js/flides.js"></script>
+    <script src="js/svg-group-slide.js"></script>
+<script>
+  var config = {
+    selector: '#animation_complexity_svg',
+    selector_text: '#animation_complexity',
+    loop: true,
+    fadeOut: true
+  };
+  var groupSlide = new SVGGroupSlide(config);
+  groupSlide.start();
+
+  window.addEventListener('keydown', function(event) {
+    if(event.which == 83) {
+        var pingo = document.getElementById("pingo");
+      if(pingo.style.display == "block")
+          pingo.style.display = "none";
+        else if(pingo.style.display == "none")
+            pingo.style.display = "block";
+    }});
+</script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  TeX: {
+   extensions: ["color.js"]
+   }
+  
+});
+
+MathJax.Hub.Register.StartupHook("TeX color Ready", function() {
+     MathJax.Extension["TeX/color"].colors["vermillion"] = '#d55300';
+     MathJax.Extension["TeX/color"].colors["blueish"] = '#56b4e9';
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script src="MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+</body>
+</html>

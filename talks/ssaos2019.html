@@ -1,0 +1,257 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>Topology is relevant</title>
+
+    <meta name="author" content="Antoine Mottet" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+<link rel="stylesheet" href="css/svg-group-slide.css">
+    <link href="css/style.css" rel="stylesheet" />
+</head>
+
+<body>
+  $\def\Csp{\text{CSP}}$
+  $\def\Pol{\text{Pol}}$
+  $\def\End{\text{End}}$
+  $\def\Inv{\text{Inv}}$
+  $\def\Aut{\text{Aut}}$
+  $\def\Age{\text{Age}}$
+
+<div id="flides">
+
+    <div id="title" class="step remain" data-duration="0" data-x="2000" data-y="-2000" data-scale="3">
+	<h3>Topology is relevant<br /><span style="font-size:0.3em;">in infinite-domain constraint satisfaction</span></h3>
+
+	<br/>
+
+	<h4>Antoine Mottet</h4>
+  <h4>SSAOS 2019</h4>
+  <h4>3.9.2019</h4>
+        <h4 style="margin-top:50px;margin-bottom:0px;">Joint work with Bodirsky, Olšák, Opršal, Pinsker, Willard.</h4>
+        <table style="vertical-align:middle; margin-bottom:80px;">
+        <tr><td><img src="Manuel_Bodirsky.jpeg" style="display: block; width: 100px;"/></td>
+        <td><img src="olsak.jpg" style="display: block; width: 100px;" /></td>
+        <td><img src="oprsal.jpg" style="display: block; width: 100px;" /></td>
+        <td><img src="pinsker.jpg" style="display: block; width: 100px;" /></td>
+        <td><img src="Ross2.png"  style="display: block; width: 100px;" /></tr>
+        </table>
+        
+        <img src="LOGO_ERC.jpg" style="display:block; width:150px;margin-left: auto; margin-right: auto;"/>
+    </div>
+    
+    <div id="overview0" class="step remain" data-section="Introduction" data-duration="1000" data-x="2000" data-y="-1000" data-scale="4">
+        <div style="position: absolute; left:0px; top:130px;">CSPs...</div>
+        <div style="position: absolute; left:350px; top:130px;">... of finite structures</div>
+        <div style="position: absolute; left:780px; top:130px;">... of infinite structures</div>
+        
+    </div>
+    
+    <div id="intro0" class="step" data-x="0" data-y="0" data-scale="1" data-section="CSPs">
+        <h3>Constraint Satisfaction Problems</h3>
+        <ul>
+        <li>$\Bbb A, \Bbb B, \Bbb X$: relational structures</li>
+        <li>(Mostly) finite signatures, often <span class="alert">infinite</span> domains</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 120px;">CSP($\Bbb A$)</div>
+        <ul><li><strong>Input:</strong> a finite structure $\Bbb X$,</li>
+            <li><strong>Question:</strong> is there a homomorphism $\Bbb X\to \Bbb A$?</li></ul>
+            <div style="font-size: 0.7em;">\[h\colon X\to A, (x_1,\dots,x_k)\in R^{\Bbb X}\Rightarrow (h(x_1),\dots,h(x_k))\in R^{\Bbb A}\]</div>
+        </div>
+        
+        <ul>
+        <li class="slide_step">Each problem associated with a <span class="alert">relational structure</span> (its <strong>template</strong>).</li>
+        <li class="slide_step">A class of <span class="alert">decision</span> problems.</li>
+        <li class="slide_step">For a large class of templates, the complexity of each problem depends solely on the <span class="alert">symmetries</span> of the template.<br />
+            \[ \text{non-trivial symmetries} \leadsto \text{easier problems}\]</li>
+        </ul>        
+    </div>
+    
+    <div id="intro" class="step" data-x="0" data-y="1000" data-scale="1">
+        <h3>Examples</h3>
+        <ul>
+        <li class="slide_step">$\Csp(K_3)$: 3-colourability,
+            <div align="center"><img src="col.png" style="width:450px;"/></div></li>
+        <li class="slide_step">$\Csp(\{0,1\}; \leq, \{0\},\{1\})$: S-T (non-)reachability,
+            <div align="center"><img src="reachability.png" style="width:450px;"/></div></li>
+        <li class="slide_step">$\Csp(\Bbb N; \lt)$: digraph acyclicity.
+            <div align="center"><img src="acyclicity.png" style="width:450px;"/></div></li>
+        </ul>
+    </div>
+    
+    <div id="finite-domain" class="step" data-x="1800" data-y="0" data-section="Finite-domain CSPs">
+        <h3>The Finite-Domain Dichotomy</h3>
+
+        <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 15px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 490px;">Conjecture (2000) / Theorem (2017)</div>
+        $\Bbb A$ finite structure. Exactly one of the following holds:
+            <ul>
+            <li>$\Pol(\Bbb A)\to\Pol(SAT)$ and $\Csp(\Bbb A)$ is NP-complete,</li>
+            <li><span class="alert">$\Pol(\Bbb A)\not\to\Pol(SAT)$</span> and $\Csp(\Bbb A)$ is in P.</li>
+            </ul>
+        </div>
+        
+        <div class="slide_step" style="margin-top:-15px;">
+            Several formulations of the tractability border:
+            <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 15px; margin-bottom:30px;">
+            <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 140px;">Theorem</div>
+            $\Bbb A$ finite structure. Are equivalent:
+                <ul>
+                <li><span class="alert">$\Pol(\Bbb A)\not\to\Pol(SAT)$</span></li>
+                <li class="slide_step">$\Pol(\Bbb A)$ contains functions that satisfy some nontrivial equations</li>
+                <li class="slide_step">$\exists f\in\Pol(\Bbb A)$ s.t.
+                    $f(y,x,\dots,x) \approx f(x,y,x,\dots,x) \approx\dots \approx f(x,\dots,x,y)$ <div align="right" class="citation">[Maroti-McKenzie '08, Barto-Kozik '12]</div></li>
+                <li class="slide_step">$\exists s\in\Pol(\Bbb A)$ s.t.
+                    $s(r,a,r,e) \approx s(a,r,e,a).$ <div style="position: relative; top:-2em;" align="right" class="citation">[Siggers '10]</div></li>
+                </ul>
+            </div>
+        </div>
+        
+        <div style="margin-top:-15px;" class="slide_step">
+        Infinite-domain CSPs:
+        <ul>
+        <li>Step 0: what templates to look at?</li>
+        <li>Step 1: identify the borderline,</li>
+        <li>Step 2: find a useful version of the borderline.</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="infinite-scope" class="step" data-x="3600" data-y="0" data-section="The Infinite-Domain Dichotomy Conjecture">
+    <h3>Step 0: Scope</h3>
+        <ul>
+        <li class="slide_step">Algebraic approach works for structures with a large automorphism group: <br />
+            $\Bbb A$ is <span class="alert">$\omega$-categorical templates</span> if the action of $\Aut(\Bbb A)$ on $A^n$
+            has finitely many orbits, for all $n$.</li>
+        <li class="slide_step">$(\Bbb Q;\lt)$: #orbits on $\Bbb Q^n$ = #weak linear orders on $n$ elements,</li>
+        <li class="slide_step">More generally: <span class="alert">homogeneous</span> structures</li>
+        <li class="slide_step">More more generally: any structure definable in a homogeneous structure</li>  
+        </ul>
+        
+        <div class="slide_step" style="margin-top:60px;">
+        Bodirsky-Pinsker (~2011): structures definable over a <span class="alert">finitely bounded homogeneous template</span>
+            <span class="citation">($(\Bbb N;=)$, homogeneous graphs, $(\Bbb Q;\lt)$, ...)</span>
+        <ul class="slide_step">
+            <li>Contains all finite-domain CSPs,</li>
+            <li>All such CSPs are in NP,</li>
+            <li>$\omega$-categorical, in particular polymorphisms still capture complexity.</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="infinite-conjecture" class="step" data-x="3600" data-y="1000">
+    <h3>Step 1: the dividing line</h3>
+        <ul>
+        <li class="slide_step">Complexity still captured by polymorphisms:<br /> $\Pol(\Bbb A)=\Pol(\Bbb B)\Rightarrow$ ptime equivalent CSPs</li>
+        <li class="slide_step">If $\exists \xi\colon\Pol(\Bbb A)\to\Pol(SAT)$ <span class="alert">uniformly continuous</span>, then $\Csp(\Bbb A)$ is NP-hard.</li>
+        </ul>
+        
+        <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;" class="slide_step">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 420px;">Conjecture <span class="citation">[Barto, Opr&scaron;al, Pinsker]</span></div>
+        $\Bbb A$ definable over a finitely bounded homogeneous structure.
+            <ul>
+            <li>$\Pol(\Bbb A)\to\Pol(SAT)$ <span class="alert">uniformly continuously</span> and $\Csp(\Bbb A)$ is NP-complete,</li>
+            <li><span class="alert">$\Pol(\Bbb A)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.}{\longrightarrow}\Pol(SAT)$</span> and $\Csp(\Bbb A)$ is in P.</li>
+            </ul>
+        </div>
+        <div class="slide_step">
+        Ways to make the conjecture easier to work with:
+        <ul>
+        <li>Is there a weakest system of nontrivial flat equations for such structures?</li>
+        <li>Can topology be dropped in the statement?</li>
+        </ul>
+        </div>
+    </div>
+    
+    <div id="reformulation" class="step" data-x="3600" data-y="2000">
+    <h3>No weakest system of nontrivial flat equations</h3>
+        <ul>
+        <li class="slide_step">Finite undirected graph $\Bbb G\leadsto$ system $\Sigma_{\Bbb G}$ of equations</li>
+            <div align="center" class="slide_step"><img src="k4.png" style="width:180px;"/></div>
+            <div class="slide_step" align="center">$f_1(x,y,z) = g_{1,2}(x,y,x,z,y,z)$<br />$f_2(x,y,z) = g_{1,2}(y,x,z,x,z,y)$</div>
+        <li class="slide_step">$\Bbb G$ not 3-colourable $\Rightarrow \Sigma_{\Bbb G}$ is nontrivial</li>
+        <li class="slide_step">Every system $\Sigma$ implies some $\Sigma_{\Bbb G}$</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 90px;">Fact</div>
+        If $\Bbb A$ contains a triangle and $\Pol(\Bbb A)$ satisfies $\Sigma_{\Bbb G}$, then $\Bbb A$ contains $\Bbb G$.
+        </div>
+        
+        <table class="slide_step"><tr><td><div align="center"><img src="remark.png" style="display:block;width:380px;"/></div></td><td><img src="equations.png" style="width:300px;"/></td></tr></table>
+    </div>
+    
+    
+    <div id="reformulation2" class="step" data-x="3600" data-y="3000">
+        <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 370px;">Theorem <span class="citation">[Cherlin, Shelah, Shi]</span></div>
+            For every finite connected $\Bbb G$, there exists a <span class="alert">nice</span> structure $\Bbb A$ such that $\Bbb X\to\Bbb A$ iff
+            $\Bbb G\mathrel{\rlap{\hskip .5em/}}{\rightarrow} \Bbb X$.
+        </div>
+        <ul>
+        <li class="slide_step">$\Bbb A$ is definable in a finitely bounded homogeneous structure</li>
+        <li class="slide_step">If $\Bbb G$ is not 3-colourable, $\Pol(\Bbb A)$ does not satisfy $\Sigma_{\Bbb G}$ ($\Bbb A$ contains a triangle, does not contain $\Bbb G$)</li>
+        <li class="slide_step">$\Pol(\Bbb A)$ satisfies some nontrivial flat equations</li>
+        <li class="slide_step">$\Csp(\Bbb A)$ is in FO!</li>
+        </ul>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 270px;">Theorem <span class="citation">[BMOOPW]</span></div>
+            One cannot replace $\Pol(\Bbb A)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.}{\longrightarrow}\Pol(SAT)$ by
+            some equations in the statement of the dichotomy.
+        </div>
+    </div>
+    
+    <div id="counterexample" class="step" data-x="3600" data-y="4000">
+        <h3>Topology is relevant</h3>
+        <div style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 420px;">Conjecture <span class="citation">[Barto, Opr&scaron;al, Pinsker]</span></div>
+        $\Bbb A$ definable over a finitely bounded homogeneous structure.
+            <ul>
+            <li>$\Pol(\Bbb A)\to\Pol(SAT)$ <span class="alert">uniformly continuously</span> and $\Csp(\Bbb A)$ is NP-complete,</li>
+            <li><span class="alert">$\Pol(\Bbb A)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.}{\longrightarrow}\Pol(SAT)$</span> and $\Csp(\Bbb A)$ is in P.</li>
+            </ul>
+        </div>
+        
+        <div class="slide_step" style="border: 2px solid black; padding: 0px 10px 10px 50px; margin-top: 30px; margin-bottom:30px;">
+        <div style="position: relative; top:-25px; padding-left: 10px; background-color: white; width: 270px;">Theorem <span class="citation">[BMOOPW]</span></div>
+        There exists an $\omega$-categorical structure such that $\Pol(\Bbb A)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.}{\longrightarrow}\Pol(SAT)$
+            and $\Pol(\Bbb A)\longrightarrow\Pol(SAT)$.
+        </div>
+        <ul>
+        <li class="slide_step">For each $\Bbb G$ not 3-colorable, $\Bbb A(\Bbb G)$ that does not satisfy $\Sigma_{\Bbb G}$</li>
+        <li class="slide_step"><strong>Superpose</strong> all these structures $\Bbb A:=\Bbb A(\Bbb G_1)\oplus \Bbb A(\Bbb G_2)\oplus\dots$<br />
+            $\leadsto\Bbb A$ that does not satisfy <strong>any</strong> $\Sigma_{\Bbb G}$
+            so $\Pol(\Bbb A)\to\Pol(SAT)$</li>
+        <li class="slide_step">
+            $\Bbb A$ has <span class="alert">local Pham terms</span>
+            <span class="citation">[Gillibert, Jonušas, Kompatscher, M, Pinsker]</span><br />
+            $\Rightarrow\Pol(\Bbb A)\mathrel{\rlap{\hskip .5em/}}\overset{u.c.}{\longrightarrow}\Pol(SAT)$</li>
+        </ul>
+    </div>
+
+    <div id="overview" class="step" data-section=" " data-x="2000" data-y="-1400" data-scale="4">
+    </div>
+</div>
+<div id="section_name" style="position:fixed;top: 98%;left: 1%; color: #e13300; font-weight: bold;"></div>
+    
+<script src="js/flides.js"></script>
+<script>flides().init();</script>
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<!--<script src="MathJax-master/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>-->
+
+</body>
+</html>
