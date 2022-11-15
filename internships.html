@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>
+    Homepage of Antoine Mottet
+</title>
+<meta name="author" content="Antoine Mottet"/>
+<meta http-equiv="content-type" content="text/html; charset=UTF-8"/>
+<link rel="stylesheet" href="style.css"/>
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]}
+});
+</script>
+<script type="text/javascript" async
+  src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.5/MathJax.js?config=TeX-MML-AM_CHTML">
+</script>
+<script src="script.js"></script>
+<script src="jquery.js"></script>
+<script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+</head>
+
+
+
+<body>
+    <!--<div id="particles"></div>-->
+    <h1>Antoine Mottet</h1>
+
+        <div id="navigation">
+        <span class="navigation_items">Home</span>
+        <span class="navigation_items"><a href="publications.html" class="nocolor">Research</a></span>
+        <span class="navigation_items"><a href="resume.pdf" class="nocolor">Curriculum Vitae</a></span>
+        </div>
+
+    <div id="main-document" style="width:75%">
+      <h2>Constraint satisfaction problems over finite structures</h2>
+        <p style="margin: 50px 100px 50px 50px; text-align:justify;">
+          Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
+          Such problems are parameterized by the set of constraints that are allowed in the input, called the <em>constraint language</em>.
+          For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.
+
+          Recently, some extension was proposed by Barto, DeMeo, and Mottet, where constraint languages with relations and operations were considered.
+          A similar dichotomy P vs. NP-complete result was obtained for constraints over a two-element set, but the problem for general finite sets remains wide open.
+          The goal of the internship is to develop the existing method and prove complexity dichotomies for larger classes of constraint languages, in particular in the 3-element case.
+
+          The tools that will be employed are mathematical in nature, leveraging the theory of universal algebras.
+        </p>
+
+        <h3>References</h3>
+        <ul>
+          <li>Constraint Satisfaction Problems over Finite Structures.
+              Libor Barto, William DeMeo, Antoine Mottet.<br />
+              In <em>Proceedings of LICS 2021</em>. <br /><a href="https://arxiv.org/pdf/2010.04958.pdf">Preprint</a></li>
+          <li>A proof of the CSP Dichotomy Conjecture. Dmitriy Zhuk.<br />
+          <a href="https://arxiv.org/pdf/1704.01914.pdf">Preprint</a></li>
+        </ul>
+
+</body>
+
+</html>
