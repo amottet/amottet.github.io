@@ -104,6 +104,7 @@ places.push({id:'oberwolfach',mapid:'DE',x:0,y:0,label: 'Mathematisches Forschun
 places.push({id:'bordeaux',mapid:'FR',x:0,y:0,label:'Laboratoire Bordelais de Recherche en Informatique'});
 places.push({id:'kranjska',mapid:'SI',x:0,y:0,label:'Kranjska Gora'});
 places.push({id:'online',mapid:'XX',x:0,y:0,label:'Online'});
+places.push({id:'molveno',mapid:'IT',x:0,y:0,label:'Molveno'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 
   var talks = new Array();
@@ -366,6 +367,10 @@ talks.push({id:'dagstuhl22',
           date:'20/05/22',
           slides:'dagstuhl22.pdf',
         invited:true});
+talks.push({id:'cwc22',
+           event:'<a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a>',
+           place:'molveno',
+           date:'19-23/09/22'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
