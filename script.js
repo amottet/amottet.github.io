@@ -352,7 +352,7 @@ talks.push({id:'mcw2021',
            place:'prague',
            date:'26-30/07/21'});
 talks.push({id:'cwc21',
-           event:'<a href="http://cspworldcongress.wordpress.com">Third CSP World Congress</a>',
+           event:'<a href="http://cspworldcongress.wordpress.com">Third CSP World Congress</a> (organizer)',
            place:'kranjska',
            date:'26-32/09/21'});
 talks.push({id:'dagstuhl-automata',
@@ -368,7 +368,7 @@ talks.push({id:'dagstuhl22',
           slides:'dagstuhl22.pdf',
         invited:true});
 talks.push({id:'cwc22',
-           event:'<a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a>',
+           event:'<a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a> (organizer)',
            place:'molveno',
            date:'19-23/09/22'});
 
