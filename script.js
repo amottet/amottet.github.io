@@ -105,6 +105,7 @@ places.push({id:'bordeaux',mapid:'FR',x:0,y:0,label:'Laboratoire Bordelais de Re
 places.push({id:'kranjska',mapid:'SI',x:0,y:0,label:'Kranjska Gora'});
 places.push({id:'online',mapid:'XX',x:0,y:0,label:'Online'});
 places.push({id:'molveno',mapid:'IT',x:0,y:0,label:'Molveno'});
+places.push({id:'hamburg',mapid:'DE',x:0,y:0,label:'Hamburg'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 
   var talks = new Array();
@@ -371,6 +372,10 @@ talks.push({id:'cwc22',
            event:'<a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a> (organizer)',
            place:'molveno',
            date:'19-23/09/22'});
+talks.push({id:'gi23',
+           event:'<a href="https://www.tuhh.de/algo/gi-theorietag-2023">84th Workshop on Algorithms and Complexity</a> of the German society for Computer Science (organizer)',
+           place:'hamburg',
+           date:'06/03/23'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
