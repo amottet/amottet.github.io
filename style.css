@@ -4,6 +4,7 @@ body {
     background-color: white;
 }
 
+
 #main-document {
     position: relative;
     margin-left: 50px;
@@ -20,7 +21,7 @@ h1 {
 }
 
 h2{
-    width: 70%;
+    width: 80%;
     border-bottom: 2px solid black;
 }
 
@@ -100,4 +101,15 @@ td {
     border: 1px solid black;
     border-collapse: collapse;
     padding: 10px;
+}
+
+#h2box {
+    position: fixed;
+    top: 150px;
+    right: 0vh;
+    width: 30%;
+}
+
+#h2box li {
+    list-style: none;
 }

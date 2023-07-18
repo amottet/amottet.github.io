@@ -27,36 +27,85 @@ MathJax.Hub.Config({
     <h1>Antoine Mottet</h1>
 
         <div id="navigation">
-        <span class="navigation_items">Home</span>
+        <span class="navigation_items"><a href="index.html" class="nocolor">Home</a></span>
         <span class="navigation_items"><a href="publications.html" class="nocolor">Research</a></span>
         <span class="navigation_items"><a href="resume.pdf" class="nocolor">Curriculum Vitae</a></span>
         </div>
-
-    <div id="main-document" style="width:75%">
-      <h2>Constraint satisfaction problems over finite structures</h2>
-        <p>
-          Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
+    <div id="h2box"></div>
+    <main id="main-document" style="width:60%">
+        <p>Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
           Such problems are parameterized by the set of constraints that are allowed in the input, called the <em>constraint language</em>.
-          For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.
-
+          For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.<br />
+            The following contains possible topics for a bachelor or a master thesis on the topic of constraint satisfaction problems and their generalizations.
+        </p>
+      <h2 id="csp-structures">Constraint satisfaction problems over finite structures</h2>
+        <p>
           Recently, some extension was proposed by Barto, DeMeo, and Mottet, where constraint languages with relations and operations were considered.
           A similar dichotomy P vs. NP-complete result was obtained for constraints over a two-element set, but the problem for general finite sets remains wide open.
-          The goal of the internship is to develop the existing methods and prove complexity dichotomies for larger classes of constraint languages, in particular in the 3-element case.
-
+        </p>
+        
+        <h3>Goals</h3>
+        <p>
+            The goal of the internship is to develop the existing methods and prove complexity dichotomies for larger classes of constraint languages, in particular in the 3-element case.
           The tools that will be employed are mathematical in nature, leveraging the theory of universal algebras.
+            
+            Another possible goal is to implement the algorithm described in Reference [2].
         </p>
 
         <h3>References</h3>
-        <ul>
-          <li>Constraint Satisfaction Problems over Finite Structures.
-              Libor Barto, William DeMeo, Antoine Mottet.<br />
-              In <em>Proceedings of LICS 2021</em>. <br /><a href="https://arxiv.org/pdf/2010.04958.pdf">Paper</a></li>
-          <li>A proof of the CSP Dichotomy Conjecture. Dmitriy Zhuk.<br />
-          <a href="https://arxiv.org/pdf/1704.01914.pdf">Paper</a></li>
+        <ol>
+            <li><a href="https://arxiv.org/pdf/2010.04958.pdf">Constraint Satisfaction Problems over Finite Structures</a>.<br />
+              Libor Barto, William DeMeo, Antoine Mottet.</li>
+            <li><a href="https://arxiv.org/abs/2307.06740">Finite Algebras with Hom-Sets of Polynomial Size</a>.<br/>
+              Libor Barto, Antoine Mottet.
+            </li>
+        </ol>
+        
+    <h2 id="topological-schaefer">A topological version of Schaefer's theorem</h2>
+        <p>Reference [1] looks at the topological complexity of possible solution sets for instances of CSP($\mathbb A$), where $\mathbb A$ is a two-element structures.<br />
+            In more details, with every solution set of an instance $I$ one can associate a <a href="https://en.wikipedia.org/wiki/Cubical_complex">cubical complex</a> (like a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex</a> but where faces are generalizations of squares and cubes).<br />
+        A <a href="https://en.wikipedia.org/wiki/Semialgebraic_set">semi-algebraic set</a> is a subset of $\mathbb R^d$ that is a union of sets defined by polynomial equalities and inequalities.<br />
+        The authors prove that Pol($\mathbb A$) is the clone of projections iff for every compact semi-algebraic set $S$, there exists an instance of CSP($\mathbb A$) whose associated cubical complex is homeomorphic to $S$.</p>
+        
+        <h3>Goal</h3>
+        <p>
+        It is likely that the methods from [1] can be generalized to pp-interpretations, pp-constructions and that similar results can be obtained for CSPs with more elements.</p>
+        
+        <h3>References</h3>
+        <ol><li><a href="https://arxiv.org/pdf/2307.03446.pdf">A topological version of Schaefer's theorem</a></li>
+        </ol>
+
+        
+    <h2 id="promise-csps">Promise Constraint Satisfaction</h2>
+        <p>A <em>promise</em> CSP is parameterized by two structures $\mathbb A$ and $\mathbb B$ such that there exists a homomorphism from $\mathbb A$ to $\mathbb B$.<br />
+        The PCSP of the pair $(\mathbb A,\mathbb B)$ takes as input a structure $\mathbb X$ and asks to distinguish between two cases:</p>
+            <ul>
+        <li>Yes: there exists a homomorphism $\mathbb X\to\mathbb A$</li>
+        <li>No: there does not exist a homomorphism $\mathbb X\to\mathbb B$</li>
         </ul>
+        <p>
+        Note that it cannot be the case that $\mathbb X$ satisfies both Yes and No; and we are <em>promised</em> that it satisfies at least one of them, hence the name. For example the PCSP of the pair $(\mathbb K_3,\mathbb K_{17})$ asks to determine whether a given graph is $3$-colorable, or not even $17$-colorable. The complexity of this problem is unknown! Therefore, no dichotomy like the Bulatov-Zhuk dichotomy is known for PCSPs.
+        </p>
+        
+        <p>The same algebraic tools used for traditional CSPs can be used for PCSPs, in particular a notion of <em>polymorphism</em> exists that characterize the complexity of the problems.</p>
+        
+        <h3>Goals</h3>
+        <p>Depending on the level of the student, the goal can be one of the following:</p>
+        <ul>
+            <li>Read some recent articles and write a thesis about the state-of-the-art,</li>
+            <li>Study the polymorphisms of templates of the form $(\mathbb C_{2n+1},\mathbb K_4)$ where $n\geq 1$ (the case $(\mathbb C_{2n+1},\mathbb K_3)$ is done in Reference [2]). For this, computer experiments can be performed.</li>
+        </ul>
+        
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://arxiv.org/abs/2208.13538">An invitation to promise constraint satisfaction</a>.<br />
+            Andrei Krokhin, Jakub Opršal.</li>
+            <li><a href="https://arxiv.org/abs/1904.03214">The complexity of 3-coloring $H$-colorable graphs</a>.<br />
+            Andrei Krokhin, Jakub Opršal.</li>
+        </ol>
+    
 
-
-    <h2>The theory of smooth approximations in infinite-domain constraint satisfaction</h2>
+    <h2 id="smooth-apps">Smooth approximations in infinite-domain constraint satisfaction</h2>
     <p>Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
     Such problems are parameterized by the set of constraints that are allowed in the input, called the <em>constraint language</em>.
     For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.
@@ -67,19 +116,34 @@ MathJax.Hub.Config({
 
     Recently, a new theory has been proposed by Mottet and Pinsker to approach this conjecture.
     This theory relies on a new tool, called <em>smooth approximations</em>, with which one could provide unified proofs of all known results involving the Bodirsky-Pinsker conjecture.
+        </p>
+        
+        <h3>Goals</h3>
+        <p>
     The goal of the internship is to develop the theory of smooth approximations to be able to overcome its current limitations. In particular, this internship will involve a mix of algorithmic, Ramsey theory, universal algebra, and model theory.</p>
 
     <h3>References</h3>
-    <ul>
-      <li>Smooth Approximations and CSPs over finitely bounded homogeneous structures.
-      Antoine Mottet, Michael Pinsker.<br />
-      In <em>Proceedings of LICS 2022</em>. <a href="https://arxiv.org/abs/2011.03978">Paper</a>
+    <ol>
+      <li><a href="https://arxiv.org/abs/2011.03978">Smooth Approximations and CSPs over finitely bounded homogeneous structures</a>.<br />
+      Antoine Mottet, Michael Pinsker.
       </li>
-      <li>Smooth Approximations and Relational Width Collapses.
-      Antoine Mottet, Tom&aacute;&scaron; Nagy, Michael Pinsker, Michal Wrona.<br />
-          In <em>Proceedings of ICALP 2021</em>.<br />
-      <a href="https://arxiv.org/abs/2102.07531">Paper</a></li>
-    </ul>
+        <li><a href="https://arxiv.org/abs/2102.07531">Smooth Approximations and Relational Width Collapses</a>.<br />
+            Antoine Mottet, Tom&aacute;&scaron; Nagy, Michael Pinsker, Michal Wrona.</li>
+    </ol>
+        
+    <h2 id="circuit-complexity">Circuit complexity of constraint satisfaction problems</h2>
+        <p>In the references, the circuit complexity of boolean CSPs is considered. The size and depth of (monotone or non-monotone) circuits solving a given CSP is investigated.</p>
+        
+        <h3>Goals</h3>
+        <p>Generalize some of the results to CSPs over domains with more elements.</p>
+        <h3>References</h3>
+        <ol>
+            <li><a href="https://people.cs.umass.edu/~immerman/pub/cspJCSS.pdf">The Complexity of Satisfiability Problems: Refining Schaefer’s Theorem</a>
+    Low-level complexity classification for boolean CSPs.</li>
+            <li><a href="https://arxiv.org/abs/2305.06821">Constant-depth circuits vs. monotone circuits</a></li>
+        </ol>
+    </main>
 </body>
+    <script type="text/javascript">populate_box();</script>
 
 </html>

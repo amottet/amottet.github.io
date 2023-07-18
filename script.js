@@ -482,3 +482,19 @@ function get_name()
     e = Math.floor(r*l);
     return email[e];
 }
+
+function populate_box()
+{
+    var box = document.querySelector('#h2box');
+    box.innerHTML += "List of topics:<ul>"
+    var main = document.querySelector('main');
+    var titles = main.querySelectorAll('h2');
+
+    console.log(titles);
+    for(var i = 0; i < titles.length; i++) {
+        
+        box.innerHTML += "<li><a href='#" + titles[i].id + "'>"+titles[i].innerHTML+"</a></li>";
+    }
+    box.innerHTML+="</ul>";
+    
+}
