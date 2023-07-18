@@ -103,6 +103,15 @@ MathJax.Hub.Config({
             <li><a href="https://arxiv.org/abs/1904.03214">The complexity of 3-coloring $H$-colorable graphs</a>.<br />
             Andrei Krokhin, Jakub Opršal.</li>
         </ol>
+        
+    <h2 id="minion-width">A minion of graphs</h2>
+        <p>A <a href="https://en.wikipedia.org/wiki/Tree_decomposition">tree decomposition</a> of a graph $G$ is a tree whose vertices are <em>bags</em> of vertices from $G$ and satisfying certain conditions. The width of the tree decomposition is the maximal size of a bag minus 1, and the <a href="https://en.wikipedia.org/wiki/Treewidth">treewidth</a> of $G$ is the smallest width of a tree decomposition of $G$. The treewidth of $G$ measures how "tree-like" $G$ is: trees have treewidth 1, while the clique on $n$ vertices has treewidth $n-1$.<br />
+        
+        An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
+        Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
+        gluing the vertices according to their labels.
+        
+        If $G$ is $n$-marked and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$, one can define $G^\sigma$ to be the $m$-marked graph obtained by gluing the vertices of $G$ according to $\sigma$; if some $i\in\{1,\dots,m\}$ is not in the image of $\sigma$, we simply introduce in $G^\sigma$ a vertex labelled $i$ that is not connected to any other vertex.</p>
     
 
     <h2 id="smooth-apps">Smooth approximations in infinite-domain constraint satisfaction</h2>
@@ -138,9 +147,10 @@ MathJax.Hub.Config({
         <p>Generalize some of the results to CSPs over domains with more elements.</p>
         <h3>References</h3>
         <ol>
-            <li><a href="https://people.cs.umass.edu/~immerman/pub/cspJCSS.pdf">The Complexity of Satisfiability Problems: Refining Schaefer’s Theorem</a>
-    Low-level complexity classification for boolean CSPs.</li>
-            <li><a href="https://arxiv.org/abs/2305.06821">Constant-depth circuits vs. monotone circuits</a></li>
+            <li><a href="https://people.cs.umass.edu/~immerman/pub/cspJCSS.pdf">The Complexity of Satisfiability Problems: Refining Schaefer’s Theorem</a><br />
+                Eric Allender, Michael Bauland, Neil Immerman, Henning Schnoor, Heribert Vollmer.</li>
+            <li><a href="https://arxiv.org/abs/2305.06821">Constant-depth circuits vs. monotone circuits</a><br />
+            Bruno Cavalar, Igor Oliveira.</li>
         </ol>
     </main>
 </body>
