@@ -483,7 +483,7 @@ function get_name()
     return email[e];
 }
 
-function populate_box(controller)
+function populate_box()
 {
     var box = document.querySelector('#h2box');
     box.innerHTML += "List of topics:<ul>"
@@ -491,21 +491,32 @@ function populate_box(controller)
     var titles = main.querySelectorAll('h2');
 
     for(var i = 0; i < titles.length; i++) {
-        add_scroll_magic(titles[i], controller, box);
+        var title = titles[i];
+        var id_trigger = title.id + "-desc";
+        var title_trigger = title.innerHTML;
+        var id_handle = title.id + "-link";
+        box.innerHTML += '<li><a id="' + id_handle + '" href="#' + title.id + '">'+title_trigger+'</a></li>';
     }
     box.innerHTML+="</ul>";   
 }
 
-function add_scroll_magic(title,controller,box)
+function add_scroll_magic()
 {
-    var id_trigger = title.id + "-desc";
-    var title_trigger = title.innerHTML;
-    var id_handle = title.id + "-link";
-    box.innerHTML += "<li><a id='" + id_handle + "' href='#" + title.id + "'>"+title_trigger+"</a></li>";
-    console.log("Triggering element: #" + id_trigger);
-    console.log("Element to be changed: #" + id_handle);
-    new ScrollMagic.Scene({duration: "100%", triggerElement: "#" + id_trigger, loglevel: 3})
-					.setClassToggle("#" + id_handle, "bold")
-                    //.addIndicators()
-					.addTo(controller);
+    var controller = new ScrollMagic.Controller({loglevel: 3});
+    var box = document.querySelector('#h2box');
+    var main = document.querySelector('main');
+    var titles = main.querySelectorAll('h2');
+    
+    for(var i = 0; i < titles.length; i++) {
+        var title = titles[i];
+        var id_trigger = title.id + "-desc";
+        var title_trigger = title.innerHTML;
+        var id_handle = title.id + "-link";
+        console.log("Triggering element: #" + id_trigger);
+        console.log("Element to be changed: #" + id_handle);
+        new ScrollMagic.Scene({duration: "100%", triggerElement: "#" + id_trigger, loglevel: 3})
+                        .setClassToggle("#" + id_handle, "bold")
+                        //.addIndicators()
+                        .addTo(controller);
+    }
 }
