@@ -483,18 +483,29 @@ function get_name()
     return email[e];
 }
 
-function populate_box()
+function populate_box(controller)
 {
     var box = document.querySelector('#h2box');
     box.innerHTML += "List of topics:<ul>"
     var main = document.querySelector('main');
     var titles = main.querySelectorAll('h2');
 
-    console.log(titles);
     for(var i = 0; i < titles.length; i++) {
-        
-        box.innerHTML += "<li><a href='#" + titles[i].id + "'>"+titles[i].innerHTML+"</a></li>";
+        add_scroll_magic(titles[i], controller, box);
     }
-    box.innerHTML+="</ul>";
-    
+    box.innerHTML+="</ul>";   
+}
+
+function add_scroll_magic(title,controller,box)
+{
+    var id_trigger = title.id + "-desc";
+    var title_trigger = title.innerHTML;
+    var id_handle = title.id + "-link";
+    box.innerHTML += "<li><a id='" + id_handle + "' href='#" + title.id + "'>"+title_trigger+"</a></li>";
+    console.log("Triggering element: #" + id_trigger);
+    console.log("Element to be changed: #" + id_handle);
+    new ScrollMagic.Scene({duration: "100%", triggerElement: "#" + id_trigger, loglevel: 3})
+					.setClassToggle("#" + id_handle, "bold")
+                    //.addIndicators()
+					.addTo(controller);
 }

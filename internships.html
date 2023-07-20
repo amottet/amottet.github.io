@@ -18,6 +18,9 @@ MathJax.Hub.Config({
 <script src="script.js"></script>
 <script src="jquery.js"></script>
 <script src="http://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.8/ScrollMagic.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.7/plugins/debug.addIndicators.min.js"></script>
+
 </head>
 
 
@@ -38,19 +41,22 @@ MathJax.Hub.Config({
           For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.<br />
             The following contains possible topics for a bachelor or a master thesis on the topic of constraint satisfaction problems and their generalizations.
         </p>
+        
+        <div class="topic" id="csp-structures-desc">
       <h2 id="csp-structures">Constraint satisfaction problems over finite structures</h2>
-        <p>
+        
+        
           Recently, some extension was proposed by Barto, DeMeo, and Mottet, where constraint languages with relations and operations were considered.
           A similar dichotomy P vs. NP-complete result was obtained for constraints over a two-element set, but the problem for general finite sets remains wide open.
-        </p>
+        
         
         <h3>Goals</h3>
-        <p>
+        
             The goal of the internship is to develop the existing methods and prove complexity dichotomies for larger classes of constraint languages, in particular in the 3-element case.
           The tools that will be employed are mathematical in nature, leveraging the theory of universal algebras.
             
             Another possible goal is to implement the algorithm described in Reference [2].
-        </p>
+        
 
         <h3>References</h3>
         <ol>
@@ -60,8 +66,11 @@ MathJax.Hub.Config({
               Libor Barto, Antoine Mottet.
             </li>
         </ol>
+        </div>
         
-    <h2 id="topological-schaefer">A topological version of Schaefer's theorem</h2>
+        <div class="topic" id="topological-schaefer-desc">
+    <h2  id="topological-schaefer">A topological version of Schaefer's theorem</h2>
+        
         <p>Reference [1] looks at the topological complexity of possible solution sets for instances of CSP($\mathbb A$), where $\mathbb A$ is a two-element structures.<br />
             In more details, with every solution set of an instance $I$ one can associate a <a href="https://en.wikipedia.org/wiki/Cubical_complex">cubical complex</a> (like a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex</a> but where faces are generalizations of squares and cubes).<br />
         A <a href="https://en.wikipedia.org/wiki/Semialgebraic_set">semi-algebraic set</a> is a subset of $\mathbb R^d$ that is a union of sets defined by polynomial equalities and inequalities.<br />
@@ -74,9 +83,11 @@ MathJax.Hub.Config({
         <h3>References</h3>
         <ol><li><a href="https://arxiv.org/pdf/2307.03446.pdf">A topological version of Schaefer's theorem</a></li>
         </ol>
-
+        </div>
         
+        <div class="topic" id="promise-csps-desc">
     <h2 id="promise-csps">Promise Constraint Satisfaction</h2>
+        
         <p>A <em>promise</em> CSP is parameterized by two structures $\mathbb A$ and $\mathbb B$ such that there exists a homomorphism from $\mathbb A$ to $\mathbb B$.<br />
         The PCSP of the pair $(\mathbb A,\mathbb B)$ takes as input a structure $\mathbb X$ and asks to distinguish between two cases:</p>
             <ul>
@@ -103,23 +114,34 @@ MathJax.Hub.Config({
             <li><a href="https://arxiv.org/abs/1904.03214">The complexity of 3-coloring $H$-colorable graphs</a>.<br />
             Andrei Krokhin, Jakub Opršal.</li>
         </ol>
+        </div>
         
+    <div class="topic" id="minion-width-desc">
     <h2 id="minion-width">A minion of graphs</h2>
-        <p>A <a href="https://en.wikipedia.org/wiki/Tree_decomposition">tree decomposition</a> of a graph $G$ is a tree whose vertices are <em>bags</em> of vertices from $G$ and satisfying certain conditions. The width of the tree decomposition is the maximal size of a bag minus 1, and the <a href="https://en.wikipedia.org/wiki/Treewidth">treewidth</a> of $G$ is the smallest width of a tree decomposition of $G$. The treewidth of $G$ measures how "tree-like" $G$ is: trees have treewidth 1, while the clique on $n$ vertices has treewidth $n-1$.<br />
         
-        An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
-        Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
-        gluing the vertices according to their labels.
+    <p>An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
+    Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
+    gluing the vertices according to their labels.
+
+    If $G$ is $n$-marked and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$, one can define $G^\sigma$ to be the $m$-marked graph obtained by gluing the vertices of $G$ according to $\sigma$; if some $i\in\{1,\dots,m\}$ is not in the image of $\sigma$, we simply introduce in $G^\sigma$ a vertex labelled $i$ that is not connected to any other vertex.
+    This way, the set of finite marked graphs forms a <em>minion</em> (something behaving similarly to Pol($\mathbb A$)), whose elements of "arity" $n$ are the $n$-marked graphs.</p>
         
-        If $G$ is $n$-marked and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$, one can define $G^\sigma$ to be the $m$-marked graph obtained by gluing the vertices of $G$ according to $\sigma$; if some $i\in\{1,\dots,m\}$ is not in the image of $\sigma$, we simply introduce in $G^\sigma$ a vertex labelled $i$ that is not connected to any other vertex.</p>
+    <p>A <a href="https://en.wikipedia.org/wiki/Tree_decomposition">tree decomposition</a> of a graph $G$ is a tree whose vertices are <em>bags</em> of vertices from $G$ and satisfying certain conditions. The width of the tree decomposition is the maximal size of a bag minus 1, and the <a href="https://en.wikipedia.org/wiki/Treewidth">treewidth</a> of $G$, denoted by $tw(G)$, is the smallest width of a tree decomposition of $G$. The treewidth of $G$ measures how "tree-like" $G$ is: trees have treewidth 1, while the clique on $n$ vertices has treewidth $n-1$.</p>
+        
+    <p>Fix a number $k$. For every $n\geq 1$, define an equivalence relation $\sim_n$ on $n$-marked graphs as follows: $\mathbb G\sim_n\mathbb G'$ iff for every $n$-marked graph $\mathbb H$, we have that $tw(G\oplus H)\leq k \Longleftrightarrow tw(G'\oplus H)\leq k$. The relation $\sim_n$ has finitely many equivalence classes, for all $n$.
+    </p>
+        
+    <h3>Goals</h3>
+    Investigate the following questions:
+        <ul>
+        <li>Is it true that if $G\sim_n H$, and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$ is an arbitrary function, then $G^\sigma\sim_m H^\sigma$?</li>
+        <li>If so, then one can define a minion whose elements of arity $n$ are the <em>equivalence classes of $\sim_n$</em>. Since $\sim_n$ has finitely many equivalence classes, this is a locally finite minion. Investigate the relationship between this minion and other minions known in the theory of PCSPs.</li></ul>
+    </div>
     
-
-    <h2 id="smooth-apps">Smooth approximations in infinite-domain constraint satisfaction</h2>
-    <p>Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
-    Such problems are parameterized by the set of constraints that are allowed in the input, called the <em>constraint language</em>.
-    For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.
-
-    By allowing the domain of the constraint language to have an infinite domain, the associated class of problems captures <em>all</em> decision problems!
+        <div class="topic" id="smooth-apps-desc">
+    <h2 id="smooth-apps">Infinite-domain constraint satisfaction</h2>
+    
+    <p>By allowing the domain of the constraint language of a CSP to have an infinite domain, the associated class of problems captures <em>all</em> decision problems!
     Looking for an extension of the Bulatov-Zhuk result to infinite-domain CSPs is therefore too ambitious in general, but one can restrict the class of constraint languages to so-called reducts of finitely bounded homogeneous structures.
     The Bodirsky-Pinsker conjecture states that this class of CSPs also admits a P/NP-complete dichotomy, where this time the border between tractable and intractable problems is conjectured to be characterized by algebraic and topological conditions.
 
@@ -139,8 +161,11 @@ MathJax.Hub.Config({
         <li><a href="https://arxiv.org/abs/2102.07531">Smooth Approximations and Relational Width Collapses</a>.<br />
             Antoine Mottet, Tom&aacute;&scaron; Nagy, Michael Pinsker, Michal Wrona.</li>
     </ol>
-        
+    </div>
+    
+    <div class="topic" id="circuit-complexity-desc">
     <h2 id="circuit-complexity">Circuit complexity of constraint satisfaction problems</h2>
+        
         <p>In the references, the circuit complexity of boolean CSPs is considered. The size and depth of (monotone or non-monotone) circuits solving a given CSP is investigated.</p>
         
         <h3>Goals</h3>
@@ -152,8 +177,10 @@ MathJax.Hub.Config({
             <li><a href="https://arxiv.org/abs/2305.06821">Constant-depth circuits vs. monotone circuits</a><br />
             Bruno Cavalar, Igor Oliveira.</li>
         </ol>
+    </div>
     </main>
+    <script type="text/javascript">var controller = new ScrollMagic.Controller({loglevel: 3});
+    populate_box(controller);</script>
 </body>
-    <script type="text/javascript">populate_box();</script>
-
+    
 </html>
