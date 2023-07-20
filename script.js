@@ -514,7 +514,7 @@ function add_scroll_magic()
         var id_handle = title.id + "-link";
         console.log("Triggering element: #" + id_trigger);
         console.log("Element to be changed: #" + id_handle);
-        new ScrollMagic.Scene({duration: "100%", triggerElement: "#" + id_trigger, loglevel: 3})
+        new ScrollMagic.Scene({duration: "400", triggerElement: "#" + id_trigger, loglevel: 3})
                         .setClassToggle("#" + id_handle, "bold")
                         //.addIndicators()
                         .addTo(controller);
