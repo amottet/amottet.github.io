@@ -75,18 +75,19 @@ MathJax.Hub.Config({
         <div class="topic" id="topological-schaefer-desc">
     <h2  id="topological-schaefer">A topological version of Schaefer's theorem</h2>
         
-        <p>Reference [1] looks at the topological complexity of possible solution sets for instances of CSP($\mathbb A$), where $\mathbb A$ is a two-element structures.<br />
-            In more details, with every solution set of an instance $I$ one can associate a <a href="https://en.wikipedia.org/wiki/Cubical_complex">cubical complex</a> (like a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex</a> but where faces are generalizations of squares and cubes).<br />
+        <p>Reference [1] looks at the topological complexity of the possible solution sets for instances of CSP($\mathbb A$), where $\mathbb A$ is a two-element structures.<br />
+            With every solution set of an instance $I$, one can associate a <a href="https://en.wikipedia.org/wiki/Cubical_complex">cubical complex</a> (like a <a href="https://en.wikipedia.org/wiki/Simplicial_complex">simplicial complex</a> but where faces are generalizations of squares and cubes).<br />
         A <a href="https://en.wikipedia.org/wiki/Semialgebraic_set">semi-algebraic set</a> is a subset of $\mathbb R^d$ that is a union of sets defined by polynomial equalities and inequalities.<br />
         The authors prove that Pol($\mathbb A$) is the clone of projections iff for every compact semi-algebraic set $S$, there exists an instance of CSP($\mathbb A$) whose associated cubical complex is homeomorphic to $S$.</p>
         
         <h3>Goal</h3>
         <ul>
         <li>Bachelor: read [1] and write a report on it with full proofs and prerequisites.</li>
-        <li>Master: It is likely that the methods from [1] can be generalized to pp-interpretations, pp-constructions and that similar results can be obtained for CSPs with more elements.</li></ul>
+        <li>Master: Generalize the methods from [1] to pp-interpretations, pp-constructions and show that similar results can be obtained for CSPs with more elements.</li></ul>
         
         <h3>References</h3>
-        <ol><li><a href="https://arxiv.org/pdf/2307.03446.pdf">A topological version of Schaefer's theorem</a></li>
+        <ol><li><a href="https://arxiv.org/pdf/2307.03446.pdf">A topological version of Schaefer's theorem</a>.<br />
+            Patrick Schnider, Simon Weber.</li>
         </ol>
         </div>
         
@@ -109,7 +110,7 @@ MathJax.Hub.Config({
         <p>Depending on the level of the student, the goal can be one of the following:</p>
         <ul>
             <li>Read some recent articles and write a thesis about the state-of-the-art,</li>
-            <li>Study the polymorphisms of templates of the form $(\mathbb C_{2n+1},\mathbb K_4)$ where $n\geq 1$ (the case $(\mathbb C_{2n+1},\mathbb K_3)$ is done in Reference [2]). For this, computer experiments can be performed.</li>
+            <li>Study the polymorphisms of templates of the form $(\mathbb C_{2n+1},\mathbb K_4)$ where $n\geq 1$ (the case $(\mathbb C_{2n+1},\mathbb K_3)$ is done in Reference [2]). For this, computer experiments can be performed and methods from machine learning can be used.</li>
         </ul>
         
         <h3>References</h3>
@@ -143,8 +144,23 @@ MathJax.Hub.Config({
         <li>Is it true that if $G\sim_n H$, and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$ is an arbitrary function, then $G^\sigma\sim_m H^\sigma$?</li>
         <li>If so, then one can define a minion whose elements of arity $n$ are the <em>equivalence classes of $\sim_n$</em>. Since $\sim_n$ has finitely many equivalence classes, this is a locally finite minion. Investigate the relationship between this minion and other minions known in the theory of PCSPs.</li></ul>
     </div>
+        
+    <div class="topic" id="matroid-desc">
+        <h2 id="matroid">Oligomorphic matroids</h2>
+        
+    <p>A <a href="https://en.wikipedia.org/wiki/Matroid">matroid</a> is a combinatorial structure that captures two essential notions in mathematics: the concept of linear independence in vector spaces, and the concept of spanning forests in graphs. They enjoy many properties (for example, there exists a duality notion for matroids that allows to define a concept of dual for graphs that are not planar) and have found uses in several different areas of mathematics. Matroids were recently in the news, as June Huh received the Fields medal in 2022 for <a href="https://www.mathunion.org/fileadmin/IMU/Prizes/Fields/2022/IMU_Fields22_Huh_citation.pdf">solving one of the long standing open problems in matroid theory</a>. Most of the time, the matroids are considered to be <em>finite</em>, but it is possible to consider infinite matroids as well (see Reference [1]).</p>
+        
+    <h3>Goals</h3>
+    <p>For this topic, we consider <em>oligomorphic</em> matroids: these are infinite matroids on which a permutation group acts and making the matroid behave essentially like a finite matroid. These matroids have never been studied in the literature, and the task is to start exploring the properties of these matroids and establish their basic theory.</p>
+        
+    <h3>References</h3>
+        <ol>
+            <li><a href="https://www.math.uni-hamburg.de/home/diestel/papers/matroidaxioms.pdf">Axioms for infinite matroids</a>.<br />
+            Henning Bruhn, Reinhard Diestel, Matthias Kriesell, Rudi Pendavingh, Paul Wollan.</li>
+        </ol>
+    </div>
     
-        <div class="topic" id="smooth-apps-desc">
+    <div class="topic" id="smooth-apps-desc">
     <h2 id="smooth-apps">Infinite-domain constraint satisfaction</h2>
     
     <p>By allowing the domain of the constraint language of a CSP to have an infinite domain, the associated class of problems captures <em>all</em> decision problems!
