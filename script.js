@@ -342,7 +342,7 @@ talks.push({id:'lics21',
            date:'29/06/21',
            video:'mottet-lics2021.mp4'});
 talks.push({id:'AAA101',
-           event:'<a href="https://aaa101.pmf.uns.ac.rs/">Arbeistagung Allgemeine Algebra 101</a>',
+           event:'<a href="https://aaa101.pmf.uns.ac.rs/">Arbeitstagung Allgemeine Algebra 101</a>',
            place:'online',
            date:'04-06/06/21'});
 talks.push({id:'icalp21',
