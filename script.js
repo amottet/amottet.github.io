@@ -106,6 +106,7 @@ places.push({id:'kranjska',mapid:'SI',x:0,y:0,label:'Kranjska Gora'});
 places.push({id:'online',mapid:'XX',x:0,y:0,label:'Online'});
 places.push({id:'molveno',mapid:'IT',x:0,y:0,label:'Molveno'});
 places.push({id:'hamburg',mapid:'DE',x:0,y:0,label:'Hamburg'});
+places.push({id:'weissensee',mapid:'AT',x:0,y:0,label:'Weissensee'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 
   var talks = new Array();
@@ -372,6 +373,10 @@ talks.push({id:'cwc22',
            event:'<a href="http://cwc.csp-seminar.org">Fourth CSP World Congress</a> (organizer)',
            place:'molveno',
            date:'19-23/09/22'});
+talks.push({id:'cwc23',
+           event:'<a href="http://cspworldcongress.org">Fifth CSP World Congress</a> (organizer)',
+           place:'weissensee',
+           date:'18-22/09/23'});
 talks.push({id:'gi23',
            event:'<a href="https://www.tuhh.de/algo/gi-theorietag-2023">84th Workshop on Algorithms and Complexity</a> of the German society for Computer Science (organizer)',
            place:'hamburg',
