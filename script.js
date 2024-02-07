@@ -107,6 +107,7 @@ places.push({id:'online',mapid:'XX',x:0,y:0,label:'Online'});
 places.push({id:'molveno',mapid:'IT',x:0,y:0,label:'Molveno'});
 places.push({id:'hamburg',mapid:'DE',x:0,y:0,label:'Hamburg'});
 places.push({id:'weissensee',mapid:'AT',x:0,y:0,label:'Weissensee'});
+places.push({id:'warsaw',mapid:'PL',x:0,y:0,label:'Warsaw'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 
   var talks = new Array();
@@ -381,6 +382,10 @@ talks.push({id:'gi23',
            event:'<a href="https://www.tuhh.de/algo/gi-theorietag-2023">84th Workshop on Algorithms and Complexity</a> of the German society for Computer Science (organizer)',
            place:'hamburg',
            date:'06/03/23'});
+talks.push({id:'logalg23',
+           event:'<a href="https://sites.google.com/view/logalg2023/home">2nd Workshop on Logic, Graphs, and Algorithms</a>',
+           place:'warsaw',
+           date:'15-17/11/23'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
