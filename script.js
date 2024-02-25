@@ -108,6 +108,7 @@ places.push({id:'molveno',mapid:'IT',x:0,y:0,label:'Molveno'});
 places.push({id:'hamburg',mapid:'DE',x:0,y:0,label:'Hamburg'});
 places.push({id:'weissensee',mapid:'AT',x:0,y:0,label:'Weissensee'});
 places.push({id:'warsaw',mapid:'PL',x:0,y:0,label:'Warsaw'});
+places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 
   var talks = new Array();
@@ -386,6 +387,17 @@ talks.push({id:'logalg23',
            event:'<a href="https://sites.google.com/view/logalg2023/home">2nd Workshop on Logic, Graphs, and Algorithms</a>',
            place:'warsaw',
            date:'15-17/11/23'});
+talks.push({id:'csl24',
+           event:'<a href="https://csl2024.github.io/Home/">Computer Science Logic 2024</a>',
+           place:'naples',
+           title:'Promise and Infinite-Domain Constraint Satisfaction',
+           date:'22/02/24'});
+talks.push({id:'lmw24',
+           event:'<a href="https://logic-mentoring-workshop.github.io/csl24/">Logic Mentoring Workshop</a>',
+           place:'naples',
+           title:'Structure in Research and Computation',
+           date:'23/02/24',
+           invited:true});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
