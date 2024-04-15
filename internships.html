@@ -104,28 +104,7 @@ MathJax.Hub.Config({
         </ol>
         </div>
         
-    <div class="topic" id="minion-width-desc">
-    <h2 id="minion-width">A minion of graphs</h2>
-        
-    <p>An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
-    Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
-    gluing the vertices according to their labels.
-
-    If $G$ is $n$-marked and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$, one can define $G^\sigma$ to be the $m$-marked graph obtained by gluing the vertices of $G$ according to $\sigma$; if some $i\in\{1,\dots,m\}$ is not in the image of $\sigma$, we simply introduce in $G^\sigma$ a vertex labelled $i$ that is not connected to any other vertex.
-    This way, the set of finite marked graphs forms a <em>minion</em> (something behaving similarly to Pol($\mathbb A$)), whose elements of "arity" $n$ are the $n$-marked graphs.</p>
-        
-    <p>A <a href="https://en.wikipedia.org/wiki/Tree_decomposition">tree decomposition</a> of a graph $G$ is a tree whose vertices are <em>bags</em> of vertices from $G$ and satisfying certain conditions. The width of the tree decomposition is the maximal size of a bag minus 1, and the <a href="https://en.wikipedia.org/wiki/Treewidth">treewidth</a> of $G$, denoted by $tw(G)$, is the smallest width of a tree decomposition of $G$. The treewidth of $G$ measures how "tree-like" $G$ is: trees have treewidth 1, while the clique on $n$ vertices has treewidth $n-1$.</p>
-        
-    <p>Fix a number $k$. For every $n\geq 1$, define an equivalence relation $\sim_n$ on $n$-marked graphs as follows: $\mathbb G\sim_n\mathbb G'$ iff for every $n$-marked graph $\mathbb H$, we have that $tw(G\oplus H)\leq k \Longleftrightarrow tw(G'\oplus H)\leq k$. The relation $\sim_n$ has finitely many equivalence classes, for all $n$.
-    </p>
-        
-    <h3>Goals</h3>
-    <p>
-    Investigate the following questions:</p>
-        <ul>
-        <li>Is it true that if $G\sim_n H$, and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$ is an arbitrary function, then $G^\sigma\sim_m H^\sigma$?</li>
-        <li>If so, then one can define a minion whose elements of arity $n$ are the <em>equivalence classes of $\sim_n$</em>. Since $\sim_n$ has finitely many equivalence classes, this is a locally finite minion. Investigate the relationship between this minion and other minions known in the theory of PCSPs.</li></ul>
-    </div>
+    
         
     <div class="topic" id="matroid-desc">
         <h2 id="matroid">Oligomorphic matroids</h2>
@@ -202,6 +181,29 @@ MathJax.Hub.Config({
             Patrick Schnider, Simon Weber.</li>
         </ol>
         </div>
+        
+    <div class="topic" id="minion-width-desc">
+    <h2 id="minion-width">A minion of graphs (taken)</h2>
+        
+    <p>An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
+    Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
+    gluing the vertices according to their labels.
+
+    If $G$ is $n$-marked and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$, one can define $G^\sigma$ to be the $m$-marked graph obtained by gluing the vertices of $G$ according to $\sigma$; if some $i\in\{1,\dots,m\}$ is not in the image of $\sigma$, we simply introduce in $G^\sigma$ a vertex labelled $i$ that is not connected to any other vertex.
+    This way, the set of finite marked graphs forms a <em>minion</em> (something behaving similarly to Pol($\mathbb A$)), whose elements of "arity" $n$ are the $n$-marked graphs.</p>
+        
+    <p>A <a href="https://en.wikipedia.org/wiki/Tree_decomposition">tree decomposition</a> of a graph $G$ is a tree whose vertices are <em>bags</em> of vertices from $G$ and satisfying certain conditions. The width of the tree decomposition is the maximal size of a bag minus 1, and the <a href="https://en.wikipedia.org/wiki/Treewidth">treewidth</a> of $G$, denoted by $tw(G)$, is the smallest width of a tree decomposition of $G$. The treewidth of $G$ measures how "tree-like" $G$ is: trees have treewidth 1, while the clique on $n$ vertices has treewidth $n-1$.</p>
+        
+    <p>Fix a number $k$. For every $n\geq 1$, define an equivalence relation $\sim_n$ on $n$-marked graphs as follows: $\mathbb G\sim_n\mathbb G'$ iff for every $n$-marked graph $\mathbb H$, we have that $tw(G\oplus H)\leq k \Longleftrightarrow tw(G'\oplus H)\leq k$. The relation $\sim_n$ has finitely many equivalence classes, for all $n$.
+    </p>
+        
+    <h3>Goals</h3>
+    <p>
+    Investigate the following questions:</p>
+        <ul>
+        <li>Is it true that if $G\sim_n H$, and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$ is an arbitrary function, then $G^\sigma\sim_m H^\sigma$?</li>
+        <li>If so, then one can define a minion whose elements of arity $n$ are the <em>equivalence classes of $\sim_n$</em>. Since $\sim_n$ has finitely many equivalence classes, this is a locally finite minion. Investigate the relationship between this minion and other minions known in the theory of PCSPs.</li></ul>
+    </div>
     </main>
     <script type="text/javascript">
     populate_box();
