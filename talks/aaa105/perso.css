@@ -6,7 +6,7 @@ body>.deck-container {
 :root {
     --theorem-color: #fefefe;
     --definition-color: #fefefe;
-    --observation-color: #feaafe;
+    --observation-color: #fefefe;
     --goal-color: #fefefe;
     --example-color: #fefefe;
     --conjecture-color: #fefefe;
