@@ -1,0 +1,858 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+    
+    <!-- computer modern fonts -->
+	<link rel="stylesheet" href="fonts/Bright/cmun-bright.css">
+	<link rel="stylesheet" href="fonts/Concrete/cmun-concrete.css">
+	<link rel="stylesheet" href="fonts/Serif/cmun-serif.css">
+
+  <title>A Story of Oligomorphic Clones and Finite Minions</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <!--<link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">-->
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <!--<link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">-->
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/antoine.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+     <link rel="stylesheet" href="perso.css">
+    <script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  TeX: {
+        Macros: {
+            Hom: ["\\operatorname\{CSP\}"],
+            CSP: ["\\operatorname\{CSP\}"],
+            PCSP: ["\\operatorname\{PCSP\}"],
+            Pol: ["\\operatorname\{Pol\}"],
+            Aut: ["\\operatorname\{Aut\}"],
+            End: ["\\operatorname\{End\}"]
+        },
+    },
+});
+</script>
+<script type="text/javascript" async
+  src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+      <h2>A Story of Oligomorphic Clones<br /> and Finite Minions</h2>
+        <h4>AAA 105</h4>
+        <h4>01/06/2024</h4>
+        <h4>Antoine Mottet (TU Hamburg)</h4>
+        <div class="slide center"><img src="alcofest.png" style="width: 50%;"/></div>
+    </section>
+      
+      <section class="slide">
+        <h1>CSPs with Finite Templates</h1>
+    </section>
+    <section class="slide" id="ua-csp">
+      <h2>Universal algebra $\leftrightarrow$ Constraint Satisfaction</h2>
+      
+        <div class="center slide">In this talk, "structure" means relational structure $\mathbb A=(A;R_1,\dots,R_k)$</div>
+        
+        <div class="shelf">
+        <div class="definition slide">
+        $\Hom(\mathbb A)$ is the problem:
+        <ul>
+            <li>Input: $\mathbb X$, finite</li>
+            <li>Question: does there exist a homomorphism $\mathbb X\to\mathbb A$?</li>
+        </ul>
+        </div>
+        <div class="comment slide">
+            same as defining the set of <em>yes-instances</em> $\Hom(\mathbb A)=\{\mathbb X\mid \mathbb X \text{ finite structure s.t. } \mathbb X\to\mathbb A\}$
+        </div>
+        </div>
+        
+        <ul>
+        <li class="slide">Many natural classes are of the form $\Hom(\mathbb A)$: graphs with chromatic number at most $k$, graphs with clique number at most $k$, acyclic digraphs, ...</li>
+        <li class="slide">Complexity of $\Hom(\mathbb A)\; =$  complexity of deciding membership of a given $\mathbb X$ in such classes</li>
+        <li class="slide">One can have $\mathbb A$ infinite. Sometimes it <em>must</em> be infinite.</li>
+        </ul>
+        
+        <div class="slide example">
+            The class of finite loopless graphs is $\Hom(\mathbb K_\infty)$, where $\mathbb K_\infty$ is the countable complete graph.<br />
+            <span class="slide">If $\{\text{finite loopless graphs}\}\subseteq\Hom(\mathbb A)$ and $\mathbb A$ has fewer than $n$ vertices, then since $K_n$ is loopless and $K_n\to\mathbb A$, $\mathbb A$ must contain a loop, so $\Hom(\mathbb A)$ contains all finite graphs.</span>
+        </div>
+    </section>
+      
+    <section class="slide" id="pol">
+        <h2>Universal algebra $\leftrightarrow$ Constraint Satisfaction</h2>
+        <div class="shelf">
+        <div class="definition">
+        $\Hom(\mathbb A)$ is the problem:
+        <ul>
+            <li>Input: $\mathbb X$, finite</li>
+            <li>Question: does there exist a homomorphism $\mathbb X\to\mathbb A$?</li>
+        </ul>
+        </div>
+        <div class="comment">
+            same as defining the set of <em>yes-instances</em> $\Hom(\mathbb A)=\{\mathbb X\mid \mathbb X \text{ finite structure s.t. } \mathbb X\to\mathbb A\}$
+        </div>
+        </div>
+        
+        <div class="shelf">
+        <div class="center observation slide">
+        If $f\in\Pol(\mathbb A)$, $f\colon \mathbb A^n\to\mathbb A$ and $h_1,\dots,h_n\colon \mathbb X\to\mathbb A$, then $f\circ (h_1,\dots,h_n)\colon \mathbb X\to\mathbb A$.
+        </div>
+        <div class="comment slide">
+            polymorphisms can be used to combine solutions <span class="slide">/ restrict solution space</span>
+        </div>
+        </div>
+        
+        <div class="slide center">
+        $\Longrightarrow$ The structure of $\Pol(\mathbb A)$ can be used to study $\Hom(\mathbb A)$
+        </div>
+        
+        <div class="shelf">
+        <div class="theorem slide">
+            <div class="citation">[Schaefer, '78]</div>
+        Let $\mathbb A$ have domain $\{0,1\}$. Then $\Hom(\mathbb A)$ is:
+        <ul>
+        <li>solvable in P if $\Pol(\mathbb A)$ contains operations that are not essentially unary,</li>
+        <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+        </ul>
+        </div>
+        <div class="comment slide">
+            Proof by case distinction: for each of the 6 minimal clones containing a non-essentially unary operation, find a polynomial-time algorithm
+        </div>
+        </div>
+        <!--<div class="theorem">
+        <div class="citation">[Hell-Nešetřil, '...]</div>
+        Let $\mathbb G$ be a finite undirected graph. Then $\Hom(\mathbb A)$ is:
+        <ul>
+        <li>solvable in P if $\mathbb A$ is bipartite or has a loop,</li>
+        <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+        </ul>
+        </div>-->
+    </section>
+      
+    <section class="slide" id="fincsp">
+      <h2>CSPs with Finite Domains</h2>
+        
+        <div class="timeline slide">
+        <hr class="timeline">
+        <div class="timeline_dates center">
+            <div class="timeline_date" data-tmdate="5" data-tmpos="0">1978</div>
+            <div class="timeline_date" data-tmdate="6" data-tmpos="30">1990</div>
+            <div class="timeline_date" data-tmdate="1" data-tmpos="37">1993</div>
+            <div class="timeline_date" data-tmdate="2" data-tmpos="49">1998</div>
+            <div class="timeline_date" data-tmdate="3" data-tmpos="54">2000</div>
+            <div class="timeline_date" data-tmdate="2002" data-tmpos="59">2002</div>
+            <div class="timeline_date" data-tmdate="2003" data-tmpos="64">2003</div>
+            <div class="timeline_date" data-tmdate="2005" data-tmpos="69">2005</div>
+            <div class="timeline_date" data-tmdate="2008" data-tmpos="74">2008</div> <!-- Maroti McKenzie + dichotomy for digraphs -->
+            <div class="timeline_date" data-tmdate="2010" data-tmpos="79">2010</div>
+            <div class="timeline_date" data-tmdate="2012" data-tmpos="84">2012</div> <!-- Absorption and cyclic terms -->
+            <div class="timeline_date" data-tmdate="2016" data-tmpos="93">2016</div>
+            <div class="timeline_date" data-tmdate="4"  data-tmpos="97">2017</div>
+        </div>
+        <div class="timeline_descs">
+            <div class="slide vanish timeline_desc theorem" data-tmdesc="5">
+                <div class="citation">[Schaefer]</div>
+                Let $\mathbb A$ have domain $\{0,1\}$. Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in P if $\Pol(\mathbb A)$ contains operations that are not essentially unary,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+           </div>
+            <div class="slide vanish timeline_desc theorem" data-tmdesc="6">
+                <div class="citation">[Hell-Nešetřil]</div>
+                Let $\mathbb A$ be a finite undirected graph. Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in P if $\mathbb A$ is bipartite or has a loop,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+           </div>
+            <div class="slide vanish timeline_desc conjecture" data-tmdesc="1"><div class="citation">[Feder, Vardi]</div>
+                $\Hom(\mathbb A)$ is always solvable in polynomial time or NP-complete.</div>
+            <div class="slide vanish timeline_desc theorem" data-tmdesc="2"><div class="citation">[Jeavons]</div>Complexity of $\Hom(\mathbb A)$ is completely determined by $\Pol(\mathbb A)$ when $\mathbb A$ is finite.</div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="3"><div class="citation">[Bulatov, Krokhin, Jeavons]</div>
+                The complexity of $\Hom(\mathbb A)$ only depends on the equational variety generated by $\Pol(\mathbb A)$.
+            We know $\Hom(\mathbb A)$ is NP-hard if $\Pol(\mathbb A)$ is equationally trivial.<span class="exponent">*</span></div>
+            <div class="slide" data-tmdesc="3">
+                Proof based on <strong>primitive positive interpretations</strong>:
+                <ul>
+                    <li>if $\mathbb B$ is of the form $(S/{\sim}, T_1,\dots,T_\ell)$ where $S\subseteq A^d,{\sim}\subseteq S^2,T_1,\dots,T_\ell$ are all pp-definable in $\mathbb A$, then $\Hom(\mathbb B)$ reduces to $\Hom(\mathbb A)$</li>
+                    <li>this is true of $\mathbb B$ iff there exists a clone homomorphism $\Pol(\mathbb A)\to\Pol(\mathbb B)$<br />
+                    Alternatively, iff the polymorphism algebra of $\mathbb B$ is in the variety generated by that of $\mathbb A$</li>
+                    <li>So if $\Pol(\mathbb A)\to\Pol(\mathbb B)$, then $\Hom(\mathbb B)\leq\Hom(\mathbb A)$</li>
+                </ul>
+            </div> 
+            </div>
+            
+            <div class="slide vanish">
+            <div class="shelf">
+            <div class="timeline_desc theorem" data-tmdesc="2016"><div class="citation">[Barto, Opršal, Pinsker]</div>
+                Complexity of $\Hom(\mathbb A)$ only depends on the <em>height 1 identities</em> satisfied by $\Pol(\mathbb A)$.</div>
+            <div class="slide comment" data-tmdesc="2016">
+                A height 1 identity is a statement of the form $$f(\text{variables}) \approx g(\text{variables})$$
+            </div>
+            </div>    
+            <div class="slide" data-tmdesc="2016">
+                Proof based on <strong>primitive positive constructions</strong>: pp-interpretations + homomorphic equivalence    
+            </div>
+            </div>
+            
+            
+            <div class="slide vanish">
+            <div class="theorem">
+                If $\Pol(\mathbb A)$ is idempotent and equationally non-trivial then it contains:
+                <ul>
+                <li class="slide" data-tmdesc="2008">a <em>weak near-unanimity</em> operation of some arity $k\geq 3$
+                $$f(x,x,\dots,x,y)\approx f(x,x,\dots,y,x)\approx\dots\approx f(x,y,\dots,x,x)\approx f(y,x,\dots,x,x)$$</li>
+                <li class="slide" data-tmdesc="2010,2008">a $6$-ary $f$ satisfying
+            $f(x,y,x,z,y,z)\approx f(y,x,z,x,z,y).$</li>
+                <li class="slide" data-tmdesc="2010,2008,2012"><em>cyclic</em> operations of all prime arities $>|A|$
+                $$f(x_1,x_2,\dots,x_n)\approx f(x_2,x_3,\dots,x_n,x_1)$$</li>
+                </ul>
+                <div class="citation">[Maróti, McKenzie] [Siggers] [Barto, Kozik]</div>
+            </div>
+            <div class="slide" data-tmdesc="2012,2010">Last two statements based on loop lemmas, absorption theory</div>
+            </div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="2002"><div class="citation">[Bulatov]</div>
+                If $\Pol(\mathbb A)$ has a Mal'tsev operation, then $\Hom(\mathbb A)$ is solvable in polynomial time.</div>
+            <div class="shelf">
+            <div class="timeline_desc theorem" data-tmdesc="2002"><div class="citation">[Bulatov]</div>
+                If $A$ has size 3 and $\Pol(\mathbb A)$ is not equationally trivial, then $\Hom(\mathbb A)$ is solvable in polynomial time.</div>
+            
+            <div class="comment slide" data-tmdesc="2002">
+                Like Schaefer, based on case analysis
+                <img src="bulatov3.png" style="height: 500px;"/>
+            </div>
+            </div>    
+            <div class="slide">
+            <div class="theorem" style="width: 60%;top:-400px;" data-tmdesc="2002,2003">
+                If $\Pol(\mathbb A)$ is conservative and equationally non-trivial, then $\Hom(\mathbb A)$ is solvable in polynomial time.
+                <div class="citation">[Bulatov]</div>
+            </div>
+            </div>
+            </div>
+            
+            <div class="slide vanish" data-tmdesc="2008,2010">
+            <div class="theorem">
+            If $\mathbb A$ is a finite smooth digraph, then $\CSP(\mathbb A)$ is in P when it has a weak near-unanimity polymorphism, and it is NP-complete otherwise.
+            <div class="citation">[Barto, Kozik, Niven]</div>
+            </div>
+                
+            <div class="theorem">
+                <div class="citation">[Idziak, Markovic, McKenzie, Valeriote, Willard]</div>
+                If $\Pol(\mathbb A)$ has few subpowers, then $\Hom(\mathbb A)$ is solvable in polynomial time.
+            </div>
+            </div>
+            
+            <div class="slide timeline_desc theorem" data-tmdesc="4"><div class="citation">[Bulatov // Zhuk]</div>
+            $\Hom(\mathbb A)$ is in P when $\Pol(\mathbb A)$ is idempotent and not equationally trivial.</div>
+            
+        </div>
+        </div>
+        <span class="slide" data-tmdesc="2,3,2008,2012,4"></span>
+        <div class="slide" data-tmdesc="4">So we know everything there is to know about $\Hom(\mathbb A)$ when $\mathbb A$ is finite,<span class="exponent">***</span> nice! What's next?</div>
+        <ul class="slide" data-tmdesc="4">
+            <li>CSPs with $\omega$-categorical templates / Oligomorphic Clones</li>
+            <li>Promise CSPs / Minions</li>
+            <li>Some questions</li>
+            <li>How they relate</li>
+            <li>Some answers</li>
+        </ul>
+    </section>
+      <section class="slide">
+          <h1>CSPs with $\omega$-categorical templates</h1>
+      </section>
+      
+    <section class="slide" id="oligo">
+      <h2>Infinite CSPs and Oligomorphic Clones</h2>
+        <div class="center slide">No hope to understand <em>all</em> CSPs in general.<br /><span class="slide">Restrict to $\CSP(\mathbb A)$ where $\Pol(\mathbb A)$ is well-behaved.</span></div>
+
+        <div class="shelf">
+        <div class="definition slide">A clone $\Pol(\mathbb A)$ on $A$ is <em>oligomorphic</em> if all the finite powers $A^n$ are finitely generated <em>already under the invertible unary operations</em>.</div>
+        <div class="comment slide">Equivalently, the group $\Aut(\mathbb A)$ acts with <em>finitely many orbits</em> on every $A^n$.</div>
+        </div>
+        
+        <div class="example slide">
+            <ul>
+                <li>Finite $A$</li>
+                <li>$\Pol(\mathbb A) \supseteq $ all permutations on $\mathbb Q$, or all monotone permutations on $\mathbb Q$</li>
+                <li>$\Pol(\mathbb A) \supseteq$ automorphism group of a homogeneous structure (like $(\mathbb Q;&lt;)$ or the Rado graph)</li>
+            </ul>
+        </div>
+        <div class="slide">
+        Consequences:
+            <ul>
+                <li class="slide">Finitely many $\Pol(\mathbb A)$-invariant subsets of $A^n$ for all $n$.</li>
+                <li class="slide">By compactness/induction arguments, can recover some properties that hold for finite clones (Pol-Inv correspondence).</li>
+                <li class="slide">Define $f \sim g$ iff for every finite $S\subseteq A$, there exists $\alpha\in\mathcal G$ such that $\alpha f|_S=g|_S$.<br />
+                    Then $(A^{A^n})/{\sim}$ is compact for all $n$.</li>
+                <li class="slide">Corresponds to $\mathbb A$ being <strong>$\omega$-categorical</strong>. <span class="inline-citation">[Ryll-Nardzewski, Engeler, Svenonius]</span></li>
+            </ul>
+        </div>
+    </section>
+      
+    <section class="slide" id="oligo2">
+      <h2>Infinite-domain CSPs</h2>
+        
+        <div class="timeline slide">
+        <!--<div class="timeline_dates center">
+            <div class="timeline_date" data-tmpos="30">Algebraic theory</div>
+            <div class="timeline_date complexity" data-tmpos="50">CSP</div>
+            <div class="timeline_date both" data-tmpos="70">Both</div>
+        </div>-->
+        <hr>
+        <div class="timeline_dates center">
+            <div class="timeline_date" data-tmdate="2003" data-tmpos="0">2003</div>
+            <div class="timeline_date " data-tmdate="1" data-tmpos="5">2006</div>
+            <div class="timeline_date " data-tmdate="2" data-tmpos="10">2008</div>
+            <div class="timeline_date " data-tmdate="3" data-tmpos="25">2011</div>
+            <div class="timeline_date" data-tmdate="2015" data-tmpos="45">2015</div>
+            <div class="timeline_date " data-tmdate="4" data-tmpos="50">2016</div>
+            <div class="timeline_date " data-tmdate="2018" data-tmpos="60">2018</div>
+            <div class="timeline_date" data-tmdate="2019" data-tmpos="65">2019</div>
+            <div class="timeline_date" data-tmdate="2020" data-tmpos="70">2020</div>
+            <div class="timeline_date " data-tmdate="2021" data-tmpos="75">2021</div>
+            <div class="timeline_date " data-tmdate="5" data-tmpos="80">2022</div>
+            <div class="timeline_date" data-tmdate="6" data-tmpos="85">2023</div>
+            <div class="timeline_date " data-tmdate="2024" data-tmpos="90">2024</div>
+        </div>
+        <div class="timeline_descs">
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="2003,2015">
+                Suppose $\mathbb A$ is $\omega$-categorical. Then:
+                <ul>
+                <li>$R\subseteq A^n$ is invariant under $\Pol(\mathbb A)$ iff it is pp-definable in $\mathbb A$</li>
+                <li>If $\Pol(\mathbb A)$ and $\Pol(\mathbb B)$ are <em>topologically isomorphic</em>, then $\CSP(\mathbb A)$ and $\CSP(\mathbb B)$ are equivalent.</li>
+                </ul>
+            <div class="citation">[Bodirsky, Nešetřil] [Bodirsky, Pinsker]</div>
+            </div>
+            </div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="4">
+                <div class="citation">[Barto, Pinsker]</div>
+                Let $\mathcal G$ be an oligomorphic group on $A$ and let $\mathbb A=(A;E)$ be an undirected graph such that $\Aut(\mathbb A)\supseteq\mathcal G$ and containing a triangle.
+                Then:
+                <ul>
+                    <li>$\mathbb A$ together with orbits of $\mathcal G$ and parameters pp-interprets every finite structure, or</li>
+                    <li>$E$ contains a <strong>pseudoloop</strong>, a pair $(a,\alpha(a))$ for some $\alpha\in\mathcal G$.</li>
+                </ul>
+            </div>
+                <div class="slide"  data-tmdesc="4">$\Longrightarrow$ if $\Pol(\mathbb A)$ is nontrivial, then it satisfies the <em>pseudo-Siggers</em> identity $$u\circ f(x,y,x,z,y,z)\approx v\circ f(y,x,z,x,z,y)$$ with $u,v\in\overline{\Aut(\mathbb A)}$.<span class="exponent">*</span></div>
+            </div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="6">
+                <div class="citation">[Barto, Bodor, Kozik, M., Pinsker]</div>
+                Let $\mathcal G$ be an oligomorphic group on $A$ and let $\mathbb A=(A;E)$ be a smooth digraph such that $\Aut(\mathbb A)\supseteq\mathcal G$, where $\mathbb A/{\mathcal G}$ is symmetric and contains a triangle.
+                Then:
+                <ul>
+                    <li>$\mathbb A$ together with orbits of $\mathcal G$ and parameters pp-interprets every finite structure, or</li>
+                    <li>$E$ contains a <strong>pseudoloop</strong>, a pair $(a,\alpha(a))$ for some $\alpha\in\mathcal G$.</li>
+                </ul>
+            </div>
+                <span class="slide" data-tmdesc="6">Also, contrary to the finite, <em>pseudo-Siggers</em> is not equivalent to <em>pseudo-WNU</em> or <em>pseudo-cyclic</em>.</span>
+            </div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="2,2020">
+                <div class="citation">[Bodirsky, Grohe] [Gillibert, Jonušas, Kompatscher, M., Pinsker]</div>
+                <ul>
+                    <li>$\Hom(\mathbb A)$ where $\Pol(\mathbb A)$ is oligomorphic is still very wild (CSPs of all<span class="exponent">*</span> possible complexities).</li>
+                    <li>Complexity not captured by equations (even by being very permissive with the notion of "capture" and "equations").</li>
+                </ul>
+            </div>
+                
+            <div class="timeline_desc slide theorem" data-tmdesc="2019,2,2020">
+                There is no weakest height 1 condition for polymorphism clones of oligomorphic structures:<br />
+                given any finite $\Sigma$, there exists an oligomorphic $\Pol(\mathbb A)$ that does not satisfy $\Sigma$ but satisfies
+                $$f(x,x,\dots,x,y)\approx f(x,x,\dots,y,x)\approx f(x,y,\dots,x,x)\approx f(y,x,\dots,x)\approx f(x,\dots,x)$$
+                for some arity.
+                <div class="citation">[Bodirsky, M., Olšák, Opršal, Pinsker, Willard]</div>    
+            </div>
+            </div>
+            
+            <!-- CSP related results -->
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="1">
+                <div class="citation">[Bodirsky, Kára]</div>
+                Let $\mathbb A$ be such that $\Pol(\mathbb A)$ contains the full symmetric group. Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in P if $\Pol(\mathbb A)$ contains an injective operation or a constant,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+           </div>
+            </div>
+            <div class="slide vanish shelf" data-tmdesc="2">
+            <div class="timeline_desc theorem" data-tmdesc="2">
+                <div class="citation">[Bodirsky, Kára]</div>
+                Let $\mathbb A$ be such that $\Pol(\mathbb A)$ contains the group of order-preserving permutations of $\mathbb Q$.
+                Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in polynomial time if $\Pol(\mathbb A)$ contains one of <strong>9</strong> operations,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+            </div>
+            <div class="slide comment" data-tmdesc="2">Relies on a classification of all the possible $\Aut(\mathbb A)$.
+                <img src="temporal.png" style="width:auto; height: auto;"/></div>
+            </div>
+            
+            <div class="slide vanish shelf">
+            <div class="timeline_desc theorem" data-tmdesc="3">
+                <div class="citation">[Bodirsky, Pinsker]</div>
+                Let $\mathbb A$ be such that $\Pol(\mathbb A)$ contains the group of automorphisms of the Rado graph.
+                Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in polynomial time if $\Pol(\mathbb A)$ contains one of <strong>17</strong> operations,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+            </div>
+                <div class="slide comment" data-tmdesc="3">Relies on a prior classification of all the possible $\Aut(\mathbb A)$.
+                <img src="schaefergraph.png" style="width: auto; height:auto;"/></div>
+            </div>
+            
+            <div class="slide vanish">
+            <div class="timeline_desc conjecture" data-tmdesc="3">
+                <div class="citation">[Bodirsky, Pinsker]</div>
+                Let $\mathbb A$ be a <em>reduct of a finitely bounded homogeneous structure</em>.
+                Then $\Hom(\mathbb A)$ is in P whenever $\mathbb A$ does not pp-interpret with parameters all finite structures.<span class="exponent">for cores</span>
+            </div>
+            <div class="slide" data-tmdesc="3">
+            Assumption implies:
+                <ul>
+                    <li>$\mathbb A$ is $\omega$-categorical / $\Pol(\mathbb A)$ is oligomorphic</li>
+                    <li>$\Hom(\mathbb A)$ is in NP</li>
+                </ul>
+            </div>
+            </div>
+            
+            
+            <div class="slide vanish shelf">
+            <div class="timeline_desc theorem" data-tmdesc="4">
+                <div class="citation">[Bodirsky, Martin, Pinsker, Pongrácz]</div>
+                Let $\mathbb A$ be such that $\Aut(\mathbb A)$ contains the group of automorphisms of <em>any</em> homogeneous undirected graph.
+                Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in P if $\Pol(\mathbb A)$ contains ...,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+            </div>
+            <div class="slide comment" data-tmdesc="4">Relies on a prior classification of all the possible $\Aut(\mathbb A)$<br /> AND all the possible homogeneous undirected graphs.</div>
+            </div>
+            
+            <img class="slide vanish" src="schaefergraph.png" style="width: auto; height:600px;" data-tmdesc="3"/>
+            <div class="slide vanish">
+                For $m$ large enough, define $\Gamma_m\colon \mathbb A=(A;R_1,\dots,R_k) \mapsto \Gamma_m\mathbb A$ structure on $A^m$ with:
+                <ul>
+                    <li>unary relations encoding $R_1,\dots,R_k$</li>
+                    <li>binary relations specifying equalities between $m$-tuples</li>
+                </ul>
+
+                <div class="timeline_desc theorem" data-tmdesc="4">
+                    <div class="citation">[Bodirsky, M.]</div>
+                    Let $\mathbb A$ be a <em>reduct of a finitely bounded homogeneous structure</em> with automorphism group $\mathcal G$.<br />
+                    Then $\Hom(\mathbb A)$ reduces in polynomial time to $\Hom(\Gamma_m\mathbb A/{\mathcal G})$.
+                </div>
+                
+                <ul>
+                    <li class="slide" data-tmdesc="4">$\Pol(\Gamma_m\mathbb A/{\mathcal G})$ essentially the same as $\Pol(\mathbb A,\Theta_{\mathcal G})$, where $a\theta b$ iff $a,b$ are in the same orbit under $\mathcal G$</li>
+                <li class="slide" data-tmdesc="4">If $\Pol(\Gamma_m\mathbb A/{\mathcal G})$ is non-trivial, then $\Hom(\Gamma_m\mathbb A/{\mathcal G})$ is solvable in polynomial time.<br />
+                    $\Rightarrow$ does away with the need for case distinctions for the algorithms (in many cases)!</li>
+                    <li class="slide" data-tmdesc="4">$\Pol(\mathbb A)$ can be non-trivial and $\Pol(\mathbb A,\Theta_{\mathcal G})$ trivial<br />E.g. if $\Aut(\mathbb A)=\Aut(\mathbb Q;&lt;)$</li>
+                </ul>
+            </div>
+
+            
+            
+            <div class="slide vanish">
+            <div class="timeline_desc theorem" data-tmdesc="5,2018,2021,2024">
+                <div class="citation">[Bodirsky, M.] [M., Pinsker] [M., Nagy, Pinsker, Wrona] [M., Nagy, Pinsker]</div>
+                Let $\mathbb A$ be &lang;any of the previous mentioned structures and many more&rang;.
+                Then $\Hom(\mathbb A)$ is:
+                <ul>
+                <li>solvable in polynomial time if $\Pol(\mathbb A)$ is equationally non-trivial,</li>
+                <li>and $\Hom(\mathbb A)$ is NP-complete otherwise.</li>
+                </ul>
+            </div>
+            <div class="slide" data-tmdesc="5,2018,2021,2024"><strong>Smooth Approximations:</strong>
+                <ul>
+                    <li>Relate the non-existence of non-trivial identities satisfied in $\Pol(\mathbb A,\Theta_{\mathcal G})$ to the fact that $\Pol(\mathbb A)$ obeys a "pseudoloop lemma" that gives binary operations satisfying strong properties</li>
+                    <li>Eliminates the need for establishing a list of "minimal good polymorphisms"</li>
+                    <li>Eliminates the need for classification of groups $\Aut(\mathbb A)$</li>
+                    <li>Also works if one is interested at other equational conditions: characterization of bounded width structures when $\Aut(\mathbb A)$ contains a particular fixed group</li>
+                    <li>Works best under some structure conditions (primitivity, no algebraicity), flow needs to be adapted in other cases</li>
+                    <li>Still a few <em>ad hoc</em> arguments</li>
+                </ul></div>
+            </div> 
+        </div>
+        </div>
+        
+        <div class="slide">
+            Structure (summary):
+            <ul>
+                <li>Pattern: $\Pol(\mathbb A,\Theta_{\mathcal G})$ is non-trivial, or $\Pol(\mathbb A)$ is trivial, or $\Pol(\mathbb A)$ contains interesting binary operations<span class="exponent">*</span></li>
+                <li>Height 1 Identities <em>modulo a group</em> seem to be important and in particular the <strong>pseudo-Siggers</strong> identity $$u\circ f(x,y,x,z,y,z)\approx v\circ f(y,x,z,x,z,y)$$</li>
+            </ul>
+        </div>
+        
+        <div class="slide">
+          <div class="goal center">
+              Understand the structure of $\Pol(\mathbb A)$ better whenever<br /> $\mathbb A$ does not pp-construct/interpret all finite structures.
+          </div>
+          </div>
+        
+        <div class="slide">    
+            CSP (summary):
+            <ul>
+                <li>"Reduction to the finite" very powerful, but not enough for certain groups (e.g., $\Aut(\mathbb Q;&lt;)$)</li>
+                <li>Algorithmic aspects still need to be better understood (e.g., CSPs over $(\mathbb Q;&lt;)$)</li>
+                <li>For "well-behaved" structures (<em>reducts of finitely bounded homogeneous structures</em>),<br /> $\Hom(\mathbb A)$ is conjectured to be in P whenever $\mathbb A$ does not pp-construct all finite structures</li>
+            </ul>
+        </div>
+        <div class="slide">
+          <div class="goal center">
+              Find generic algorithms solving infinite-domain CSPs
+          </div>
+          </div>
+    </section>
+      
+    <section class="slide">
+        <h1>Promise CSPs with Finite Templates</h1>
+    </section>
+    <section class="slide" id="minions">
+      <h2>Promise CSPs</h2>
+        <div class="shelf">
+        <div class="slide definition">
+            $\mathbb A, \mathbb B$ structures with $\mathbb A\to\mathbb B$. <br />
+            $\PCSP(\mathbb A,\mathbb B)$ is the problem of determining, given $\mathbb X$, whether
+            <ul>
+                <li>Yes: there exists a homomorphism $\mathbb X\to\mathbb A$</li>
+                <li>No: there does not exist a homomorphism $\mathbb X\to\mathbb B$</li>
+            </ul>
+        </div>
+            <div class="slide comment">
+            Since $\mathbb A\to\mathbb B$, at most one case is possible.<br />We are <em>promised</em> that at least one is true.
+        </div>
+        </div>
+        
+        <div class="slide example">
+            <ul>
+                <li>$\mathbb {OIT}=(\{0,1\}, \{(1,0,0),(0,1,0),(0,0,1)\})$ vs. $\mathbb{NAE}_2=(\{0,1\}, \{0,1\}^3\setminus\{(0,0,0),(1,1,1)\})$<br />Solvable in polynomial time!</li>
+                <li>$\PCSP(\mathbb K_a,\mathbb K_b)$ for $a\leq b$<br />
+                Conjectured to be NP-hard for all $a\leq b$ (known e.g. for $a=3\leq b\leq 6$)<br />
+                Does not pp-construct $\mathbb K_3$ in general.</li>
+            </ul>
+        </div>
+    </section>
+      
+    <section class="slide">
+        <h2>About PCSPs</h2>
+      <ul>
+            <li class="slide">Complexity determined by <em>polymorphisms</em> $\mathbb A^n\to\mathbb B$<br />
+            $\Pol(\mathbb A,\mathbb B)$ is a <strong>minion</strong>: set of functions closed under <em>minors</em><br />
+                if $f\colon \mathbb A^n\to \mathbb B$ is a polymorphism and $\sigma\colon\{1,\dots,n\}\to\{1,\dots,m\}$,
+            $f^{\sigma}(x_1,\dots,x_m) := f(x_{\sigma(1)},\dots,x_{\sigma(n)})$<br />
+                is a polymorphism.</li>
+            <li class="slide">$\PCSP(\mathbb A,\mathbb B)$ is equivalent to the following problem (for some constant $N$):<br /> Given $\Sigma$ a set of height 1 identities about functions of arity at most $N$, decide whether<ul><li>Yes: the identities are satisfied by projections on a 2-element set</li><li>No: the identities are not satisfiable in $\Pol(\mathbb A,\mathbb B)$</li></ul></li>
+            <li class="slide">$(\mathbb C,\mathbb D)$ pp-constructible in $(\mathbb A,\mathbb B)$ iff $\Pol(\mathbb A,\mathbb B)\to\Pol(\mathbb C,\mathbb D)$ <br />Implies $\PCSP(\mathbb C,\mathbb D)\leq \PCSP(\mathbb A,\mathbb B)$.</li>
+            <li class="slide">Hardness not well understood<br />(every year comes with a stronger kind of hardness proof + proof that previous techniques are not enough)</li>
+          <li class="slide">Fertile ground for new algorithms feeding back into world of finite-domain CSPs<br />
+              Basic Linear Programming relaxation (<strong>BLP</strong>) and Affine Integer Programming relaxation (<strong>AIP</strong>)</li>
+        </ul>
+      </section>
+      
+      <section class="slide" id="bwidth">
+      <h2>Bounded Width and Finite Tractability</h2>
+          <ul>
+          <li class="slide">$\mathbb X$ is <em>locally consistent</em> w.r.t. $\mathbb A$ if no contradiction can be derived by looking at constant-sized subsets of $\mathbb X$ and propagating implied constraints</li>
+          <li class="slide">$(\mathbb A,\mathbb B)$ has <em>bounded width</em> if every $\mathbb X$ that is locally consistent w.r.t. $\mathbb A$ admits a homomorphism to $\mathbb B$</li>
+          <li class="slide">Makes sense for CSPs as well (with $\mathbb A=\mathbb B$)</li>
+          <li class="slide">If $\mathbb A$ finite, then $\mathbb A$ has bounded width iff $\Pol(\mathbb A)$ contains WNU of all arities <span class="inline-citation">[Larose, Zádori] [Maróti, McKenzie] [Barto, Kozik]</span> </li>
+          </ul>
+          <div class="slide">
+          <div class=" goal center">
+              Classify the finite PCSP templates $(\mathbb A,\mathbb B)$ that have bounded width.<br />
+              Classify the $\omega$-categorical structures $\mathbb A$ that have bounded width.
+          </div>
+          </div>
+          
+          <ul>
+              <li class="slide">$(\mathbb A,\mathbb B)$ is <em>finitely tractable</em> if there exists a finite $\mathbb C$ such that $$\mathbb A\to\mathbb C\to\mathbb B$$ such that $\Hom(\mathbb C)$ is solvable in polynomial time</li>
+              <li class="slide">The template $(\mathbb{OIT}, \mathbb{NAE}_2)$ is not finitely tractable, although the PCSP <em>is</em> solvable in polynomial time <span class="inline-citation">[Barto]</span></li>
+          </ul>
+
+          
+          <div class="slide">
+          <div class=" goal center">
+              Classify the finite PCSP templates $(\mathbb A,\mathbb B)$ that are finitely tractable.<br />
+              Are there finite PCSP templates that are not finitely tractable but such that there exists a tractable <strong>$\omega$-categorical</strong> $\mathbb C$?
+          </div>
+          </div>
+        
+      </section>
+      
+      <section class="slide">
+      <h1>Oligomorphic clones and finite minions</h1></section>
+      
+    <section class="slide" id="assemble">
+      <h2>Oligomorphic clones as limits of finite minions</h2>
+        <div class="slide">
+            For $m$ large enough, define $\Gamma_m\colon \mathbb A=(A;R_1,\dots,R_k) \mapsto \Gamma_m\mathbb A$ structure on $A^m$ with:
+            <ul>
+                <li>unary relations encoding $R_1,\dots,R_k$</li>
+                <li>binary relations specifying equalities between $m$-tuples</li>
+            </ul>
+        </div>
+        <div class="slide definition">
+            Let $\mathcal G$ be a subgroup of $\mathbb B$.
+        A map $\xi\colon\mathcal M\to\Pol(\mathbb A,\mathbb B)$ is a $\mathcal G$-weak minion homomorphism if for every height 1 identity $f(\text{vars})= g(\text{vars})$ in $\mathcal M$, the identity $u\circ \xi(f)(\text{vars})=v\circ\xi(g)(\text{vars})$ holds for some $u,v\in\overline{\mathcal G}$.
+        </div>
+        <div class="slide theorem" style="width: 100%;">
+            <div class="citation">[M.]</div>
+            Let $\mathbb A$ be $\omega$-categorical.
+            Then $\Pol(\mathbb A)$ is the <em>$\mathcal G$-weak</em> projective limit of
+            <div class="large_mathjax">
+            $$\require{AMScd}\minCDarrowwidth5pt\begin{CD}
+            \dots @>>> \Pol(\Gamma_{m+1}\mathbb A_{i+1},\Gamma_{m+1}\mathbb A/{\mathcal G})   @>>>  \Pol(\Gamma_{m+1}\mathbb A_{i},\Gamma_{m+1}\mathbb A/{\mathcal G})        @>>> \Pol(\Gamma_{m+1}\mathbb A_{i-1},\Gamma_{m+1}\mathbb A/{\mathcal G})  @>>> \dots\\
+            @.        @VVV       @VVV           @VVV           @.\\
+            \dots @>>> \Pol(\Gamma_m\mathbb A_{i+1},\Gamma_m\mathbb A/{\mathcal G})   @>>>  \Pol(\Gamma_m\mathbb A_{i},\Gamma_m\mathbb A/{\mathcal G})        @>>> \Pol(\Gamma_m\mathbb A_{i-1},\Gamma_m\mathbb A/{\mathcal G})  @>>> \dots
+            \end{CD}
+            $$
+            </div>
+            <div class="small_mathjax">
+            $$\require{AMScd}\minCDarrowwidth5pt\begin{CD}
+            \dots @>>> \Pol(\Gamma_{m+1}\mathbb A_{i+1},\Gamma_{m+1}\mathbb A/{\mathcal G})   @>>>  \Pol(\Gamma_{m+1}\mathbb A_{i},\Gamma_{m+1}\mathbb A/{\mathcal G})     @>>> \dots\\
+            @.        @VVV       @VVV                @.\\
+            \dots @>>> \Pol(\Gamma_m\mathbb A_{i+1},\Gamma_m\mathbb A/{\mathcal G})   @>>>  \Pol(\Gamma_m\mathbb A_{i},\Gamma_m\mathbb A/{\mathcal G})        @>>> \dots
+            \end{CD}
+            $$
+            </div>
+            where $\mathbb A_i$ are finite substructures of $\mathbb A$ such that $\mathbb A_1\subseteq\mathbb A_2\subseteq\dots\subseteq \bigcup\mathbb A_i=\mathbb A$ and $m\in\mathbb N$.<br />
+            <span class="slide">If $\mathcal G$ is the automorphism group of a finitely bounded homogeneous structure, then $m$ can be fixed large enough.</span>
+        </div>
+    </section>
+      
+    <section class="slide">
+        <h2>Oligomorphic clones as limits of finite minions</h2>
+        <div>
+            <!--Consequences:-->
+            <ul>
+                <li class="slide">For a reduct $\mathbb A$ of a finitely bounded homogeneous structure, $\Hom(\mathbb A)$ is <strong>equivalent</strong> to $\PCSP(\Gamma_m\mathbb A,\Gamma_m\mathbb A/{\mathcal G})$ (for some $m\in\mathbb N$ and $\mathcal G\subseteq\Aut(\mathbb A)$)</li>
+                <li class="slide">The height 1 identities that hold in $\Pol(\mathbb A)$ modulo $\mathcal G$ are those that hold in every $\Pol(\Gamma_m\mathbb A_i,\Gamma_m\mathbb A/{\mathcal G})$.</li>
+                <div class="slide proof">
+                    <ul>
+                    <li>$\mathcal M$ be the free minion generated by identity</li>
+                    <li>If $\mathcal M\to(\Gamma_m\mathbb A_i,\Gamma_m\mathbb A/{\mathcal G})$ for all $m, i$ then $\mathcal M\color{red}{\to}\Pol(\mathbb A)$ by previous result</li>
+                    </ul>
+                </div>
+                <li class="slide">If $\mathbb A$ does not pp-construct $(\mathbb K_3,\mathbb K_r)$, then $\Pol(\mathbb A)$ contains a pseudo-Siggers operation.
+                <div class="slide proof">
+                <ul>
+                    <li>$(\Gamma_m\mathbb A_i,\Gamma_m\mathbb A/{\mathcal G})$ does not pp-construct $(\mathbb K_3,\mathbb K_r)$ for all $m, i$</li>
+                    <li>$\Pol(\Gamma_m\mathbb A_i,\Gamma_m \mathbb A/{\mathcal G})$ contains a Siggers operation <span class="inline-citation">[Barto, Bulín, Krokhin, Opršal]</span></li>
+                </ul>    
+                </div>
+                </li>
+                <li class="slide">If $\mathbb A$ does not pp-construct $(\mathbb{NAE}_2,\mathbb{NAE}_r)$, then $\Pol(\mathbb A)$ contains a <em>pseudo-Olšák</em> operation $$u\circ f(x,x,y,y,y,x) \approx v\circ f(x,y,x,y,x,y)\approx w\circ f(y,x,x,x,y,y).$$
+                    </li>
+                <li class="slide">If $\mathbb A$ has bounded width, $\Pol(\mathbb A)$ contains pseudo weak near-unanimity operations of all arities <span class="inline-citation">[Atserias, Dalmau]</span>
+                    $$u_1\circ f(x,x,\dots,x,y)\approx u_2\circ f(x,x,\dots,y,x)\approx\dots\approx u_{k-1}\circ f(x,y,\dots,x,x)\approx u_k\circ f(y,x,\dots,x,x).$$
+                <!--<div class="slide proof">
+                <ul>
+                    <li>$(\Gamma_m\mathbb A_i,\Gamma_m A/{\Aut(\mathbb A)})$ has bounded width for all $m, i$</li>
+                    <li>$\Pol(\Gamma_m\mathbb A_i,\Gamma_m A/{\Aut(\mathbb A)})$ contains WNU operations<span class="inline-citation">[Atserias, Dalmau]</span></li>
+                </ul>    
+                </div>--></li>
+            </ul>
+        </div>  
+    </section>
+      
+    <section class="slide">
+        <h2>$\mathcal G$-weak minion homomorphisms</h2>
+      <div class="slide theorem">
+            Let $\mathcal G$ be an oligomorphic subgroup of $\Aut(\mathbb B)$. The following are equivalent:
+            <ol>
+            <li>There exists a uniformly continuous $\mathcal G$-weak minion homomorphism $\Pol(\mathbb A)\to\Pol(\mathbb B)$</li>
+            <li>$\mathbb A$ pp-constructs $(\Gamma_m\mathbb C,\Gamma_m\mathbb B/{\mathcal G})$ for all $m\in\mathbb N$ and finite substructure $\mathbb C$ of $\mathbb B$.</li>
+            </ol>
+        </div>
+      <div class="slide">
+          No such characterization for "$\mathbb A$ pp-constructs $\mathbb B$" or $\Pol(\mathbb A)\to\Pol(\mathbb B)$ is known, only the following:
+      </div>
+        
+        <div class="slide theorem">
+            Let $\mathbb B$ be $\omega$-categorical. Suppose that there exists a uniformly continuous minion homomorphism $\Pol(\mathbb A)\to\Pol(\mathbb B)$.
+            Then $\mathbb A$ pp-constructs $(\mathbb C,\mathbb B)$ for every finite substructure $\mathbb C$ of $\mathbb B$.
+            <span class="citation">[Barto, Opršal, Pinsker] [Barto, Bulín, Krokhin, Opršal]</span>
+        </div>
+    </section>
+      
+    <section class="slide" id="tractability">
+      <h2>$\omega$-categorical CSPs and sandwiches</h2>
+        
+      <div class="shelf">
+      <div class="slide theorem">
+          <div class="citation">[M.]</div>
+          There exists a PCSP template $(\mathbb A,\mathbb B)$ such that:
+          <ul>
+              <li>$(\mathbb A,\mathbb B)$ has bounded width,</li>
+              <li>$(\mathbb A,\mathbb B)$ is not finitely tractable,</li>
+              <li>$(\mathbb A,\mathbb B)$ is not solvable by BLP+AIP,</li>
+              <li>There exists an $\omega$-categorical $\mathbb C$ such that $\mathbb A\to\mathbb C\to\mathbb B$ and $\CSP(\mathbb C)$ is solvable in polynomial time.</li>
+          </ul>
+        </div>
+          <div class="slide comment">
+          Same holds with "solvable by singleton AIP" instead of bounded width.</div>
+        </div>
+        
+        <div class="slide proof vanish">
+        <ul>
+        <li class="slide">If $(\mathbb A,\mathbb B)$ finitely tractable, it has cyclic polymorphisms of all large prime arities <span class="inline-citation">[Barto, Kozik]</span></li>
+        <li class="slide">Let $\mathbb C=(\mathbb Q;R,\neq)$ where $R=\{(a,b,c)\in\mathbb Q^3\mid a=b\Rightarrow a\geq c\}$</li>
+        <li>Take $\mathbb C'$ to be a $(\geq 2)$-element substructure</li>
+        <li class="slide">$\Pol(\mathbb C',\mathbb C)$ does not satisfy any cyclic term condition modulo $\Aut(\mathbb Q;&lt;)$</li>
+        <li class="slide">$\Pol(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ contains no cyclic operation for some $m$ and finite $\mathbb C'\subseteq\mathbb C$<br />$\Longrightarrow (\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ is not finitely tractable</li>
+        <li class="slide">$\Gamma_m\mathbb C'\to\Gamma_m\mathbb C\to \Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)}$ and $\Gamma_m\mathbb C$ is $\omega$-categorical, its CSP is in P</li>
+        <li class="slide">$(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ has bounded width (next slide)</li>
+        </ul>
+        </div>
+        
+        <!--<div class="slide">
+        Nice example for the singleton AIP case:
+        <ul>
+            <li>Left template: take $\mathbb{OIT}$, but represent instances in the dual encoding:<br />
+                constraints are points with domain $\{(1,0,0),(0,1,0),(0,0,1)\}$, binary constraints between points expressing equality constraints between variables</li>
+            <li class="slide">Right template: domain for points is $(1,0,0),(2,0,0),(2,1,1)$ (and permutations) and binary constraints mean "induce same order" instead of equality</li>
+        </ul>
+        
+        </div>-->
+    </section>
+      
+    <section class="slide" id="tractability">
+      <h2>CSPs over $(\mathbb Q;&lt;)$ revisited</h2>
+        <div class="slide theorem">
+            Let $\mathbb B$ be such that $\Aut(\mathbb B)\supseteq\Aut(\mathbb Q;&lt;)$ and $\mathbb A$ finite such that $\mathbb A\to\mathbb B$.<br />
+            Suppose that $\CSP(\mathbb B)$ is not NP-hard.<br />
+            Then $\PCSP(\mathbb A,\mathbb B)$ is solvable by local consistency + singleton AIP.
+        </div>
+        <div class="vanish slide">
+        <div class="theorem">
+            <div class="citation">[M., Pinsker]</div>
+            Let $\mathbb B$ be such that $\Aut(\mathbb B)\supseteq\Aut(\mathbb Q;&lt;)$.
+            Suppose that $\CSP(\mathbb B)$ is not NP-hard.
+            Then $\Pol(\mathbb B)$ contains some function $f$ preserving $\theta:=(x=0\Leftrightarrow y=0)$ on $\mathbb Q_{\geq 0}$ and such that $f/{\theta}$ is cyclic.
+        </div>
+        <div class="proof">
+            Proof uses a loop lemma. Every $\emptyset\neq R\subseteq \mathbb Q^2$ invariant under $\Pol(\mathbb B)$ contains a <em>pseudo-loop</em> modulo $\Aut(\mathbb Q;&lt;,0)$.
+        </div>
+        <div class="corollary slide">
+            $\Rightarrow$ Let $\mathbb A\subseteq\mathbb B$ be finite and $\theta$ isolate the minimal element of $\mathbb A$.
+            Then $\Pol(\mathbb A/{\theta})$ is a non-trivial Boolean clone.
+        </div>
+        </div>
+        
+        <div class="slide proof">
+            Let $\mathbb X$ be an input that is locally consistent and passes the singleton AIP test as an instance of $\CSP(\mathbb A)$.
+            Let $\theta$ be the congruence on $\mathbb A$ isolating the minimal element $a$.
+        <ol>
+            <li class="slide">$\mathbb X$ is locally consistent/has singleton AIP witness for $\mathbb A/{\theta}$</li>
+            <li class="slide">Consistency+AIP witnesses the existence of a nontrivial homomorphism $h^{-1}\colon\mathbb X\to\mathbb A/{\theta}$</li>
+            <li class="slide">Repeat previous step on $\mathbb X\setminus h^{-1}(a)$<span class="exponent">*</span></li>
+        </ol>
+        </div>
+        <ul class="slide">
+        <li>"New" algorithm for $\Hom(\mathbb B)$ when $\Aut(\mathbb B)\supseteq\Aut(\mathbb Q;&lt;)$!</li>
+        <li>Algorithm is uniform and does not depend on $\Pol(\mathbb B)$</li>
+        <li>Only proof of correctness uses polymorphisms</li>
+        <li>Iterative process as for finite CSPs</li>
+        <li>(Re)moves an important obstacle: the need for <em>ad hoc</em> algorithms solving CSPs over $(\mathbb Q;&lt;)$.</li>
+        </ul>
+    </section>
+      
+      
+    <section class="slide" id="openproblems">
+      <h2>Open problems</h2>
+      <ol>
+          <li>Characterize pp-constructibility for $\omega$-categorical structures</li>
+          <li>Weak minion homomorphisms helpful?<br />Probably not for complexity considerations</li>
+          <li>Polymorphism clone of $\omega$-categorical structure $\rightsquigarrow$ "projective" limit of system of finite minions<br />Given a directed system of finite minions, when can one define a "projective" limit that is a clone?</li>
+          <li>Infinite CSPs equivalent to a problem about equational conditions?</li>
+          <li>Generic algorithms for CSPs with $\omega$-categorical templates<br />$\rightsquigarrow$ understand <strong>tractability</strong></li>
+        <li>Push the theory of smooth approximations further (imprimitivity, algebraicity, general theory underlying the use of the "loop lemma of smooth approximations")<br />$\rightsquigarrow$ understand <strong>hardness</strong></li>
+      </ol>
+    </section>
+
+    <!-- End slides. -->
+
+    <!-- Begin extension snippets. Add or remove as needed. -->
+
+    <!-- deck.navigation snippet -->
+    <!--<div aria-role="navigation">
+      <a href="#" class="deck-prev-link" title="Previous">&#8592;</a>
+      <a href="#" class="deck-next-link" title="Next">&#8594;</a>
+    </div>-->
+
+    <!-- deck.status snippet -->
+    <p class="deck-status" aria-role="status">
+      <span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+
+    <!-- deck.goto snippet -->
+    <form action="." method="get" class="goto-form">
+      <label for="goto-slide">Go to slide:</label>
+      <input type="text" name="slidenum" id="goto-slide" list="goto-datalist">
+      <datalist id="goto-datalist"></datalist>
+      <input type="submit" value="Go">
+    </form>
+
+    <!-- End extension snippets. -->
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<!--<script src="extensions/navigation/deck.navigation.js"></script>-->
+<!--<script src="extensions/scale/deck.scale.js"></script>-->
+    
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+</script>
+<script src="perso.js"></script>
+</body>
+</html>

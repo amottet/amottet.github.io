@@ -1,0 +1,294 @@
+body>.deck-container {
+    height: 100vh;
+    /*overflow: hidden;*/
+}
+
+:root {
+    --theorem-color: #fefefe;
+    --definition-color: #fefefe;
+    --observation-color: #feaafe;
+    --goal-color: #fefefe;
+    --example-color: #fefefe;
+    --conjecture-color: #fefefe;
+    --proof-color: #fefefe;
+    
+    --citation-color: darkgray;
+        
+    --timeline-color: lightgray;
+    --timeline-std-color: #FF9F55;
+    --timeline-color-var1: #9F55FF;
+    --timeline-color-var2: #559FFF;
+}
+
+.center {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.shelf {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+ul {
+    margin-bottom: 0px;
+    list-style-image: url('triangle.png');
+}
+
+
+.observation, .theorem, .definition, .example, .conjecture, .proof {
+    height: 100%;
+    width: 100%;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    padding-left: 20px;
+    padding-right: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    position: relative;
+    border-radius: 30px;
+}
+
+.shelf .observation, .shelf .theorem, .shelf .definition, .shelf .example, .shelf .conjecture, .shelf .proof {
+    width: 60%;
+}
+
+.definition::before {
+    display: block;
+    content: "Definition.";
+    font-weight: bold;
+}
+
+.theorem::before {
+    display: block;
+    content: "Theorem.";
+    font-weight: bold;
+}
+
+.conjecture::before {
+    display: block;
+    content: "Conjecture.";
+    font-weight: bold;
+}
+
+.example::before {
+    display: block;
+    content: "Example.";
+    font-weight: bold;
+}
+
+.proof::before {
+    display: block;
+    content: "Proof.";
+    font-weight: bold;
+}
+
+
+.goal::before {
+    position: absolute;
+    top: -20px;
+    left: calc(50% - 50px);
+    left: -40px;
+    background-color: #f4fafe;
+    display: block;
+    width: 100px;
+    font-weight: bold;
+    content: "Goal";
+    border-radius: 25px;
+}
+
+
+.theorem {
+    background-color: var(--theorem-color);
+}
+
+.observation {
+    background-color: var(--observation-color);
+}
+
+.definition {
+    background-color: var(--definition-color);
+}
+
+.goal {
+    background-color: var(--goal-color);
+    border: 1px solid black;
+    width: 70%;
+    position: relative;
+    left: 15%;
+    margin-top: 20px;
+    border-radius: 30px;
+}
+
+.example {
+    background-color: var(--example-color);
+}
+
+.proof {
+    background-color: var(--proof-color);
+}
+
+.conjecture {
+    background-color: var(--conjecture-color);
+}
+
+.citation {
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    color: var(--citation-color);
+}
+
+.inline-citation{
+    position: absolute;
+    right: 10px;
+    color:var(--citation-color);
+}
+
+@media (max-width: 1600px) {
+    .inline-citation {
+        position: relative;
+        top:0;
+        left:0;
+    }
+}
+
+.comment {
+    flex-grow: 1;
+    width: 40%;
+    height: 100%;
+    align-self: center;
+    text-align: center;
+}
+
+.exponent {
+    font-size: 0.5em; color: red; vertical-align: super;
+    font-weight: bold;
+}
+
+.timeline {
+    margin-top: 50px;
+    margin-bottom: 25px;
+}
+
+.timeline > hr {
+    border: 0;
+    height: 5px;
+    margin: 18px 0;
+    position: relative;
+    background: var(--timeline-color);
+    /*background: -moz-linear-gradient(left, rgba(0,0,0,0) 0%, rgba(0,0,0,0) 10%, rgba(0,0,0,0.65) 50%, rgba(0,0,0,0) 90%, rgba(0,0,0,0) 100%);
+    background: -webkit-linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 10%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%);
+    background: linear-gradient(left, rgba(0,0,0,0) 0%,rgba(0,0,0,0) 10%,rgba(0,0,0,0.65) 50%,rgba(0,0,0,0) 90%,rgba(0,0,0,0) 100%);*/
+}
+
+.timeline_dates {
+    position: relative;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    margin-bottom: 100px;
+}
+
+.timeline_date {
+    position: relative;
+    color: gray;
+    flex-grow: 1;
+    flex-basis: 0;
+}
+
+.timeline_date::after {
+    content: '';
+    position: absolute;
+    height: 25px;
+    width: 25px;
+  transform: translate(-40px,-36px);
+  background-color: white;
+  border: 4px solid var(--timeline-std-color);
+  /*top: -45px;*/
+  border-radius: 50%;
+  z-index: 1;
+}
+
+
+.timeline_date.complexity::after {
+    border: 4px solid var(--timeline-color-var1);
+}
+
+.timeline_date.both::after {
+    border: 4px solid var(--timeline-color-var2);
+}
+
+.timeline_date.toggled::after {
+    content: '';
+    position: absolute;
+    height: 25px;
+    width: 25px;
+  transform: translate(-40px,-36px);
+  background-color: var(--timeline-std-color);
+  border: 4px solid var(--timeline-std-color);
+  /*top: -45px;*/
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.timeline_date.complexity.toggled::after {
+    background-color: var(--timeline-color-var1);
+    border: 4px solid var(--timeline-color-var1);
+}
+
+.timeline_date.both.toggled::after {
+    border: 4px solid var(--timeline-color-var2);
+    background-color: var(--timeline-color-var2);
+}
+
+.timeline_descs {
+    margin-top: 50px;
+    position: relative;
+    /*display: grid;
+  place-items: center;
+  grid-template-areas: "inner-div";*/
+}
+
+
+
+.timeline_desc {
+    /*position: absolute;
+    height: auto;
+    top: 0;
+    left: 0;*/
+}
+
+.deck-before.vanish:not(.deck-child-current), .vanish.deck-previous:not(.deck-child-current), .vanish.deck-after, .vanish.deck-next {
+    display: none;
+}
+
+.todo {
+    position: absolute;
+    top:50px;
+    right: 50px;
+    border: 1px solid black;
+    padding: 2px;
+}
+
+@media (min-width: 1500px) {
+    .small_mathjax {
+        display: none;
+    }
+}
+
+@media (max-width: 1500px) {
+    .large_mathjax {
+        display: none;
+    }
+}
+
+h2{
+    white-space: nowrap;
+    position: relative;
+    left: -25px;
+}
