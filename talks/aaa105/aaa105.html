@@ -49,9 +49,8 @@ MathJax.Hub.Config({
     },
 });
 </script>
-<script type="text/javascript" async
-  src="mathjax.js">
-</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 </head>
 <body>
   <div class="deck-container">
@@ -734,7 +733,7 @@ MathJax.Hub.Config({
         <ul>
         <li class="slide">If $(\mathbb A,\mathbb B)$ finitely tractable, it has cyclic polymorphisms of all large prime arities <span class="inline-citation">[Barto, Kozik]</span></li>
         <li class="slide">Let $\mathbb C=(\mathbb Q;R,\neq)$ where $R=\{(a,b,c)\in\mathbb Q^3\mid a=b\Rightarrow a\geq c\}$</li>
-        <li>Take $\mathbb C'$ to be a $(\geq 2)$-element substructure</li>
+        <li class="slide">Take $\mathbb C'$ to be a $(\geq 2)$-element substructure</li>
         <li class="slide">$\Pol(\mathbb C',\mathbb C)$ does not satisfy any cyclic term condition modulo $\Aut(\mathbb Q;&lt;)$</li>
         <li class="slide">$\Pol(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ contains no cyclic operation for some $m$ and finite $\mathbb C'\subseteq\mathbb C$<br />$\Longrightarrow (\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ is not finitely tractable</li>
         <li class="slide">$\Gamma_m\mathbb C'\to\Gamma_m\mathbb C\to \Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)}$ and $\Gamma_m\mathbb C$ is $\omega$-categorical, its CSP is in P</li>
@@ -756,6 +755,7 @@ MathJax.Hub.Config({
     <section class="slide" id="tractability">
       <h2>CSPs over $(\mathbb Q;&lt;)$ revisited</h2>
         <div class="slide theorem">
+            <div class="citation">[M.]</div>
             Let $\mathbb B$ be such that $\Aut(\mathbb B)\supseteq\Aut(\mathbb Q;&lt;)$ and $\mathbb A$ finite such that $\mathbb A\to\mathbb B$.<br />
             Suppose that $\CSP(\mathbb B)$ is not NP-hard.<br />
             Then $\PCSP(\mathbb A,\mathbb B)$ is solvable by local consistency + singleton AIP.
