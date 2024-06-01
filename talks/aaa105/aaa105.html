@@ -390,20 +390,21 @@ CommonHTML: {
             </div>
             
             <div class="slide vanish">
-            <div class="timeline_desc theorem" data-tmdesc="2,2020">
-                <div class="citation">[Bodirsky, Grohe] [Gillibert, Jonušas, Kompatscher, M., Pinsker]</div>
-                <ul>
-                    <li>$\Hom(\mathbb A)$ where $\Pol(\mathbb A)$ is oligomorphic is still very wild (CSPs of all<span class="exponent">*</span> possible complexities).</li>
-                    <li>Complexity not captured by equations (even by being very permissive with the notion of "capture" and "equations").</li>
-                </ul>
-            </div>
-                
-            <div class="timeline_desc slide theorem" data-tmdesc="2019,2,2020">
+            <div class="timeline_desc  theorem" data-tmdesc="2019">
                 There is no weakest height 1 condition for polymorphism clones of oligomorphic structures:<br />
                 given any finite $\Sigma$, there exists an oligomorphic $\Pol(\mathbb A)$ that does not satisfy $\Sigma$ but satisfies
                 $$f(x,x,\dots,x,y)\approx f(x,x,\dots,y,x)\approx f(x,y,\dots,x,x)\approx f(y,x,\dots,x)\approx f(x,\dots,x)$$
                 for some arity.
                 <div class="citation">[Bodirsky, M., Olšák, Opršal, Pinsker, Willard]</div>    
+            </div>    
+                
+                
+            <div class="timeline_desc slide theorem" data-tmdesc="2,2020,2019">
+                <div class="citation">[Bodirsky, Grohe] [Gillibert, Jonušas, Kompatscher, M., Pinsker]</div>
+                <ul>
+                    <li>$\Hom(\mathbb A)$ where $\Pol(\mathbb A)$ is oligomorphic is still very wild (CSPs of all<span class="exponent">*</span> possible complexities).</li>
+                    <li>Complexity not captured by equations (even by being very permissive with the notion of "capture" and "equations").</li>
+                </ul>
             </div>
             </div>
             
@@ -655,19 +656,20 @@ CommonHTML: {
         
         <div class="slide proof">
             Let $\mathbb X$ be an input that is locally consistent and passes the singleton AIP test as an instance of $\CSP(\mathbb A)$.<br />
+            Wlog $\mathbb A\subseteq\mathbb B$.
             Let $\theta$ be the congruence on $\mathbb A$ isolating the minimal element $a$.
         <ol>
-            <li class="slide">$\mathbb X$ is locally consistent/has singleton AIP witness for $\mathbb A/{\theta}$</li>
-            <li class="slide">Consistency+AIP witnesses the existence of a nontrivial homomorphism $h^{-1}\colon\mathbb X\to\mathbb A/{\theta}$</li>
+            <li class="slide">$\mathbb X$ is locally consistent/has singleton AIP witnesses for $\mathbb A/{\theta}$</li>
+            <li class="slide">Consistency+AIP witnesses the existence of a nontrivial homomorphism $h\colon\mathbb X\to\mathbb A/{\theta}$</li>
             <li class="slide">Repeat previous step on $\mathbb X\setminus h^{-1}(a)$<span class="exponent">*</span></li>
         </ol>
         </div>
         <ul>
         <li class="slide">"New" algorithm for $\Hom(\mathbb B)$ when $\Aut(\mathbb B)\supseteq\Aut(\mathbb Q;&lt;)$!</li>
+        <li class="slide">(Re)moves an important obstacle: the need for <em>ad hoc</em> algorithms solving CSPs over $(\mathbb Q;&lt;)$.</li>
         <li class="slide">Algorithm is uniform and does not depend on $\Pol(\mathbb B)$</li>
         <li class="slide">Only proof of correctness uses polymorphisms</li>
         <li class="slide">Iterative process as for finite CSPs</li>
-        <li class="slide">(Re)moves an important obstacle: the need for <em>ad hoc</em> algorithms solving CSPs over $(\mathbb Q;&lt;)$.</li>
         </ul>
     </section>
       
@@ -686,7 +688,7 @@ CommonHTML: {
         </div>
         <div class="slide theorem" style="width: 100%;">
             <div class="citation">[M.]</div>
-            Let $\mathbb A$ be $\omega$-categorical.
+            Let $\mathcal G\subseteq\Pol(\mathbb A)$ be oligomorphic.
             Then $\Pol(\mathbb A)$ is the <em>$\mathcal G$-weak</em> projective limit of
             <div class="large_mathjax">
             $$\require{AMScd}\minCDarrowwidth5pt\begin{CD}
@@ -714,7 +716,7 @@ CommonHTML: {
         <div>
             <!--Consequences:-->
             <ul>
-                <li class="slide">For a reduct $\mathbb A$ of a finitely bounded homogeneous structure, $\Hom(\mathbb A)$ is <strong>equivalent</strong> to $\PCSP(\Gamma_m\mathbb A,\Gamma_m\mathbb A/{\mathcal G})$ (for some $m\in\mathbb N$ and $\mathcal G\subseteq\Aut(\mathbb A)$)</li>
+                <li class="slide">If $\mathcal G$ is the automorphism group of a finitely bounded homogeneous structure, $\Hom(\mathbb A)$ is <strong>equivalent</strong> to $\PCSP(\Gamma_m\mathbb A,\Gamma_m\mathbb A/{\mathcal G})$ (for some $m\in\mathbb N$)</li>
                 <li class="slide">The height 1 identities that hold in $\Pol(\mathbb A)$ modulo $\mathcal G$ are those that hold in every $\Pol(\Gamma_m\mathbb A_i,\Gamma_m\mathbb A/{\mathcal G})$.</li>
                 <div class="slide proof">
                     <ul>
