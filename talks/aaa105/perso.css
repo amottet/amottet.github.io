@@ -86,6 +86,7 @@ ul {
 }
 
 
+/*
 .goal::before {
     position: absolute;
     top: -20px;
@@ -98,6 +99,7 @@ ul {
     content: "Goal";
     border-radius: 25px;
 }
+*/
 
 
 .theorem {
