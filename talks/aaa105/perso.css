@@ -1,6 +1,7 @@
 body>.deck-container {
     height: 100vh;
     /*overflow: hidden;*/
+    scrollbar-width: none;  /* Firefox */
 }
 
 :root {
