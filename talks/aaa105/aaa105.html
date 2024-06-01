@@ -511,19 +511,19 @@ CommonHTML: {
             </div>
             <div class="slide" data-tmdesc="5,2018,2021,2024"><strong>Smooth Approximations:</strong>
                 <ul>
-                    <li>Relate the non-existence of non-trivial identities satisfied in $\Pol(\mathbb A,\Theta_{\mathcal G})$ to the fact that $\Pol(\mathbb A)$ obeys a "pseudoloop lemma" that gives binary operations satisfying strong properties</li>
-                    <li>Eliminates the need for establishing a list of "minimal good polymorphisms"</li>
-                    <li>Eliminates the need for classification of groups $\Aut(\mathbb A)$</li>
-                    <li>Also works if one is interested at other equational conditions:<br />characterization of bounded width structures when $\Aut(\mathbb A)$ contains a particular fixed group<span class="exponent">*</span></li>
-                    <li>Works best under some structure conditions (primitivity, no algebraicity), flow needs to be adapted in other cases</li>
-                    <li>Still a few <em>ad hoc</em> arguments</li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Relate the non-existence of non-trivial identities satisfied in $\Pol(\mathbb A,\Theta_{\mathcal G})$ to the fact that $\Pol(\mathbb A)$ obeys a "pseudoloop lemma" that gives binary operations satisfying strong properties</li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Eliminates the need for establishing a list of "minimal good polymorphisms"</li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Eliminates the need for classification of groups $\Aut(\mathbb A)$</li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Also works if one is interested at other equational conditions:<br />characterization of bounded width structures when $\Aut(\mathbb A)$ contains a particular fixed group<span class="exponent">*</span></li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Works best under some structure conditions (primitivity, no algebraicity), flow needs to be adapted in other cases</li>
+                    <li class="slide" data-tmdesc="5,2018,2021,2024">Still a few <em>ad hoc</em> arguments</li>
                 </ul></div>
             </div> 
         </div>
         </div>
         
         <div class="slide">
-            Structure (summary):
+            On the algebra side:
             <ul>
                 <li>Pattern: $\Pol(\mathbb A,\Theta_{\mathcal G})$ is non-trivial, or $\Pol(\mathbb A)$ is trivial, or $\Pol(\mathbb A)$ contains interesting binary operations<span class="exponent">*</span></li>
                 <li>Height 1 Identities <em>modulo a group</em> seem to be important and in particular the <strong>pseudo-Siggers</strong> identity $$u\circ f(x,y,x,z,y,z)\approx v\circ f(y,x,z,x,z,y)$$</li>
@@ -537,7 +537,7 @@ CommonHTML: {
           </div>
         
         <div class="slide">    
-            CSP (summary):
+            On the CSP side:
             <ul>
                 <li>"Reduction to the finite" powerful, but not enough for certain groups (e.g., $\Aut(\mathbb Q;&lt;)$)</li>
                 <li>Algorithmic aspects still need to be better understood (e.g., CSPs over $(\mathbb Q;&lt;)$)</li>
@@ -681,7 +681,7 @@ CommonHTML: {
             </ul>
         </div>
         <div class="slide definition">
-            Let $\mathcal G$ be a subgroup of $\mathbb B$.
+            Let $\mathcal G$ be a subgroup of $\Aut(\mathbb B)$.
         A map $\xi\colon\mathcal M\to\Pol(\mathbb A,\mathbb B)$ is a $\mathcal G$-weak minion homomorphism if for every height 1 identity $f(\text{vars})= g(\text{vars})$ in $\mathcal M$, the identity $u\circ \xi(f)(\text{vars})=v\circ\xi(g)(\text{vars})$ holds for some $u,v\in\overline{\mathcal G}$.
         </div>
         <div class="slide theorem" style="width: 100%;">
@@ -790,7 +790,7 @@ CommonHTML: {
         <li class="slide">$\Pol(\mathbb C',\mathbb C)$ does not satisfy any cyclic term condition modulo $\Aut(\mathbb Q;&lt;)$</li>
         <li class="slide">$\Pol(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ contains no cyclic operation for some $m$ and finite $\mathbb C'\subseteq\mathbb C$<br />$\Longrightarrow (\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ is not finitely tractable</li>
         <li class="slide">$\Gamma_m\mathbb C'\to\Gamma_m\mathbb C\to \Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)}$ and $\Gamma_m\mathbb C$ is $\omega$-categorical, its CSP is in P</li>
-        <li class="slide">$(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ has bounded width (next slide)</li>
+        <li class="slide">$(\Gamma_m\mathbb C',\Gamma_m\mathbb C/{\Aut(\mathbb Q;&lt;)})$ has bounded width</li>
         </ul>
         </div>
         
@@ -818,6 +818,8 @@ CommonHTML: {
           <li>Generic algorithms for CSPs with $\omega$-categorical templates<br />$\rightsquigarrow$ understand <strong>tractability</strong></li>
         <li>Push the theory of smooth approximations further (imprimitivity, algebraicity, general theory underlying the use of the "loop lemma of smooth approximations")<br />$\rightsquigarrow$ understand <strong>hardness</strong></li>
       </ol>
+        
+        <div class="center slide">Thank you for your attention!</div>
     </section>
 
     <!-- End slides. -->
