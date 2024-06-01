@@ -403,7 +403,8 @@ talks.push({id:'aaa24',
            place:'prague',
            title:'A story of oligomorphic clones and finite minions',
            date:'01/06/24',
-           invited: true});
+           invited: true,
+           slides:'aaa105/aaa105.html'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
