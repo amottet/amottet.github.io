@@ -110,6 +110,7 @@ places.push({id:'weissensee',mapid:'AT',x:0,y:0,label:'Weissensee'});
 places.push({id:'warsaw',mapid:'PL',x:0,y:0,label:'Warsaw'});
 places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
+places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
