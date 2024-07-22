@@ -405,6 +405,10 @@ talks.push({id:'aaa24',
            date:'01/06/24',
            invited: true,
            slides:'aaa105/aaa105.html'});
+talks.push({id:'icalp24',
+           event:'<a href="http://compose.ioc.ee/icalp2024/">ICALP 2024</a>',
+           place:'tallinn',
+           date:'08-12/7/24'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
