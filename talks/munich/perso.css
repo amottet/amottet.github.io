@@ -87,7 +87,7 @@ ul {
 
 .slogan::before {
     display: block;
-    content: "Take away";
+    content: "Take away message";
     font-weight: bold;
 }
 

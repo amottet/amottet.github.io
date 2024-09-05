@@ -99,15 +99,14 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="slide">Alternative tasks: compute maximal number of satisfiable constraints, compute number of solutions, output a solution</div>
         
         <div  style="position: relative; top:0; left: 0;">
-        <div class="out-of-layout"><div class="slide example vanish">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku.png" style="height: 400px;" /></div></div>
-            <div class="out-of-layout"><div class="slide example vanish">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku_constraints.png" style="height: 400px;" /></div></div>
+        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sudoku_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku.png" style="height: 400px;" /></div></div>
+            <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sudoku_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku_constraints.png" style="height: 400px;" /></div></div>
         
-        <div class="out-of-layout"><div class="slide example vanish">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
-            <!--<img class="slide vanish" src="assets/sat.png" style="width: 800px;"/>-->
+        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sat_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
             <img src="assets/sat_nocolors.png" style="width: 800px;" />
             <div style="visibility: hidden;">Known as <strong>boolean satisfiability</strong>, NP-complete</div>
         </div></div>
-        <div class="out-of-layout"><div class="slide example vanish">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
+        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sat_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
             <!--<img class="slide vanish" src="assets/sat.png" style="width: 800px;"/>-->
             <img src="assets/sat_colors.png" style="width: 800px;" />
             <!--$$(x\lor y\lor z)\land (\neg x\lor \neg y\lor z)\land (\neg x\lor y \lor \neg z)\land (x\lor \neg y\lor\neg z)$$-->
@@ -154,7 +153,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                     <li>all relations of $\mathbb A$ are either 0-valid, 1-valid, Horn, dual-Horn, bijunctive, or affine, and $\CSP(\mathbb A)$ is solvable in polynomial time</li>
                     <li>$\mathbb A$ can logically define 3-SAT, and $\CSP(\mathbb A)$ is NP-complete</li>
                     </ul>
-                <div class="citation">[Schaefer]</div>
+                <div class="citation">Schaefer</div>
             </div>
             <div class="slide">
                 <div class="timeline_desc theorem" data-tmdesc="1990">
@@ -163,7 +162,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                         <li>$\mathbb A$ is bipartite or contains a loop, and $\CSP(\mathbb A)$ can be solved in polynomial time</li>
                         <li>$\mathbb A$ can logically define $\mathbb K_3$ (the complete graph on 3 vertices, and $\CSP(\mathbb A)$ is NP-complete</li>
                     </ul>
-                    <div class="citation">[Hell, Nešetřil]</div>
+                    <div class="citation">Hell, Nešetřil</div>
                 </div>
             </div>
                 
@@ -231,6 +230,9 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       
     <section class="slide" id="logic-algebra">
         <h2>Algebra as a source of tractability</h2>
+    <div style="position:relative;">
+        <div class="out-of-layout">
+    <div class="slide vanish">
     Given solutions $h_1,\dots,h_n\colon V\to A$, can one infer the existence of other solutions?
     <div class="slide definition">
         A map $\varphi\colon A^n\to A$ is a <strong>polymorphism</strong> of $\mathbb A$ if for all instances of $\CSP(\mathbb A)$ and all possible solutions $h_1,\dots,h_n\colon V\to A$, the map $\varphi(h_1,\dots,h_n)\colon x\mapsto \varphi(h_1(x),\dots,h_n(x))$ is a solution.
@@ -281,15 +283,17 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </ul>
     </div></div>
     </div>
+    </div></div></div>
         
     <div class="slide slogan">
         <ul>
             <li>Tractability is found whenever the problem has interesting symmetries.</li>
             <li>Better symmetries imply more easily solvable.</li>
+            <li>Few symmetries imply a logical richness and computational hardness.</li>
         </ul>
     </div>
         
-    <img class="slide" src="assets/tryptich.png" style="height:400px;"/>
+    <img class="slide" src="assets/tryptich.png" style="height:500px; width:auto;"/>
     </section>
       
     <section class="slide" id="infinite">
