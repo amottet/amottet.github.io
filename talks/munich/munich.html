@@ -99,18 +99,19 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="slide">Alternative tasks: compute maximal number of satisfiable constraints, compute number of solutions, output a solution</div>
         
         <div  style="position: relative; top:0; left: 0;">
-        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sudoku_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku.png" style="height: 400px;" /></div></div>
-            <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sudoku_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku_constraints.png" style="height: 400px;" /></div></div>
+        <div class="out-of-layout">
+            <div class="slide example vanish"><img src="assets/sudoku_mag.png" style="float:right;height:200px;" />Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku.png" style="height: 400px;" /></div></div>
+            <div class="out-of-layout"><div class="slide example vanish"><img src="assets/sudoku_mag.png" style="float:right;height:200px;" />Find an assignment over $D=\{1,\dots,9\}$ satisfying<img src="assets/sudoku_constraints.png" style="height: 400px;" /></div></div>
         
-        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sat_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
+        <div class="out-of-layout"><div class="slide example vanish"><img src="assets/sat_mag.png" style="float:right;height:200px;" />Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
             <img src="assets/sat_nocolors.png" style="width: 800px;" />
-            <div style="visibility: hidden;">Known as <strong>boolean satisfiability</strong>, NP-complete</div>
+            <div style="visibility: hidden;">Known as <strong>boolean satisfiability</strong><br />NP-complete</div>
         </div></div>
-        <div class="out-of-layout"><div class="slide example vanish" style="background-image: url(assets/sat_mag.png);background-repeat: no-repeat;background-size: contain;background-position: right;">Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
+        <div class="out-of-layout"><div class="slide example vanish"><img src="assets/sat_mag.png" style="float:right;height:200px;" />Find an assignment $\{x,y,z\}\to \{0,1\}$ satisfying
             <!--<img class="slide vanish" src="assets/sat.png" style="width: 800px;"/>-->
             <img src="assets/sat_colors.png" style="width: 800px;" />
             <!--$$(x\lor y\lor z)\land (\neg x\lor \neg y\lor z)\land (\neg x\lor y \lor \neg z)\land (x\lor \neg y\lor\neg z)$$-->
-            <div class="slide">Known as <strong>boolean satisfiability</strong>, NP-complete</div>
+            <div class="slide">Known as <strong>boolean satisfiability</strong><br />NP-complete</div>
             </div></div>
         <div class="out-of-layout"><div class="slide example vanish">Find an assignment $V\to\mathbb N$ satisfying
         <img src="assets/acyclicity.png" style="height: 400px;" />
@@ -127,7 +128,26 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       </section>
       
       <section class="slide" id="nonuniform_csp">
-      <h2>CSPs</h2>
+      <h2>Constraint Languages</h2>
+          
+        <div class="slide">Parametrize the problem by a <strong>constraint language</strong> $\mathbb A$ consisting of:
+          <ul>
+          <li>a fixed set $A$, the <strong>domain</strong>,</li>
+          <li>a number of relations on $A$.</li>
+          </ul>
+        </div>
+          
+        <div class="slide definition">
+        $\CSP(\mathbb A)$ is the problem of deciding the satisfiability of an instance whose constraints all belong to the constraint language.
+        </div>
+          
+        <div class="example slide">
+          <ul>
+          <li>$\CSP(\{0,1\};\text{all relations of arity } 3)$: 3-SAT</li>
+          <li>$\CSP(\{0,1\};\neq)$: 2-coloring</li>
+          <li>$\CSP(\mathbb N;&lt;)$: directed acyclicity</li>
+          </ul>
+        </div>
       </section>
       
     <section class="slide" id="timeline_finite">
@@ -160,7 +180,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                     Let $\mathbb A$ be a finite graph. Then exactly one of the following holds:
                     <ul>
                         <li>$\mathbb A$ is bipartite or contains a loop, and $\CSP(\mathbb A)$ can be solved in polynomial time</li>
-                        <li>$\mathbb A$ can logically define $\mathbb K_3$ (the complete graph on 3 vertices, and $\CSP(\mathbb A)$ is NP-complete</li>
+                        <li>$\mathbb A$ can logically define $\mathbb K_3$ (the complete graph on 3 vertices), and $\CSP(\mathbb A)$ is NP-complete</li>
                     </ul>
                     <div class="citation">Hell, Nešetřil</div>
                 </div>
@@ -240,7 +260,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     
     <div class="shelf" style="align-items:center;">
     <ul style="width:80%;">
-        <li class="slide">$(h_1,\dots,h_n)\mapsto h_i$ works</li>
+        <li class="slide">$(x_1,\dots,x_n)\mapsto x_i$ works</li>
         <li class="slide">if $\varphi,\psi_1,\dots,\psi_m$ are polymorphisms, then $\varphi\circ(\psi_1,\dots,\psi_m)$ is a polymorphism</li>
     </ul>
     <p class="slide" >$\leadsto$ Space of solutions has an algebraic structure $\simeq$ Permutation groups</p>
@@ -256,11 +276,11 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     <div class="out-of-layout"><div class="slide vanish">
     When $\mathbb A$ is finite, tractability is found precisely when $\mathbb A$ has non-trivial polymorphisms.    
     <div class="slide theorem">
-        Suppose that $\mathbb A$ is finite. The following are equivalent:
+        Suppose that $\mathbb A$ is finite. The following are equivalent (if $\text{P}\neq\text{NP}$):
         <ul>
             <li>$\mathbb A$ does not logically define 3-SAT</li>
-            <li><span class="inline-citation">Bulatov [FOCS'17] // Zhuk [FOCS'17, J. ACM'20]</span>$\CSP(\mathbb A)$ is solvable in polynomial time</li>
-            <li><span class="inline-citation">Barto, Kozik [LMCS'12]</span>$\mathbb A$ has a polymorphism $\varphi\colon A^n\to A$ satisfying $$\forall \overline x\in A^n: \varphi(x_1,\dots,x_n)=\varphi(x_2,\dots,x_n,x_1)$$</li>
+            <li>$\CSP(\mathbb A)$ is solvable in polynomial time<span class="inline-citation">Bulatov [FOCS'17] // Zhuk [FOCS'17, J. ACM'20]</span></li>
+            <li>$\mathbb A$ has a polymorphism $\varphi\colon A^n\to A$ satisfying<span class="inline-citation">Barto, Kozik [LMCS'12]</span> $$\forall \overline x\in A^n: \varphi(x_1,\dots,x_n)=\varphi(x_2,\dots,x_n,x_1)$$</li>
         </ul>
     </div></div></div>
     <div class="out-of-layout"><div class="slide theorem vanish" style="background-image: url(assets/fixpoint.png);background-repeat: no-repeat;background-size: contain;background-position:80%;">
@@ -299,17 +319,19 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     <section class="slide" id="infinite">
       <h2>What about infinite templates?</h2>
       <div class="slide with-margins">
-      In general, many things break down for CSPs with infinite templates 
+      In general, many things break down for CSPs with infinite templates: 
        <ul>
-        <li>Problems of arbitrary complexity can appear</li>
-        <li>Algebraic structure of solutions not enough: topological structure</li>
+        <li>Problems of arbitrary complexity can appear<span class="inline-citation">Gillibert, Jonušas, Kompatscher, <strong>M.</strong>, Pinsker [SICOMP'22]</span></li>
+        <li>Complexity classes cannot be captured by algebraic properties <span class="inline-citation">Bodirsky, <strong>M.</strong>, Olšák, Opršal, Pinsker, Willard [LICS'19]</span><br />$\Rightarrow$ need to consider the <strong>topological</strong> structure of polymorphisms</li>
         </ul>
           
-        Two large classes of relevant structures: <strong>numeric</strong> structures and <strong>orbit-finite</strong> structures.
+        Two large classes of structures relevant for applications: <strong>numeric</strong> structures and <strong>orbit-finite</strong> structures.
       </div>
-      <ul class="slide">
-          <li><strong>Smooth Approximations</strong>: a theory to relate finite CSPs and infinite CSPs<br /><span class="inline-citation">Bodirsky, Madelaine, <strong>M.</strong> [SICOMP'21] <strong>M.</strong>, Pinsker [J. ACM'24] <strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24] <strong>M.</strong>, Nagy, Pinsker [ICALP'24] Bitter, <strong>M.</strong> [MFCS'24]</span></li>  
-        <li>Algebraic theory of polymorphisms on infinite sets<span class="inline-citation">Bodirsky, <strong>M.</strong>, Olšák, Opršal, Pinsker, Willard [LICS'19] Barto, Bodor, Kozik, <strong>M.</strong>, Pinsker [LICS'23]</span></li>
+      <ul>
+          <li class="slide"><strong>Smooth Approximations</strong>: a theory to relate finite CSPs and infinite CSPs
+              <ul class="slide"><li>Subsumes all the state-of-the-art from period 2006-2020<span class="inline-citation"><strong>M.</strong>, Pinsker [J. ACM'24]</span></li>
+              <li>Recent extensions of the theory to prove new results<span class="inline-citation"><strong>M.</strong>, Nagy, Pinsker [ICALP'24] Bitter, <strong>M.</strong> [MFCS'24]</span></li></ul></li>  
+        <li class="slide">Algebraic theory of polymorphisms on infinite sets<span class="inline-citation">Barto, Bodor, Kozik, <strong>M.</strong>, Pinsker [LICS'23]</span></li>
       </ul>
         
     <div class="slide theorem">
@@ -323,36 +345,48 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <h1>Chapter 3<br />Applications</h1>
     </section>
       
-    <section class="slide" id="obda">
+    <section class="slide" id="omq">
         <h2>Ontology-mediated query answering</h2>
         or: <em>How to query databases for data that is not explicitly there</em>
         
-        Return all patients that have an ancestor suffering from XXX
+        <div class="shelf with-margins">
+        <div class="slide">We have:
+        <ul>
+            <li>A database of patients who visited a given hospital,</li>
+            <li>A theory compiling our medical knowledge: an <strong>ontology</strong></li>
+        </ul>
+        </div>
+        <div class="slide">We want:<ul><li>query the system to find patients in the database satisfying certain properties</li></ul></div>
+        </div>
         
-        is not expressible in typical query languages like SQL.
+        <pre class="slide"><code>Return all patients that have an ancestor suffering from an infection</code></pre>
+        
+        <div class="slide">Execution of a fixed query on an input database is coNP-complete. Which queries are efficiently executable?</div>
         
         <div class="slide with-margins">
         <div class="theorem">
         Evaluating a query $(\mathcal O,q)$ in $(\mathcal{ALC},UCQ)$ is logspace-equivalent to solving a CSP instance in $\mathbb A_{\mathcal O,q}$.
             <div class="citation">Bienvenu, Lutz, Ten Cate, Wolter [TODS'14] + Bodirsky, Madelaine, <strong>M.</strong> [LICS'18]</div>
         </div>
-        <div class="slide">$\Rightarrow$ evaluating a query is either in P or (co)NP-complete by the dichotomy theorem for CSPs.</div>
         </div>
         
-        <div class="slide theorem" style="background-image: url(assets/fo.png);background-repeat: no-repeat;background-size: contain;background-position:75%;"><div class="citation">Bodirsky, Madelaine, <strong>M.</strong> [SICOMP'21]</div>
+        <div style="position:relative;">
+        <div class="out-of-layout">
+        <div class="slide theorem vanish" style="background-image: url(assets/fo.png);background-repeat: no-repeat;background-size: contain;background-position:75%;"><div class="citation">Bodirsky, Madelaine, <strong>M.</strong> [SICOMP'21]</div>
            For an $(\mathcal{ALC},UCQ)$ query $(\mathcal O, q)$, the following are equivalent:
             <ul>
             <li>$(\mathcal O,q)$ is equivalent to a first-order sentence,</li>
             <li>$\mathbb A_{\mathcal O,q}$ has tolerant polymorphisms</li>
             </ul>
         </div>
-        
-        <div class="slide theorem" style="background-image: url(assets/datalog.png);background-repeat: no-repeat;background-size: contain;background-position:75%;"><div class="citation"><strong>M.</strong>, Pinsker [J. ACM'24] + <strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24]</div>
+        </div>    
+        <div class="out-of-layout"><div class="slide theorem" style="background-image: url(assets/datalog.png);background-repeat: no-repeat;background-size: contain;background-position:75%;"><div class="citation"><strong>M.</strong>, Pinsker [J. ACM'24] + <strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24]</div>
             For an $(\mathcal{ALC},UCQ)$ query $(\mathcal O, q)$, the following are equivalent:
             <ul>
             <li>$(\mathcal O,q)$ is equivalent to a Datalog program,</li>
-            <li>For all $n\geq 3$, $\mathbb A_{\mathcal O,q}$ has polymorphisms satisfying $$e_1f(y,x,\dots,x)=\dots=e_nf(x,\dots,x,y)$$</li>
+            <li>For all $n\geq 3$, $\mathbb A_{\mathcal O,q}$ has polymorphisms satisfying $$e_1\circ f(y,x,\dots,x)=\dots=e_n\circ f(x,\dots,x,y)$$</li>
             </ul>
+            </div></div>
         </div>
     </section>
       
@@ -361,9 +395,9 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <div style="position:relative;">
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="opacity:0;width:30%;">
+            <div class="game-status" style="opacity:0;width:35%;">
             <ul>
-                <li>Turn: Eve</li>
+                <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
@@ -372,9 +406,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Eve</li>
+                <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
@@ -383,9 +418,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Eve</li>
+                <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: -1</li>
             </ul>
             </div>
@@ -394,9 +430,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Adam</li>
+                <li>Turn: Angela</li>
                 <li>Current $\sum$: -2</li>
             </ul>
             </div>
@@ -405,9 +442,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Eve</li>
+                <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
@@ -416,9 +454,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Adam</li>
+                <li>Turn: Angela</li>
                 <li>Current $\sum$: 42</li>
             </ul>
             </div>
@@ -427,10 +466,35 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         <div class="out-of-layout">
             <div class="shelf slide vanish">
-            <div class="game-status" style="width:30%;">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Eve</li>
+                <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 52</li>
+            </ul>
+            </div>
+            <img src="assets/mpg6.png" style="height:500px;width:auto;" />
+            </div>  
+        </div>
+        <div class="out-of-layout">
+            <div class="shelf slide vanish">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+            <ul>
+                <li>Turn: Emmanuel</li>
+                <li>Current $\sum$: 51</li>
+            </ul>
+            </div>
+            <img src="assets/mpg6.png" style="height:500px;width:auto;" />
+            </div>  
+        </div>
+          <div class="out-of-layout">
+            <div class="shelf slide vanish">
+            <div class="game-status" style="width:35%;">
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+            <ul>
+                <li>Turn: Emmanuel</li>
+                <li>Current $\sum$: -1000</li>
             </ul>
             </div>
             <img src="assets/mpg6.png" style="height:500px;width:auto;" />
@@ -438,14 +502,14 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
 
       </div>
-      <div class="goal slide">Given a MPG $G$ with a starting position $v\in V$, decide who of Adam/Eve wins.</div>
+      <div class="slide"><strong>Problem:</strong> Given a MPG $G$ with a starting position $v\in V$, decide who of Angela/Emmanuel wins.</div>
       <ul class="slide">
-        <li>Generalize parity games (model-checking for modal $\mu$-calculus)</li>
+        <li>Generalizes parity games (model-checking for modal $\mu$-calculus)</li>
         <li>Verification of reactive systems, design of online algorithms</li>
-        <li>In NP$\cap$coNP, not known to be in P</li>
+        <li>In NP${}\cap{}$coNP, not known to be in P</li>
       </ul>
           
-      <div class="slide theorem">
+      <div class="slide theorem with-margins">
           Deciding the winner in a mean-payoff game is polynomial-time equivalent to deciding satisfiability of a CSP over $\mathbb Z$ with constraints $x\leq\max(y,z)+c$ ($c\in\mathbb Z$).
           <div class="citation">Atserias, Maneva</div>
       </div>
@@ -461,7 +525,8 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <ul class="slide">
        <li>Easy pseudopolynomial time algorithm solving mean-payoff games</li>  
        <li>Additional evidence that <em>surely</em> solving mean-payoff games can be done in polynomial time</li>
-        </ul>
+       <!--<li>Recent progress in constraint satisfaction might help finally proving this</li>-->
+      </ul>
       </section>
       
       <section id="conclusion" class="slide">
@@ -490,13 +555,13 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     </div>-->
 
     <!-- deck.status snippet -->
-    <p class="author-affiliation">
-    Antoine Mottet
-    </p>
     <p class="deck-status" aria-role="status">
       <span class="deck-status-current"></span>
       /
       <span class="deck-status-total"></span>
+    </p>
+    <p class="author-affiliation">
+    Antoine Mottet
     </p>
 
     <!-- deck.goto snippet -->
