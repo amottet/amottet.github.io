@@ -147,6 +147,10 @@ ul {
     color:var(--citation-color);
 }
 
+li li  .inline-citation {
+    right:65px;
+}
+
 @media (max-width: 1400px) {
     .inline-citation {
         position: relative;
