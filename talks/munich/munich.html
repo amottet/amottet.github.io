@@ -158,8 +158,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <hr>
         <div class="timeline_dates center">
             <div class="timeline_date" data-tmdate="1978" data-tmpos="0">1978</div>
-            <div class="timeline_date" data-tmdate="1990" data-tmpos="28">1990</div>
-            
+            <div class="timeline_date" data-tmdate="1990" data-tmpos="28">1990</div>    
             <div class="timeline_date " data-tmdate="1993" data-tmpos="36">1993</div>
             <div class="timeline_date " data-tmdate="2000" data-tmpos="53">2000</div>
             <div class="timeline_date " data-tmdate="2003" data-tmpos="60">2003</div>
@@ -329,17 +328,74 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
           
         Two large classes of structures relevant for applications: <strong>numeric</strong> structures and <strong>orbit-finite</strong> structures.
       </div>
-      <ul>
+        
+      <div class="slide">
+      Can be seen as <strong>finite</strong> constraint satisfaction but for finding labelling of <strong>pairs</strong> of variables satisfying higher-dimensional constraints.
+      </div>
+    <div style="position:relative;">
+        <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
+        <img src="assets/infinite_example.png" />
+        </div></div>
+        <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
+        <img src="assets/infinite_example1.png" />
+        </div></div>
+        <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>odd cycles</strong>.
+        <img src="assets/infinite_example2.png" />
+        </div></div>
+        <div class="out-of-layout"><div class=" slide example vanish">Find an orientation that avoids <strong>directed cycles</strong>.
+        <img src="assets/infinite_example.png" />
+        </div></div>
+        
+    </div>
+    <div class="slide example">Find an orientation that avoids <strong>directed cycles</strong>.
+        <img src="assets/infinite_example3.png" />
+        </div>
+    <ul class="slide with-margins">
+        <li>Intuitive explanation: build an infinite constraint language $\mathbb A$ for which the corresponding satisfiable instances are graphs with an admissible coloring/orientation.</li>
+        <li>Utilizes Fraïssé or Hrushovski amalgamation methods from model theory</li>
+    </ul>
+    </section>
+      
+    <section class="slide" id="timeline_infinite">
+        <h2>Timeline: Infinite edition</h2>
+      <div class="timeline">
+        <hr>
+        <div class="timeline_dates center">
+            <div class="timeline_date" data-tmdate="2006" data-tmpos="0">2006</div>
+            <div class="timeline_date" data-tmdate="2008" data-tmpos="11">2008</div>
+            <div class="timeline_date " data-tmdate="2011" data-tmpos="27">2011</div>
+            <div class="timeline_date " data-tmdate="2015" data-tmpos="49">2015</div>
+            <div class="timeline_date " data-tmdate="2018" data-tmpos="64">2018</div>
+            <div class="timeline_date " data-tmdate="2019" data-tmpos="69">2019</div>
+            <div class="timeline_date " data-tmdate="2021" data-tmpos="80">2021</div>
+            <div class="timeline_date " data-tmdate="2022" data-tmpos="85">2022</div>
+            <div class="timeline_date " data-tmdate="2023" data-tmpos="90">2023</div>
+            <div class="timeline_date" data-tmdate="2024" data-tmpos="95">2024</div>
+        </div>
+          
+        <div class="timeline_descs">
+          
+        <div class="conjecture timeline_desc slide"tm-desc="2011">
+            <div class="citation" data-tmdesc="2011">Bodirsky, Pinsker</div>    
+            For such a constraint language $\mathbb A$, exactly one of the following holds:
+            <ul>
+            <li>$\Pol(\mathbb A)$ is algebraically and topologically non-trivial, and $\CSP(\mathbb A)$ is solvable in polynomial time</li>
+            <li>$\mathbb A$ can logically define 3-SAT, and $\CSP(\mathbb A)$ is NP-complete.</li>
+            </ul>
+        </div>
+      <ul class="with-margins">
           <li class="slide"><strong>Smooth Approximations</strong>: a theory to relate finite CSPs and infinite CSPs
-              <ul class="slide"><li>Subsumes most of the literature from period 2006-2020<span class="inline-citation"><strong>M.</strong>, Pinsker [J. ACM'24]</span></li>
-              <li>Recent extensions of the theory to prove new results<span class="inline-citation"><strong>M.</strong>, Nagy, Pinsker [ICALP'24] Bitter, <strong>M.</strong> [MFCS'24]</span></li></ul></li>  
-        <li class="slide">Algebraic theory of polymorphisms on infinite sets<span class="inline-citation">Barto, Bodor, Kozik, <strong>M.</strong>, Pinsker [LICS'23]</span></li>
+              <ul class="slide" data-tmdesc="2024,2021,2022"><li>Subsumes most of the literature from period 2006-2020<span class="inline-citation"><strong>M.</strong>, Pinsker [J. ACM'24]</span></li>
+              <li>Recent promising extensions of the theory<span class="inline-citation"><strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24] <strong>M.</strong>, Nagy, Pinsker [ICALP'24] Bitter, <strong>M.</strong> [MFCS'24]</span></li></ul></li>  
+        <li class="slide" data-tmdesc="2023">Algebraic theory of polymorphisms on infinite sets<span class="inline-citation">Barto, Bodor, Kozik, <strong>M.</strong>, Pinsker [LICS'23]</span></li>
       </ul>
         
     <div class="slide theorem">
-    <div class="citation"><strong>M.</strong> ['24+]</div>    
+    <div class="citation" data-tmdesc="2024"><strong>M.</strong> ['24+]</div>    
         Let $\mathbb A$ be such that $\CSP(\mathbb A)$ is not NP-hard. Then for all <strong>orbit-finite</strong> $\mathscr G\subseteq\Aut(\mathbb A)$, there exist $\varphi\colon A^6\to A, \alpha,\beta,\gamma\in\overline{\mathscr G}$ satisfying
         $$\forall x,y\in A\colon \alpha\circ \varphi(x,x,y,y,x,x) = \beta\circ \varphi(x,y,x,y,x,y) = \gamma\circ \varphi(y,x,x,x,y,y)$$
+    </div>  
+        </div>
     </div>
     </section>
       
@@ -359,17 +415,21 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
             <li>A theory compiling our medical knowledge: an <strong>ontology</strong></li>
         </ul>
         </div>
-        <div class="slide">We want:<ul><li>query the system to find patients in the database satisfying certain properties</li></ul></div>
+        <div class="slide">We want:<ul><li>query the system to find patients in the database satisfying certain properties <strong>modulo the ontology</strong></li></ul></div>
         </div>
         
-        <pre class="slide"><code>--- Placeholder ---</code></pre>
+        <div style="position:relative;">
+        <div class="out-of-layout"><div class="shelf slide vanish">
+        <pre><code>Observed(patient1,"Erythema chronica migrans")</code></pre>
+        <img src="assets/snomed.png" style="height:200px; width:auto;"/>
+        <pre><code>Return patients with Lyme disease</code></pre>
+        </div></div>
         
-        <div class="slide">Execution of a fixed query on an input database is coNP-complete. Which queries are efficiently executable?</div>
+        <div class="slide">Execution of a fixed query on an input database is in coNP. Which queries are efficiently executable?</div>
         
         <div class="slide with-margins">
-        <div class="theorem">
+        <div class="theorem"><div class="citation">Bienvenu, Lutz, Ten Cate, Wolter [TODS'14] + Bodirsky, Madelaine, <strong>M.</strong> [LICS'18]</div>
         Evaluating a query $(\mathcal O,q)$ in $(\mathcal{ALC},UCQ)$ is logspace-equivalent to solving a CSP instance in $\mathbb A_{\mathcal O,q}$.
-            <div class="citation">Bienvenu, Lutz, Ten Cate, Wolter [TODS'14] + Bodirsky, Madelaine, <strong>M.</strong> [LICS'18]</div>
         </div>
         </div>
         
@@ -410,7 +470,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 0</li>
@@ -422,7 +482,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: -1</li>
@@ -434,9 +494,9 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Angela</li>
+                <li>Turn: Marine</li>
                 <li>Current $\sum$: -2</li>
             </ul>
             </div>
@@ -446,7 +506,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 0</li>
@@ -458,9 +518,9 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
-                <li>Turn: Angela</li>
+                <li>Turn: Marine</li>
                 <li>Current $\sum$: 42</li>
             </ul>
             </div>
@@ -470,7 +530,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 52</li>
@@ -482,7 +542,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
                 <li>Current $\sum$: 51</li>
@@ -494,10 +554,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
           <div class="out-of-layout">
             <div class="shelf slide vanish">
             <div class="game-status" style="width:35%;">
-                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Angela want to make the sum $&lt;0$.</p>
+                <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
-                <li>Current $\sum$: -1000</li>
+                <li>Current $\sum$: tends to $-\infty$</li>
             </ul>
             </div>
             <img src="assets/mpg6.png" style="height:500px;width:auto;" />
@@ -505,7 +565,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
 
       </div>
-      <div class="slide"><strong>Problem:</strong> Given a MPG $G$ with a starting position $v\in V$, decide who of Angela/Emmanuel wins.</div>
+      <div class="slide"><strong>Problem:</strong> Given a MPG $G$ with a starting position $v\in V$, decide who of Marine/Emmanuel wins.</div>
       <ul class="slide">
         <li>Generalizes parity games (model-checking for modal $\mu$-calculus)</li>
         <li>Verification of reactive systems, design of online algorithms</li>
@@ -516,9 +576,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
           Deciding the winner in a mean-payoff game is polynomial-time equivalent to deciding satisfiability of a CSP over $\mathbb Z$ with constraints $x\leq\max(y,z)+c$ ($c\in\mathbb Z$).
           <div class="citation">Atserias, Maneva</div>
       </div>
+        <div class="slide">$\max\colon\mathbb Z^2\to\mathbb Z$ is a polymorphism of this constraint language! (but infinitely many relations)</div>
           
-      <div class="slide theorem" style="background-image: url(assets/datalog.png);background-position: 85%;background-size: contain; background-repeat: no-repeat;"><div class="citation">Bodirsky, Martin, <strong>M.</strong> [J. ACM'18]</div>
-           For every $\mathbb A$ definable over $(\mathbb Z;&lt;)$, exactly one of the following holds:
+      <div class="slide theorem with-margins" style="background-image: url(assets/datalog.png);background-position: 85%;background-size: contain; background-repeat: no-repeat;"><div class="citation">Bodirsky, Martin, <strong>M.</strong> [J. ACM'18]</div>
+           For every $\mathbb A$ definable over $(\mathbb Z;&lt;)$ with finitely many relations, exactly one of the following holds:
         <ul>
             <li>$\Pol(\mathbb A)$ contains non-trivial symmetries and $\CSP(\mathbb A)$ is solvable in polynomial time,</li>  
             <li>$\Pol(\mathbb A)$ is trivial, and $\CSP(\mathbb A)$ is NP-complete.</li>
