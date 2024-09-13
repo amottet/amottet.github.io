@@ -76,11 +76,27 @@ CommonHTML: {
         <!--<img class="center" src="assets/islands.png" style="position:fixed; top:0px; left: 0px; height:100%;"/>-->
     </section>
       <section class="slide">
-          <h2>Complexity Theory</h2>      
-      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, problems occurring in practice tend to be complete for one of a handful of important complexity classes.<br />
+          <h2>Complexity Theory</h2>
+          <div style="position:relative;">
+          <div class="out-of-layout"><div class="slide vanish">
+      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
+<div style="opacity:0;">I used to say that no one knows <strong>why</strong> this happens.<br />
+          Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</div></blockquote>
+            <p>Neil Immerman, 2014</p>
+            </div></div>
+            <div class="out-of-layout"><div class="slide vanish">
+      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
+I used to say that no one knows <strong>why</strong> this happens.<br />
+          <div style="opacity:0;">Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</div></blockquote>
+            <p>Neil Immerman, 2014</p>
+            </div></div>
+        <div class="out-of-layout"><div class="slide vanish">
+      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
 I used to say that no one knows <strong>why</strong> this happens.<br />
           Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</blockquote>
-          <p>Neil Immerman, 2014</p>
+            <p>Neil Immerman, 2014</p>
+            </div></div>
+        </div>
       </section>
       
       
@@ -138,18 +154,21 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
           
         <div class="slide definition">
-        $\CSP(\mathbb A)$ is the problem of deciding the satisfiability of an instance whose constraints all belong to the constraint language.
+        $\CSP(\mathbb A)$: decide satisfiability of an instance whose constraints all belong to the constraint language.
         </div>
           
         <div class="example slide">
           <ul>
           <li>$\CSP(\{0,1\};\text{all relations of arity } 3)$: 3-SAT</li>
-          <li>$\CSP(\{0,1\};\neq)$: 2-coloring</li>
-          <li>$\CSP(\mathbb N;&lt;)$: directed acyclicity</li>
+          <li>$\CSP(\{0,1\};\neq)$: 2-coloring
+              $$x\neq y, y\neq z, z\neq t, t\neq y$$</li>
+          <li>$\CSP(\mathbb N;&lt;)$: directed acyclicity
+              <figure><img src="assets/acyclicity2.png" style="height: 300px;" /><figcaption>$$x&lt;y, x&lt;z, y&lt;z, z&lt; t$$</figcaption></figure>
+            </li>
           </ul>
         </div>
           
-        <div class="slide">Such problems are called <strong>non-uniform</strong> CSPs.</div>
+        <!--<div class="slide">Such problems are called <strong>non-uniform</strong> CSPs.</div>-->
       </section>
       
     <section class="slide" id="timeline_finite">
@@ -334,21 +353,21 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       </div>
     <div style="position:relative;">
         <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
-        <img src="assets/infinite_example.png" />
+        <img src="assets/infinite_example.png" style="min-height:300px;max-height:400px;"/>
         </div></div>
         <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
-        <img src="assets/infinite_example1.png" />
+        <img src="assets/infinite_example1.png"  style="min-height:300px;max-height:400px;" />
         </div></div>
         <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>odd cycles</strong>.
-        <img src="assets/infinite_example2.png" />
+        <img src="assets/infinite_example2.png"  style="min-height:300px;max-height:400px;"/>
         </div></div>
         <div class="out-of-layout"><div class=" slide example vanish">Find an orientation that avoids <strong>directed cycles</strong>.
-        <img src="assets/infinite_example.png" />
+        <img src="assets/infinite_example.png"  style="min-height:300px;max-height:400px;"/>
         </div></div>
         
     </div>
     <div class="slide example">Find an orientation that avoids <strong>directed cycles</strong>.
-        <img src="assets/infinite_example3.png" />
+        <img src="assets/infinite_example3.png"  style="min-height:300px;max-height:400px;"/>
         </div>
     <ul class="slide with-margins">
         <li>Intuitive explanation: build an infinite constraint language $\mathbb A$ for which the corresponding satisfiable instances are graphs with an admissible coloring/orientation.</li>
@@ -419,10 +438,19 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         </div>
         
         <div style="position:relative;">
-        <div class="out-of-layout"><div class="shelf slide vanish">
-        <pre><code>Observed(patient1,"Erythema chronica migrans")</code></pre>
-        <img src="assets/snomed.png" style="height:200px; width:auto;"/>
-        <pre><code>Return patients with Lyme disease</code></pre>
+            <div class="out-of-layout"><div class="shelf slide vanish">
+            <figure>
+                <pre><code>Observed(patient1,"Erythema chronica migrans")</code></pre>
+                <figcaption style="text-align:center;">Database</figcaption>
+            </figure>
+            <figure style="height:200px; width:50%;">
+                <img src="assets/snomed.png" style="height:200px; width:auto;"/>
+                <figcaption style="text-align:center;">Ontology (SNOMED)</figcaption>
+            </figure>
+            <figure>
+                <pre><code class="hljs language-shell">Return patients with Lyme disease</code></pre>
+                <figcaption style="text-align: center;">Query</figcaption>
+            </figure>
         </div></div>
         
         <div class="slide">Execution of a fixed query on an input database is in coNP. Which queries are efficiently executable?</div>
@@ -464,7 +492,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
-            <img src="assets/mpg1.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe.png" style="height:500px;width:auto;" />
             </div>
         </div>
         <div class="out-of-layout">
@@ -476,7 +504,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
-            <img src="assets/mpg2.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe2.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -488,7 +516,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: -1</li>
             </ul>
             </div>
-            <img src="assets/mpg3.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe3.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -500,7 +528,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: -2</li>
             </ul>
             </div>
-            <img src="assets/mpg4.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe4.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -512,7 +540,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: 0</li>
             </ul>
             </div>
-            <img src="assets/mpg2.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe2.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -524,7 +552,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: 42</li>
             </ul>
             </div>
-            <img src="assets/mpg5.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe5.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -533,10 +561,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
-                <li>Current $\sum$: 52</li>
+                <li>Current $\sum$: 356</li>
             </ul>
             </div>
-            <img src="assets/mpg6.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe6.png" style="height:500px;width:auto;" />
             </div>  
         </div>
         <div class="out-of-layout">
@@ -545,10 +573,10 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <p>Emmanuel wants to keep $\sum w_i\geq 0$ in the limit,<br /> Marine wants to make the sum $&lt;0$.</p>
             <ul>
                 <li>Turn: Emmanuel</li>
-                <li>Current $\sum$: 51</li>
+                <li>Current $\sum$: 355</li>
             </ul>
             </div>
-            <img src="assets/mpg6.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe6.png" style="height:500px;width:auto;" />
             </div>  
         </div>
           <div class="out-of-layout">
@@ -560,7 +588,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <li>Current $\sum$: tends to $-\infty$</li>
             </ul>
             </div>
-            <img src="assets/mpg6.png" style="height:500px;width:auto;" />
+            <img src="assets/mpg_ipe6.png" style="height:500px;width:auto;" />
             </div>  
         </div>
 
@@ -599,7 +627,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <ul>
             <li>A very expressive class of computational problems <span class="inline-citation">Gillibert, Jonušas, Kompatscher, <strong>M.</strong>, Pinsker [SICOMP'22]</span></li>
             <li>A rule-of-thumb characterizing problems that are efficiently solvable, strong interplay between <strong>logic</strong> and <strong>algebra</strong></li>
-            <li>Strong connections with artificial intelligence that allow to solve "old" open problems<br /> (query rewriting, but also complexity of reasoning in spatial and temporal reasoning)<span class="inline-citation">Bodirsky, Jonsson, Martin, <strong>M.</strong>, Semanišinová [SICOMP'24]</span></li>
+            <li>Strong connections with artificial intelligence that allow to solve "old" open problems<br /> (query rewriting, but also complexity of reasoning in spatial and temporal formalisms)<span class="inline-citation">Bodirsky, Jonsson, Martin, <strong>M.</strong>, Semanišinová [SICOMP'24]</span></li>
             <li>New algorithmic techniques that can potentially help to solve practical problems  and problems interesting in theory AND in practice (parity games, mean-payoff games)</li>
             <li>Many extensions of CSPs related to central problems in complexity theory (Unique Games Conjecture, hardness of approximation)</li>
         </ul>
@@ -649,13 +677,15 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
 <script src="extensions/status/deck.status.js"></script>
 <!--<script src="extensions/navigation/deck.navigation.js"></script>-->
 <!--<script src="extensions/scale/deck.scale.js"></script>-->
-    
+    <script src="highlight/highlight.min.js"></script>
+<link rel="stylesheet" href="highlight/styles/monokai.css">
 
 <!-- Initialize the deck. You can put this in an external file if desired. -->
 <script>
   $(function() {
     $.deck('.slide');
   });
+    hljs.highlightAll();  
 </script>
 <script src="perso.js"></script>
 </body>
