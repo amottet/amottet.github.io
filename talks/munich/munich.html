@@ -146,7 +146,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <section class="slide" id="nonuniform_csp">
       <h2>Constraint Languages</h2>
           
-        <div class="slide">Parametrize the problem by a <strong>constraint language</strong> $\mathbb A$ consisting of:
+        <div class="slide">Parametrize the problem by a <strong>constraint language</strong> $\mathbb A=(A;R_1,\dots,R_k)$ consisting of:
           <ul>
           <li>a fixed set $A$, the <strong>domain</strong>,</li>
           <li>a number of relations on $A$.</li>
@@ -163,7 +163,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
           <li>$\CSP(\{0,1\};\neq)$: 2-coloring
               $$x\neq y, y\neq z, z\neq t, t\neq y$$</li>
           <li>$\CSP(\mathbb N;&lt;)$: directed acyclicity
-              <figure><img src="assets/acyclicity_small.png" style="height: 300px;" /><figcaption>$$x&lt;y, x&lt;z, y&lt;z, z&lt; t$$</figcaption></figure>
+              <figure><img src="assets/acyclicity_small.png" style="height: 250px;" /><figcaption>$$x&lt;y, x&lt;z, y&lt;z, z&lt; t$$</figcaption></figure>
             </li>
           </ul>
         </div>
@@ -197,7 +197,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
             </div>
             <div class="slide">
                 <div class="timeline_desc theorem" data-tmdesc="1990">
-                    Let $\mathbb A$ be a finite graph. Then exactly one of the following holds:
+                    Let $\mathbb A=(V;E)$ be a finite graph. Then exactly one of the following holds:
                     <ul>
                         <li>$\mathbb A$ is bipartite or contains a loop, and $\CSP(\mathbb A)$ can be solved in polynomial time</li>
                         <li>$\mathbb A$ can logically define $\mathbb K_3$ (the complete graph on 3 vertices), and $\CSP(\mathbb A)$ is NP-complete</li>
@@ -275,15 +275,15 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     <div class="slide vanish">
     Given solutions $h_1,\dots,h_n\colon V\to A$, can one infer the existence of other solutions?
     <div class="slide definition">
-        A map $\varphi\colon A^n\to A$ is a <strong>polymorphism</strong> of $\mathbb A$ if for all instances of $\CSP(\mathbb A)$ and all possible solutions $h_1,\dots,h_n\colon V\to A$, the map $\varphi(h_1,\dots,h_n)\colon x\mapsto \varphi(h_1(x),\dots,h_n(x))$ is a solution.
+        A map $\varphi\colon A^n\to A$ is a <strong>polymorphism</strong> of $\mathbb A$ if for all instances of $\CSP(\mathbb A)$ and all possible solutions $h_1,\dots,h_n\colon V\to A$, the map $x\mapsto \varphi(h_1(x),\dots,h_n(x))$ is a solution.
     </div>
     
     <div class="shelf" style="align-items:center;">
-    <ul style="width:80%;">
+    <ul style="width:100%;">
         <li class="slide">$(x_1,\dots,x_n)\mapsto x_i$ works</li>
         <li class="slide">if $\varphi,\psi_1,\dots,\psi_m$ are polymorphisms, then $\varphi\circ(\psi_1,\dots,\psi_m)$ is a polymorphism</li>
     </ul>
-    <p class="slide" >$\leadsto$ Space of solutions has an algebraic structure $\simeq$ Permutation groups</p>
+    <p class="slide" >$\leadsto$ Space of solutions has an algebraic structure</p>
     </div>
         
     <div style="position: relative; top:0; left: 0;">
@@ -303,7 +303,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
             <li>$\mathbb A$ has a polymorphism $\varphi\colon A^n\to A$ satisfying<span class="inline-citation">Barto, Kozik [LMCS'12]</span> $$\forall \overline x\in A^n: \varphi(x_1,\dots,x_n)=\varphi(x_2,\dots,x_n,x_1)$$</li>
         </ul>
     </div></div></div>
-    <div class="out-of-layout"><div class="slide theorem vanish" style="background-image: url(assets/fixpoint.png);background-repeat: no-repeat;background-size: contain;background-position:80%;">
+    <div class="out-of-layout"><div class="slide theorem vanish" style="background-image: url(assets/fixpoint.png);background-repeat: no-repeat;background-size: 10%;background-position:75% 0%;">
         Suppose that $\mathbb A$ is finite. The following are equivalent:
         <ul>
             <li>$\mathbb A$ does not logically define linear equations over finite fields<!--<span class="inline-citation">Larose, Zadori [Int. J. Algebra Comput. '06]</span>--></li>
@@ -345,11 +345,20 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
         <li>Complexity classes cannot be captured by algebraic properties <span class="inline-citation">Bodirsky, <strong>M.</strong>, Olšák, Opršal, Pinsker, Willard [LICS'19]</span><br />$\Rightarrow$ need to consider the <strong>topological</strong> structure of polymorphisms</li>
         </ul>
           
-        Two large classes of structures relevant for applications: <strong>numeric</strong> structures and <strong>orbit-finite</strong> structures.
+        <div class="slide">Two large classes of languages relevant for applications: <strong>numeric</strong> languages and <strong>orbit-finite</strong> languages.</div>
       </div>
         
+    <div style="position:relative;">
+    <div class="out-of-layout"><div class="slide vanish"><strong>Numeric languages</strong>: constraints first-order definable in $(\mathbb Z;+,\times)$ or $(\mathbb R,+,\times)$<br />
+    Important direction of research: map out complexity of constraint languages definable in Presburger arithmetic.
+    <ul>
+        <li>Languages definable in $(\mathbb Z;&lt;)$<span class="inline-citation">Bodirsky, Martin, <strong>M.</strong> [J. ACM'18]</span></li>    
+        <li>Languages definable in $(\mathbb Z;+,1)$<span class="inline-citation">Bodirsky, Mamino, Martin, <strong>M.</strong> [MFCS'18]</span></li>
+    </ul></div></div>    
+    </div>
+        
       <div class="slide">
-      Can be seen as <strong>finite</strong> constraint satisfaction but for finding labelling of <strong>pairs</strong> of variables satisfying higher-dimensional constraints.
+      <strong>Orbit-finite constraint languages:</strong> Can be seen as <strong>finite</strong> constraint satisfaction but for  <strong>pairs</strong> of variables.
       </div>
     <div style="position:relative;">
         <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
@@ -451,7 +460,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <pre><code class="hljs language-shell">Return patients with Lyme disease</code></pre>
                 <figcaption style="text-align: center;">Query</figcaption>
             </figure>
-        </div></div>
+                </div></div></div>
         
         <div class="slide">Execution of a fixed query on an input database is in coNP. Which queries are efficiently executable?</div>
         
@@ -471,7 +480,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
             </ul>
         </div>
         </div>    
-        <div class="out-of-layout"><div class="slide theorem" style="background-image: url(assets/datalog.png);background-repeat: no-repeat;background-size: contain;background-position:85%;"><div class="citation"><strong>M.</strong>, Pinsker [J. ACM'24] + <strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24]</div>
+        <div class="out-of-layout"><div class="slide theorem" style="background-image: url(assets/datalog.png);background-repeat: no-repeat;background-size: 10%;background-position:85%;"><div class="citation"><strong>M.</strong>, Pinsker [J. ACM'24] + <strong>M.</strong>, Nagy, Pinsker, Wrona [SICOMP'24]</div>
             For an $(\mathcal{ALC},UCQ)$ query $(\mathcal O, q)$, the following are equivalent:
             <ul>
             <li>$(\mathcal O,q)$ is equivalent to a Datalog program,</li>
@@ -606,7 +615,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       </div>
         <div class="slide">$\max\colon\mathbb Z^2\to\mathbb Z$ is a polymorphism of this constraint language! (but infinitely many relations)</div>
           
-      <div class="slide theorem with-margins" style="background-image: url(assets/datalog.png);background-position: 85%;background-size: contain; background-repeat: no-repeat;"><div class="citation">Bodirsky, Martin, <strong>M.</strong> [J. ACM'18]</div>
+      <div class="slide theorem with-margins" style="background-image: url(assets/datalog.png);background-position: 85% 100%;background-size: 9%; background-repeat: no-repeat;"><div class="citation">Bodirsky, Martin, <strong>M.</strong> [J. ACM'18]</div>
            For every $\mathbb A$ definable over $(\mathbb Z;&lt;)$ with finitely many relations, exactly one of the following holds:
         <ul>
             <li>$\Pol(\mathbb A)$ contains non-trivial symmetries and $\CSP(\mathbb A)$ is solvable in polynomial time,</li>  
@@ -617,8 +626,30 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <ul class="slide">
        <li>Easy pseudopolynomial time algorithm solving mean-payoff games</li>  
        <li>Additional evidence that <em>surely</em> solving mean-payoff games can be done in polynomial time</li>
-       <!--<li>Recent progress in constraint satisfaction might help finally proving this</li>-->
       </ul>
+      </section>
+        
+      <section id="fopcsp" class="slide">
+      <h2>Logical Separations of Finite CSPs</h2>
+          <div class="slide"><strong>Problem:</strong> Given two <em>finite</em> constraint languages $\mathbb A,\mathbb B$, does there exist a first-order sentence $\Phi$ such that $\CSP(\mathbb A)\subseteq\operatorname{Mod}(\Phi)\subseteq\CSP(\mathbb B)$.
+          </div>
+          
+          <div class="slide">Motivation: efficient solvability of finding solutions for restricted instances of $\CSP(\mathbb B)$ $\Rightarrow$ <strong>P</strong>romise CSPs</div>
+          
+          <div class="theorem slide with-margins">
+          <div class="citation"><strong>M.</strong> [CSL'24] Larrauri, <strong>M.</strong> [24+]</div>
+              The following are equivalent:
+              <ul>
+                <li>There exists such a $\Phi$,</li>
+                <li>There exists a <em>finite</em> constraint language $\mathbb C$ such that $\CSP(\mathbb A)\subseteq\CSP(\mathbb C)\subseteq\CSP(\mathbb B)$ and $\CSP(\mathbb C)$ is first-order definable.</li>
+              </ul>
+              Given $\mathbb A,\mathbb B$, one can decide whether such a $\Phi$ exists.
+          </div>
+          <div class="slide">The proof uses:
+              <ul>
+                  <li>Characterization: techniques from <em>infinite-domain</em> CSPs</li>
+                  <li>Decidability: techniques from automata theory</li>
+              </ul></div>
       </section>
       
       <section id="conclusion" class="slide">

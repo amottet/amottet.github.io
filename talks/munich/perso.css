@@ -340,3 +340,7 @@ h2{
     margin-right:5px;
     text-align: right;
 }
+
+.shelf figure {
+    flex-grow:1;
+}

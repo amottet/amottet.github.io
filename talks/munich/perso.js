@@ -20,3 +20,11 @@ function initializeHighlightConfig() {
     });
     return highlights;
 }
+
+document.addEventListener('keydown', recordKey);
+
+function recordKey(e) {
+  if (e.key == "c") {
+      $.deck('go','conclusion');
+  }
+}
