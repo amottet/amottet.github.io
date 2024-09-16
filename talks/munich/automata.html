@@ -1,0 +1,548 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <meta name="viewport" content="width=1024, user-scalable=no">
+    
+    <!-- computer modern fonts -->
+	<link rel="stylesheet" href="fonts/Bright/cmun-bright.css">
+	<link rel="stylesheet" href="fonts/Concrete/cmun-concrete.css">
+	<link rel="stylesheet" href="fonts/Serif/cmun-serif.css">
+
+  <title>The product automaton construction</title>
+
+  <!-- Required stylesheet -->
+  <link rel="stylesheet" media="screen" href="core/deck.core.css">
+
+  <!-- Extension CSS files go here. Remove or add as needed. -->
+  <link rel="stylesheet" media="screen" href="extensions/goto/deck.goto.css">
+  <link rel="stylesheet" media="screen" href="extensions/menu/deck.menu.css">
+  <!--<link rel="stylesheet" media="screen" href="extensions/navigation/deck.navigation.css">-->
+  <link rel="stylesheet" media="screen" href="extensions/status/deck.status.css">
+  <!--<link rel="stylesheet" media="screen" href="extensions/scale/deck.scale.css">-->
+
+  <!-- Style theme. More available in /themes/style/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/style/antoine.css">
+
+  <!-- Transition theme. More available in /themes/transition/ or create your own. -->
+  <link rel="stylesheet" media="screen" href="themes/transition/fade.css">
+
+  <!-- Basic black and white print styles -->
+  <link rel="stylesheet" media="print" href="core/print.css">
+
+  <!-- Required Modernizr file -->
+  <script src="modernizr.custom.js"></script>
+     <link rel="stylesheet" href="perso.css">
+
+    <script type="text/x-mathjax-config">
+
+MathJax.Hub.Config({
+CommonHTML: {
+    scale: 100
+  },
+  tex2jax: {inlineMath: [['$','$'], ['\\(','\\)']]},
+  TeX: {
+        Macros: {
+            Hom: ["\\operatorname\{CSP\}"],
+            CSP: ["\\operatorname\{CSP\}"],
+            PCSP: ["\\operatorname\{PCSP\}"],
+            Pol: ["\\operatorname\{Pol\}"],
+            Aut: ["\\operatorname\{Aut\}"],
+            End: ["\\operatorname\{End\}"]
+        },
+    },
+});
+</script>
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+
+<!--<script async src="https://cdn.jsdelivr.net/npm/mathjax@2/MathJax.js?config=TeX-AMS_CHTML"></script>-->
+<script type="text/javascript"
+  src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+</head>
+<body>
+  <div class="deck-container">
+
+    <!-- Begin slides. Just make elements with a class of slide. -->
+
+    <section class="slide">
+        <h2>The product automaton construction</h2>
+        <h4>18/09/2024</h4>
+        <h4>Antoine Mottet</h4>
+        
+        <img class="center" src="assets/automata_product.png" style="width: 60%;"/>
+    </section>
+    <section class="slide" id="conclusion">
+      <h2>Introduction to Theory of Computation</h2>
+      
+      <ul>
+        <li>Finite Automata:
+            <ul>
+                <li>DFA, NFA, regular expressions</li>
+                <li>Equivalence of the models</li>
+                <li>Myhill-Nerode characterization and minimization</li>
+                <li><strong>Closure properties and algorithms</strong></li>
+                <li>Pumping lemma</li>
+            </ul>  
+        </li>
+        <li>Pushdown Automata:
+            <ul>
+                <li>Determinism, non-determinism, non-equivalence of the models</li>
+                <li>Context-Free Grammars</li>
+                <li>Application: interpreters and compilers for programming languages</li>
+            </ul>
+        </li>
+        <li>Turing Machines:
+            <ul>
+                <li>Many models...</li>
+                <li>... one concept? The Church-Turing thesis</li>
+                <li>Undecidability</li>
+                <li>Efficient decidability: polynomial-time Turing Machines</li>
+            </ul>
+        </li>
+      </ul>
+      </section>  
+      
+    <section class="slide">
+        <h2>Finite Automata</h2>
+        <h3>So far</h3>
+        
+        <div class="shelf">
+        <div class="with-side-margins">
+        <ul>
+        <li>(Deterministic, non-deterministic) automata as a data structure to represent (potentially infinite) sets</li>
+        <li><strong>Regular</strong> languages: those sets that can be represented this way</li>
+        <li>Know how to check for <strong>membership</strong>: $w \in L(\mathcal A)?$</li>
+        <li>Know how to check for <strong>emptiness</strong>: $L(\mathcal A)=\emptyset$?</li>
+        </ul>
+        </div>
+        <pre><code>class DeterministicFiniteAutomaton:
+  def __init__(self, ...):
+  	...
+    
+  # Does w belong to the set described by the automaton?
+  # Allows to write "w in A"
+  def __contains__(self, w):
+    ...
+    
+  # Is the set described by the automaton empty?
+  def empty(self):
+    ...</code></pre>
+        <!--<div class="with-side-margins"><script src="https://gist.github.com/amottet/118152075cfc513de6fb6c7903b36625.js"></script></div>-->
+        </div>
+        <h3>Today: operations on regular languages</h3>
+        <div class="shelf">
+        <div style="width:50%;">
+        <ul>
+            <li>Other data structures (like Sets, Tuples, Lists, ...) come with methods to manipulate them easily.</li>
+            <li>Sets have: intersection $(A\cap B)$, union $(A\cup B)$, difference ($A\setminus B$), issubset ($A\subseteq B$?)</li>
+            <!--<li>An automaton for the words of even length in $(aab)^*$</li>-->
+        </ul>
+        </div>
+            <pre><code>def intersection(A, B):
+  ...
+  
+def union(A,B):
+  ...
+  
+def difference(A, B):
+  ...
+        
+def issubset(A, B):
+  ...</code></pre>
+        </div>
+    </section>
+    <section class="slide">
+        <h2>Intersection: intuitive approach</h2>
+        <div class="slide">
+            <ul>
+                <li>We want to check whether $w\in\{a,b\}^*$ is in $(aab)^*$ and in $L_{2}=\{w\in\Sigma^*\mid |w|\text{ even}\}$.</li>
+                <li>We run automata representing $(aab)^*$ and $L_{2}$ simultaneously on $w$.</li>
+            </ul>
+        </div>
+        <div style="position:relative;" class="with-margins">
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex1.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=aabaab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+                
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex2.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{a}abaab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex3.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aa}baab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex4.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aab}aab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex5.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aaba}ab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex6.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aabaa}b$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex1.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aabaab}$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+            </div>
+
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex1.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aabaab}$ ✅</figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex1.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=aab$ <span style="opacity:0;">❌</span></figcaption>
+                </figure></div>
+                
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex2.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{a}ab$ <span style="opacity:0;">❌</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex3.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aa}b$ <span style="opacity:0;">❌</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex4.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aab}$ <span style="opacity:0;">❌</span></figcaption>
+                </figure></div>
+            </div>
+            <div class="out-of-layout">
+                <div class="slide vanish"><figure><img src="assets/automata_ex4.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aab}$ ❌</figcaption>
+                </figure></div>
+            </div>
+                <div class="slide"><figure><img src="assets/automata_ex5.png" style="width:50%;"/>
+                    <figcaption class="center">On input $w=\color{red}{aaba}ab$ <span style="opacity:0;">✅</span></figcaption>
+                </figure></div>
+        </div>
+        <div class="slide">
+            <ul>
+                <li>To remember the current state of both automata, we must consider <strong>pairs</strong> $(q_A,q_B)$ of states</li>
+                <li>There is a transition $(q_A,q_B)\overset{c}{\longrightarrow} (q'_A,q'_B)$ if $q_A\overset{c}{\longrightarrow} q'_A$ and $q_B\overset{c}{\longrightarrow}q'_B$ ($c\in \Sigma$)</li>
+            </ul>
+        </div>
+    </section>
+      
+    <section class="slide">
+        <h2>Formal approach</h2>
+            
+        <div style="position:relative;">
+        <div class="out-of-layout">
+            <div class="slide vanish">
+                <div class="definition">
+                Let $\mathcal A=(Q_A,\Sigma,\delta_A,q_0,F_A)$ and $\mathcal B=(Q_B,\Sigma,\delta_B,q'_0,F_B)$ be deterministic finite automata.<br />
+                Let $\mathcal C=(Q_A\times Q_B,\Sigma,\delta_C,(q_0,q'_0),F_C)$ be the automaton where:
+                <ul>
+                    <li>$\delta_C((q,q'),a) = (\delta_A(q,a),\delta_B(q',a))$,</li>
+                    <li style="opacity:0;"></li>
+                </ul>
+                </div>
+                <div class="theorem slide">
+                    Let $w\in\Sigma^*$ and let $q\in Q_A$ (resp. $q'\in Q_B$) be the state reached by the run of $\mathcal A$ (resp. $\mathcal B$) on $w$.<br />
+                    Then the run of $\mathcal C$ on $w$ reaches the state $(q,q')$.<br />
+                    <span style="opacity:0;">Therefore $\mathcal C$ accepts $w$ if, and only if, $\mathcal A$ <strong>and</strong> $\mathcal B$ accept $w$, and $L(\mathcal C)=L(\mathcal A)\cap L(\mathcal B)$.</span>
+                </div>
+                <div class="slide "><img src="assets/intersection_proof.png" style="width:500px;"/></div>
+            </div>
+        </div>
+        </div>
+        
+        <div style="position:relative;">
+        <div class="out-of-layout"><div class="slide vanish">
+        <div class="definition">
+                Let $\mathcal A=(Q_A,\Sigma,\delta_A,q_0,F_A)$ and $\mathcal B=(Q_B,\Sigma,\delta_B,q'_0,F_B)$ be deterministic finite automata.<br />
+                Let $\mathcal C=(Q_A\times Q_B,\Sigma,\delta_C,(q_0,q'_0),F_C)$ be the automaton where:
+                <ul>
+                    <li>$\delta_C((q,q'),a) = (\delta_A(q,a),\delta_B(q',a))$,</li>
+                    <li>$(q,q')\in F_C$ precisely if $q\in F_A$ <strong>and</strong> $q'\in F_B$.</li>
+                </ul>
+        </div>
+            
+        <div class="theorem">
+                Let $w\in\Sigma^*$ and let $q\in Q_A$ (resp. $q'\in Q_B$) be the state reached by the run of $\mathcal A$ (resp. $\mathcal B$) on $w$.<br />
+                Then the run of $\mathcal C$ on $w$ reaches the state $(q,q')$.<br />
+                <span class="slide">Therefore $\mathcal C$ accepts $w$ if, and only if, $\mathcal A$ <strong>and</strong> $\mathcal B$ accept $w$, and $L(\mathcal C)=L(\mathcal A)\cap L(\mathcal B)$.</span>
+        </div>
+            
+        <div><img src="assets/intersection_proof2.png" style="width:500px;"/></div>
+        </div>
+        </div>
+        </div>
+        
+        <div class="slide">
+        <div class="definition">
+                Let $\mathcal A=(Q_A,\Sigma,\delta_A,q_0,F_A)$ and $\mathcal B=(Q_B,\Sigma,\delta_B,q'_0,F_B)$ be deterministic finite automata.<br />
+                Let $\mathcal C=(Q_A\times Q_B,\Sigma,\delta_C,(q_0,q'_0),F_C)$ be the automaton where:
+                <ul>
+                    <li>$\delta_C((q,q'),a) = (\delta_A(q,a),\delta_B(q',a))$,</li>
+                    <li>$(q,q')\in F_C$ precisely if $q\in F_A$ <strong>or</strong> $q'\in F_B$.</li>
+                </ul>
+        </div>
+            
+        <div class="theorem">
+                Let $w\in\Sigma^*$ and let $q\in Q_A$ (resp. $q'\in Q_B$) be the state reached by the run of $\mathcal A$ (resp. $\mathcal B$) on $w$.<br />
+                Then the run of $\mathcal C$ on $w$ reaches the state $(q,q')$.<br />
+                Therefore $\mathcal C$ accepts $w$ if, and only if, $\mathcal A$ <strong>or</strong> $\mathcal B$ accept $w$, <span class="slide">and $L(\mathcal C)=L(\mathcal A)\cup L(\mathcal B)$.</span>
+        </div>
+        </div>
+        
+        <div style="position:relative;"><div class="out-of-layout"><div class="slide vanish"><img src="assets/union_proof.png" style="width:500px;"/></div></div></div>
+        
+        <div class="slide">
+            <img src="assets/directpoll.png" style="float:right;width:300px;"/>
+            Quiz: how to define $F_C$ so that $L(\mathcal C)=L(\mathcal A)\setminus L(\mathcal B)$?
+            <ol>
+            <li>$(q_A,q_B)\in F_C$ if $q_A\in F_A$ and $q_B\not\in F_B$</li>
+            <li>$(q_A,q_B)\in F_C$ if $q_A\not\in F_A$ and $q_B\in F_B$</li>
+            <li>$(q_A,q_B)\in F_C$ if $q_A\not\in F_A$ and $q_B\not\in F_B$</li>
+            </ol>
+            
+        </div>
+    </section>
+      
+    <section class="slide" id="code">
+        <h2>Naive Implementation and Complexity</h2>
+        
+        <div style="position:relative;">
+            <div class="out-of-layout"><div class="vanish slide">
+            <div class="shelf">
+        <div class="definition">
+            Let $\mathcal A=(Q_A,\Sigma,\delta_A,q_0,F_A)$ and $\mathcal B=(Q_B,\Sigma,\delta_B,q'_0,F_B)$ be deterministic finite automata.<br />
+            Let $\mathcal C=(Q_A\times Q_B,\Sigma,\delta_C,(q_0,q'_0),F_C)$ be the automaton where:
+            <ul>
+                <li>$\delta_C((q,q'),a) = (\delta_A(q,a),\delta_B(q',a))$,</li>
+                <li>$(q,q')\in F_C$ precisely if $q\in F_A$ <strong>and</strong> $q'\in F_B$.</li>
+            </ul>
+        </div>
+            <ul class="slide">
+        <li>Number of states: $|Q_A|\times |Q_B|$</li>
+        <li>Optimal in general: any DFA recognizing $L_p\cap L_q$ has at least $pq$ states</li>
+        <li>For implementation purposes, this can be optimized by only computing reachable states.</li>
+        </ul>
+        </div>    
+                
+            <pre class="slide" style="min-width: 60%;"><code data-hln="6,11,20,21"># Returns an "automaton" C that runs A and B in parallel
+# Only final states are left undefined
+def parallel(A,B):
+  assert(A.alphabet == B.alphabet)
+	
+  states = { (q_A,q_B) for q_A in A.states for q_B in B.states) }
+  transition_map = dict()
+  for (q_A,q_B) in states:
+    for a in A.alphabet:
+      # Define the transition (q_A,q_B) -> (q'_A,q'_B) by q_A->q'_A and q_B->q'_B
+      transition_map[ ((q_A,q_B),a) ] = (A.transition_map[ (q_A,a) ], B.transition_map[ (q_B,a) ])
+  return (states, alphabet, transition_map, (A.initial_state, B.initial_state))
+
+# Returns a deterministic automaton representing the set L(A) intersected with L(B)
+def intersection(A, B):
+  (Q, Sigma, delta, q_0) = parallel(A,B)
+  final_states = set()
+  for q_A in A.states:
+    for q_B in B.states:
+      if q_A in A.final_states and q_B in B.final_states:
+        final_states |= {(q_A,q_B)}
+  return DeterministicFiniteAutomaton(Q, Sigma, delta, q_0, final_states)</code></pre>
+</div>
+        </div>
+            
+            <div class="out-of-layout">
+                 <div class="vanish slide">
+                <div class="shelf">
+        <div class="definition">
+            Let $\mathcal A=(Q_A,\Sigma,\delta_A,q_0,F_A)$ and $\mathcal B=(Q_B,\Sigma,\delta_B,q'_0,F_B)$ be deterministic finite automata.<br />
+            Let $\mathcal C=(Q_A\times Q_B,\Sigma,\delta_C,(q_0,q'_0),F_C)$ be the automaton where:
+            <ul>
+                <li>$\delta_C((q,q'),a) = (\delta_A(q,a),\delta_B(q',a))$,</li>
+                <li>$(q,q')\in F_C$ precisely if $q\in F_A$ <strong>or</strong> $q'\in F_B$.</li>
+            </ul>
+        </div>
+            <ul>
+        <li>Number of states: $|Q_A|\times |Q_B|$</li>
+        <li>Optimal in general: any DFA recognizing $L_p\cup L_q$ has at least $pq$ states</li>
+        <li>For implementation purposes, this can be optimized by only computing reachable states.</li>
+        </ul>
+        </div>
+               
+                
+            <pre style="min-width: 60%;"><code data-hln="20,21"># Returns an "automaton" C that runs A and B in parallel
+# Only final states are left undefined
+def parallel(A,B):
+  assert(A.alphabet == B.alphabet)
+	
+  states = { (q_A,q_B) for q_A in A.states for q_B in B.states) }
+  transition_map = dict()
+  for (q_A,q_B) in states:
+    for a in A.alphabet:
+      # Define the transition (q_A,q_B) -> (q'_A,q'_B) by q_A->q'_A and q_B->q'_B
+      transition_map[ ((q_A,q_B),a) ] = (A.transition_map[ (q_A,a) ], B.transition_map[ (q_B,a) ])
+  return (states, alphabet, transition_map, (A.initial_state, B.initial_state))
+  
+# Returns a deterministic automaton representing the set L(A) union L(B)
+def union(A, B):
+  (Q, Sigma, delta, q_0) = parallel(A,B)
+  final_states = set()
+  for q_A in A.states:
+    for q_B in B.states:
+      if q_A in A.final_states or q_B in B.final_states:
+        final_states |= {(q_A,q_B)}
+  return DeterministicFiniteAutomaton(Q, Sigma, delta, q_0, final_states)</code></pre>
+        </div>
+        </div>
+        </div>
+        
+    </section>
+      
+    <section class="slide" id="application-1">
+        <h2>Application: Inclusion</h2>
+        
+        <ul>
+            <li>Observation: $L(\mathcal A)\subseteq L(\mathcal B)$ is equivalent to $L(\mathcal A)\cap \left(\Sigma^*\setminus L(\mathcal B)\right)=\emptyset$
+                <div class="shelf with-margins">
+            <figure>
+                <img src="assets/inclusion1.png" style="width:600px;" />    
+                <figcaption class="center">$L(\mathcal A)\subseteq L(\mathcal B)$</figcaption>
+            </figure>
+            <figure>
+                <img src="assets/inclusion2.png" style="width:600px;" />    
+                <figcaption class="center">$L(\mathcal A)\not\subseteq L(\mathcal B)$</figcaption>
+            </figure>
+                </div>
+            </li>
+            <li class="slide">We have already implemented <strong>complement</strong>, <strong>intersection</strong>, and <strong>empty</strong></li>
+        </ul>
+        
+        <pre class="slide"><code>def issubset(A,B):
+  C = intersection(A,B.complement())
+  return empty(C)</code></pre>
+        
+        <ul>
+        <li class="slide">Works for all types of automata where complement, intersection, and empty exist</li>
+        </ul>
+    </section>
+    <section class="slide" id="application-2">
+        <h2>Application: Presburger Arithmetic</h2>
+        <div class="shelf">
+            <figure>
+        <img src="assets/Presburger.jpg" />
+            <figcaption class="center">Mojżesz Presburger</figcaption>
+        </figure>
+        <div class="theorem">It is possible to algorithmically check whether a formula built with $\forall, \exists, \land,\lor,\neg,+,\leq$ is true in $\mathbb Z$.
+        $$\forall x\forall y\forall z\exists t (x+y=z+t)$$    
+            $$\forall x\exists y\exists z\exists t (x\leq \max(y,z)-1 \land z\leq\max(x,t)-2\land t\leq \max(y,z)-3)$$
+        </div>
+        
+        </div>
+        <ul>
+            <li class="slide">Remember the encoding function $\operatorname{enc}_n\colon\mathbb N^n\to (\{0,1\}^n)^*$ where we have e.g.
+            $$\operatorname{enc}_1(42)=010101\quad \operatorname{enc}_4(42,4,5,7) = \begin{pmatrix}0\\0\\1\\1\end{pmatrix}\begin{pmatrix}1\\0\\0\\1\end{pmatrix}\begin{pmatrix}0\\1\\1\\1\end{pmatrix}\begin{pmatrix}1\\0\\0\\0\end{pmatrix}\begin{pmatrix}0\\0\\0\\0\end{pmatrix}\begin{pmatrix}1\\0\\0\\0\end{pmatrix}$$</li>
+            <li class="slide">We have seen that $L_+=\{ \operatorname{enc}_3(x,y,x+y) \mid x,y\in\mathbb N\}$ and $L_{\leq}=\{\operatorname{enc}_2(x,y)\mid x,y\in\mathbb N, x\leq y\}$ are regular</li>
+            <!--<li>For any $a_1,\dots,a_n,b\in\mathbb Z$, we get that $L=\{enc(x_1,\dots,x_n)\mid a_1\cdot x_1+\dots+a_n\cdot x_n\leq b\}$ is also regular</li>-->
+            <li class="slide">By induction, every Presburger formula can be encoded into an automaton</li>
+        </ul>
+        
+        <div class="theorem slide">
+            Given a formula $\varphi$ in the language of Presburger arithmetic,
+            $\varphi$ is true in $\mathbb Z$ exactly if $L(\mathcal A_\varphi)$ is not empty.
+            <!--$$\forall x_1\dots x_m\exists y_1\dots y_n \dots \forall z_1\dots z_\ell \varphi$$
+            where $\varphi$ is formed by inequalities,-->
+        </div>
+  </section>
+      
+      <section class="slide" id="conclusion">
+      <h2>Introduction to Theory of Computation</h2>
+      
+      <ul>
+        <li>Finite Automata:
+            <ul>
+                <li>DFA, NFA, regular expressions</li>
+                <li>Equivalence of the models</li>
+                <li>Myhill-Nerode characterization and minimization</li>
+                <li>Closure properties and algorithms</li>
+                <li>Pumping lemma</li>
+            </ul>  
+        </li>
+        <li>Pushdown Automata:
+            <ul>
+                <li>Determinism, non-determinism, non-equivalence of the models</li>
+                <li>Context-Free Grammars</li>
+                <li>Application: interpreters and compilers for programming languages</li>
+            </ul>
+        </li>
+        <li>Turing Machines:
+            <ul>
+                <li>Many models...</li>
+                <li>... one concept? The Church-Turing thesis</li>
+                <li>Undecidability</li>
+                <li>Efficient decidability: polynomial-time Turing Machines</li>
+            </ul>
+        </li>
+      </ul>
+      </section>
+      
+      
+      
+  <p class="deck-status" aria-role="status">
+      Antoine Mottet
+      <!--<span class="deck-status-current"></span>
+      /
+      <span class="deck-status-total"></span>
+    </p>
+    <p class="author-affiliation">
+    Antoine Mottet-->
+    </p>
+  </div>
+
+<!-- Required JS files. -->
+<script src="jquery.min.js"></script>
+<script src="core/deck.core.js"></script>
+
+<!-- Extension JS files. Add or remove as needed. -->
+<script src="extensions/menu/deck.menu.js"></script>
+<script src="extensions/goto/deck.goto.js"></script>
+<script src="extensions/status/deck.status.js"></script>
+<script src="highlight/highlight.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/highlightjs-line-numbers.js/dist/highlightjs-line-numbers.min.js"></script>
+<script src="https://cdn.jsdelivr.net/gh/TRSasasusu/highlightjs-highlight-lines.js@1.2.0/highlightjs-highlight-lines.min.js"></script>
+<link rel="stylesheet" href="highlight/styles/monokai.css">
+<!--<script src="extensions/navigation/deck.navigation.js"></script>-->
+<!--<script src="extensions/scale/deck.scale.js"></script>-->
+    
+
+<!-- Initialize the deck. You can put this in an external file if desired. -->
+<script src="perso.js"></script>
+<script>
+  $(function() {
+    $.deck('.slide');
+  });
+  hljs.highlightAll(); 
+  hljs.initLineNumbersOnLoad();
+  var highlights = initializeHighlightConfig();
+  console.log(highlights);
+  hljs.highlightLinesAll(highlights);
+</script>
+
+
+</body>
+</html>

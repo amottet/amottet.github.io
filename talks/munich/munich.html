@@ -77,21 +77,26 @@ CommonHTML: {
     </section>
       <section class="slide">
           <h2>Complexity Theory</h2>
+          <ul>
+              <li>Solving $2x-4=0$: easy (<strong>polynomial-time</strong> solvable)</li>
+              <li>Travelling Salesperson: hard (<strong>NP-hard</strong>)</li>
+          </ul>
+
           <div style="position:relative;">
-          <div class="out-of-layout"><div class="slide vanish">
-      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
+            <div class="out-of-layout"><div class="slide vanish">
+      <blockquote style="font-size: 1em">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
 <div style="opacity:0;">I used to say that no one knows <strong>why</strong> this happens.<br />
           Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</div></blockquote>
             <p>Neil Immerman, 2014</p>
             </div></div>
             <div class="out-of-layout"><div class="slide vanish">
-      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
+      <blockquote style="font-size: 1em;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
 I used to say that no one knows <strong>why</strong> this happens.<br />
           <div style="opacity:0;">Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</div></blockquote>
             <p>Neil Immerman, 2014</p>
             </div></div>
-        <div class="out-of-layout"><div class="slide vanish">
-      <blockquote style="font-size: 1em; margin-top: 10%;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
+            <div class="out-of-layout"><div class="slide vanish">
+      <blockquote style="font-size: 1em;">For years when I taught algorithms or complexity, I would tell my students that while there is an infinite range of intermediate complexity classes, <strong style="display:block;text-align: center;">problems occurring in practice tend to be complete for one of a handful of important complexity classes.</strong>
 I used to say that no one knows <strong>why</strong> this happens.<br />
           Now however I can say that it happens for an algebraic reason which [CSP people] are close to figuring out.</blockquote>
             <p>Neil Immerman, 2014</p>
@@ -159,20 +164,20 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
           
         <div class="example slide">
           <ul>
-          <li>$\CSP(\{0,1\};\text{all relations of arity } 3)$: 3-SAT</li>
           <li>$\CSP(\{0,1\};\neq)$: 2-coloring
               $$x\neq y, y\neq z, z\neq t, t\neq y$$</li>
-          <li>$\CSP(\mathbb N;&lt;)$: directed acyclicity
+          <li class="slide">$\CSP(\mathbb N;&lt;)$: directed acyclicity
               <figure><img src="assets/acyclicity_small.png" style="height: 250px;" /><figcaption>$$x&lt;y, x&lt;z, y&lt;z, z&lt; t$$</figcaption></figure>
-            </li>
+          </li>
+          <li class="slide">$\CSP(\{0,1\};\text{all relations of arity } 3)$: 3-SAT</li>
           </ul>
         </div>
-          
+        <div class="slide">My research: constraint languages with <strong>infinite</strong> domains</div>
         <!--<div class="slide">Such problems are called <strong>non-uniform</strong> CSPs.</div>-->
       </section>
       
     <section class="slide" id="timeline_finite">
-      <h2>A Short History</h2>
+      <h2>A Short History of Finite CSPs</h2>
         <div class="timeline slide">
         <hr>
         <div class="timeline_dates center">
@@ -259,7 +264,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 
                 <div class="slide">In the process, we have understood much more about the structure of P: tractable problems clump up in small islands.
                 
-                <img src="assets/islands2.png" style="height:400px;" /></div>
+                <img src="assets/islands2.png" style="height:500px;" /></div>
             </div>
 </div></div>
     </section>
@@ -290,8 +295,8 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     <div class="out-of-layout"><div class="slide example vanish out-of-layout" data-title="2-coloring"><img src="assets/majmin_before.png" /></div></div>
         <div class="out-of-layout"><div class="slide example vanish out-of-layout" data-title="2-coloring"><img src="assets/majority.png" /></div></div>
     <div class="out-of-layout"><div class="slide example vanish out-of-layout" data-title="2-coloring"><img src="assets/minority.png" /></div></div>
-    <!--<div class="out-of-layout"><div class="slide example vanish">reachability, or</div></div>-->
-    <div class="out-of-layout"><div class="slide example vanish" data-title="Acyclicity"><img src="assets/median.png" /></div></div>
+    <div class="out-of-layout"><div class="slide example vanish" data-title="Acyclicity"><img src="assets/acyclicity_poly.png" /></div></div>
+    <div class="out-of-layout"><div class="slide example vanish" data-title="Acyclicity"><img src="assets/acyclicity_poly2.png" /></div></div>
 
     <div class="out-of-layout"><div class="slide vanish">
     When $\mathbb A$ is finite, tractability is found precisely when $\mathbb A$ has non-trivial polymorphisms.    
@@ -358,7 +363,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
     </div>
         
       <div class="slide">
-      <strong>Orbit-finite constraint languages:</strong> Can be seen as <strong>finite</strong> constraint satisfaction but for  <strong>pairs</strong> of variables.
+      <strong>Orbit-finite constraint languages:</strong>
       </div>
     <div style="position:relative;">
         <div class="out-of-layout"><div class=" slide example vanish">Find an assignment $E\to\{\text{red}, \text{blue}\}$ while avoiding monochromatic <strong>triangles</strong>.
@@ -452,8 +457,8 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
                 <pre><code>Observed(patient1,"Erythema chronica migrans")</code></pre>
                 <figcaption style="text-align:center;">Database</figcaption>
             </figure>
-            <figure style="height:200px; width:50%;">
-                <img src="assets/snomed.png" style="height:200px; width:auto;"/>
+            <figure>
+                <img src="assets/snomed.png" />
                 <figcaption style="text-align:center;">Ontology (SNOMED)</figcaption>
             </figure>
             <figure>
@@ -605,7 +610,7 @@ I used to say that no one knows <strong>why</strong> this happens.<br />
       <div class="slide"><strong>Problem:</strong> Given a MPG $G$ with a starting position $v\in V$, decide who of Marine/Emmanuel wins.</div>
       <ul class="slide">
         <li>Generalizes parity games (model-checking for modal $\mu$-calculus)</li>
-        <li>Verification of reactive systems, design of online algorithms</li>
+        <li>Verification of reactive systems, and/or scheduling</li>
         <li>In NP${}\cap{}$coNP, not known to be in P</li>
       </ul>
           
