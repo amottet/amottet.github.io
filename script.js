@@ -111,6 +111,7 @@ places.push({id:'warsaw',mapid:'PL',x:0,y:0,label:'Warsaw'});
 places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
+places.push({id:'kolfushg',mapit:'IT',x:0,y:0,label:'Kolfuschg'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
@@ -410,6 +411,10 @@ talks.push({id:'icalp24',
            event:'<a href="http://compose.ioc.ee/icalp2024/">ICALP 2024</a>',
            place:'tallinn',
            date:'08-12/7/24'});
+talks.push({id:'cwc24',
+           event:'<a href="https://cspworldcongress.org">Sixth CSP World Congress</a> (organizer)',
+           place:'kolfuschg',
+           date:'22-28/9/24'});
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
