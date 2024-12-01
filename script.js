@@ -111,7 +111,7 @@ places.push({id:'warsaw',mapid:'PL',x:0,y:0,label:'Warsaw'});
 places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
-places.push({id:'kolfushg',mapit:'IT',x:0,y:0,label:'Kolfuschg'});
+places.push({id:'kolfuschg',mapit:'IT',x:0,y:0,label:'Kolfuschg'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
