@@ -392,6 +392,7 @@ talks.push({id:'logalg23',
 talks.push({id:'csl24',
            event:'<a href="https://csl2024.github.io/Home/">Computer Science Logic 2024</a>',
            place:'naples',
+            slides: 'CSL2024.pdf',
            title:'Promise and Infinite-Domain Constraint Satisfaction',
            date:'22/02/24'});
 talks.push({id:'lmw24',
