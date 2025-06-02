@@ -112,6 +112,7 @@ places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
 places.push({id:'kolfuschg',mapid:'IT',x:0,y:0,label:'Kolfuschg'});
+places.push({id:'houches',mapid:'FR',x:0,y:0,label:'Les Houches'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
@@ -416,6 +417,17 @@ talks.push({id:'cwc24',
            event:'<a href="https://cspworldcongress.org">Sixth CSP World Congress</a> (organizer)',
            place:'kolfuschg',
            date:'22-28/9/24'});
+talks.push({id:'dagstuhl2025',
+           event:'<a href="https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/25211">The constraint satisfaction problem: complexity and approximability</a>',
+           place:'dagstuhl',
+           invited:true,
+           date:'19-24/5/25'});
+talks.push({id:'fmt2025',
+           event:'<a href="https://fmt25.labri.fr">Finite and Algorithmic Model Theory</a>',
+           place:'houches',
+           invited:true,
+           date:'26-30/5/25'});
+
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
 
