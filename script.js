@@ -113,6 +113,7 @@ places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
 places.push({id:'kolfuschg',mapid:'IT',x:0,y:0,label:'Kolfuschg'});
 places.push({id:'houches',mapid:'FR',x:0,y:0,label:'Les Houches'});
+places.push({id:'singapore', mapid:'SG', x:0,y:0,label:'Singapore'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
@@ -427,6 +428,10 @@ talks.push({id:'fmt2025',
            place:'houches',
            invited:true,
            date:'26-30/5/25'});
+talks.push({id:'lics25',
+            event:'<a href="https://lics.siglog.org/lics25/">LICS 2025</a>',
+            place:'singapore',
+            date:'23-26/6/25'});
 
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
