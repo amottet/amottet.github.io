@@ -1466,6 +1466,7 @@ THE SOFTWARE.
      data-id="SG"
      d="m 1561,563.7 0.1,-0.2 -0.2,-0.2 -0.3,-0.1 -0.5,-0.2 -0.6,0.1 -0.3,0.6 0.9,0.4 0.9,-0.4 z"
      style="fill:#f2f2f2;fill-rule:evenodd" />
+   <circle cx="1561" cy="563" fill="#f2f2f2" r="10"  id="singap"/>
   <path
      inkscape:connector-curvature="0"
      id="SB"
