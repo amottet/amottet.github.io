@@ -112,6 +112,7 @@ places.push({id:'naples',mapid:'IT',x:0,y:0,label:'Naples'});
 //places.push({id:'krakow',mapid:'PL',x:0,y:0,label:'Krak&oacute;w'});
 places.push({id:'tallinn',mapid:'EE',x:0,y:0,label:'Tallinn'});
 places.push({id:'kolfuschg',mapid:'IT',x:0,y:0,label:'Kolfuschg'});
+places.push({id:'cervinia',mapid:'IT',x:0,y:0,label:'Cervinia'});
 places.push({id:'houches',mapid:'FR',x:0,y:0,label:'Les Houches'});
 places.push({id:'singapore', mapid:'singap', x:1561,y:563,label:'Singapore'});
 
@@ -418,6 +419,10 @@ talks.push({id:'cwc24',
            event:'<a href="https://cspworldcongress.org">Sixth CSP World Congress</a> (organizer)',
            place:'kolfuschg',
            date:'22-28/9/24'});
+talks.push({id:'cwc25',
+           event:'<a href="https://cspworldcongress.org">Seventh CSP World Congress</a> (organizer)',
+           place:'cervinia',
+           date:'22-26/9/25'});
 talks.push({id:'dagstuhl2025',
            event:'<a href="https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/25211">The constraint satisfaction problem: complexity and approximability</a>',
            place:'dagstuhl',
