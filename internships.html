@@ -35,15 +35,67 @@ MathJax.Hub.Config({
         </div>
     <div id="h2box"></div>
     <main id="main-document" style="width:60%">
+<div class="topic" id="kneser-desc">
+    <h2 id="kneser">Kneser graphs, chromatic numbers, and topological combinatorics</h2>
+<p>Let $n,k$ be natural numbers such that $n\geq 2k$. The <em>Kneser</em> graph $KG(n,k)$ is the graph whose vertices are the $k$-element subsets of $\{1,\dots,n\}$, and where two such sets $S,T$ are connected by an edge if, and only if, $S\cap T=\emptyset$. The assumption that $n\geq 2k$ tells us that at least <em>some</em> sets are connected by an edge, so this graph is not empty. But it also contains quite a few edges, since for any $m:=\lfloor n/k\rfloor +1$ vertices $S_1,\dots,S_m$, there must at least be one edge between some sets $S_i, S_j$.
+A "famous" example of such a graph is the so-called Petersen graph, which is $KG(5,2)$.</p>
+
+<p>A <em>proper coloring</em> of a graph $G$ with $r$ colors is a function $\chi$ from $V(G)$ to $\{1,\dots,r\}$ such that if $v,w\in V(G)$ are connected by an edge, then $\chi(v)\neq\chi(w)$. The <em>chromatic number</em> of a graph is the smallest $r$ for which there exists a proper coloring and is denoted by $\chi(G)$.
+Proving that $\chi(G)\leq r$ is in general easy: it suffices to give one proper coloring that uses at most $r$ colors. However, proving an inequality of the form $\chi(G)\geq r$ is in general quite hard: one must show that <em>no</em> coloring with $r-1$ colors exist. Apart from particularly simple examples such that complete graphs and cycles, it is in general hard to provide such proofs.</p>
+
+<p>It was conjectured by Kneser that the chromatic number of $KG(n,k)$ is <em>exactly</em> $n-2k+2$, and here again the hard part of this conjecture is to prove that it is $\geq n-2k+2$. This conjecture was proven by Lovász using tools from topology and in particular <em>simplicial complexes</em>, <em>homotopy/homology</em>, and the Borsuk-Ulam theorem, giving birth to the field of <em>topological combinatorics</em>.</p>
+
+<p>For this project, the Bachelor thesis should give a self-contained treatment of the proof of Kneser's conjecture using the topological approach.
+Other examples of applications of the topological approach can also be given for some other classical classes of graphs.</p>
+</div>
+
+<div class="topic" id="cycle-colorings-fourier-lovasz-desc">
+<h2 id="cycle-colorings-fourier-lovasz">Colorings of cycles and the mathematics of Fourier and Lovász</h2>
+<p>If $G$ and $H$ are two graphs, a function $f\colon V(G)\to V(H)$ is called a <em>homomorphism</em> if for every edge $\{v,w\}$ in $G$, we have that $\{f(v),f(w)\}$ is an edge in $H$.
+Many interesting properties in graph theory can be formulated using homomorphisms.
+For example, proper colorings of $G$ with $r$ colors correspond exactly to homomorphisms from $G$ to $K_r$, the complete graph on $r$ vertices. Thus, the chromatic number of a graph $G$ is the smallest $r$ such that there exists a homomorphism $G\to K_r$.</p>
+
+
+<p>For some applications in computer science, one is interested in understanding all the homomorphisms $(C_{n})^k \to K_r$, i.e., all proper colorings of $(C_n)^k$ with $r$ colors.
+Here, $C_{n}$ denotes a cycle with $n$ vertices, and $(C_n)^k$ is the direct $k$th power of $C_n$, whose vertices are tuples $(v_1,\dots,v_k)$ of vertices of $C_n$, and where $\{(v_1,\dots,v_k),(w_1,\dots,w_k)\}$ is an edge in $(C_n)^k$ if for all $i\in\{1,\dots,k\}$, $\{v_i,w_i\}$ is an edge in $C_n$.
+Such homomorphisms $(C_{n})^k \to K_r$ are called <em>polymorphisms</em> of the pair $(C_n,K_r)$.</p>
+
+For this Bachelor project, the goal is to understand such polymorphisms for small values of $n, k,$ and $r$. The study of such homomorphisms can be done using the topological approach mentioned above, or also using a Fourier-theoretic approach that allows for a more analytic approach to the problem.
+In both cases, the idea is to associate with each polymorphism $f\colon (C_n)^k\to K_r$ a different map $\hat f$ which can be studied by some more ``classical'' mathematical tools:
+<ul>
+	<li>In the case of the Fourier approach, $\hat f$ is a map $\mathbb Z^k\to\mathbb C^r$, called the <em>Fourier transform</em> of $f$.</li>
+	<li>In the case of the Lovász approach, $\hat f$ is a certain continuous map from the <em>torus</em> $(S^1)^n$ to the sphere $S^{r-2}$.</li>
+</ul>
+
+The thesis should be constituted of some sections introducing the basics of such an approach with some examples explicitly carried out, followed by a later section containing experimental results about polymorphisms.
+</div>
+
+<div class="topic" id="chromatic-number-minor-conditions-desc">
+<h2 id="chromatic-number-minor-conditions">Chromatic number of graphs and minor conditions</h2>
+
+<p>A <em>minor condition</em> is a conjunction of formulas of the form
+\[ f(x_{i_1},\dots,x_{i_n}) = g(x_{j_1},\dots,x_{j_m})\]
+in a signature $\tau$ where $f,g$ are operation symbols of some arity $n,m$ and the $x$'s are variables.
+For example,
+\[ f(x_1,x_2,x_2) = f(x_2,x_1,x_2) \land f(x_2,x_1,x_2) = x(x_2,x_2,x_1)\]
+is a minor condition in the signature $\tau=\{f^3\}$ and with two variables.
+A minor condition is called <em>trivial</em> if there exists a function $\xi\colon\tau\to\mathbb N$ such that $\xi(f)\in\{1,\dots,n\}$ whenever $f$ has arity $n$ and such that, for every equation as the one above, one has $i_{\xi(f)} = j_{\xi(g)}$.</p>
+
+<p>Given a graph $G$ and a minor condition $\Sigma$, there exists a natural construction ("natural" in the sense from category theory) of a new graph $\Sigma(G)$ that has the property that $\Sigma$ is trivial if, and only if, there exists a homomorphism $\Sigma(G)\to G$.
+In particular, if $\Sigma$ is trivial, then the chromatic number of $\Sigma(G)$ is smaller or equal to the chromatic number of $G$.</p>
+
+<p>The goal of this project is to determine what happens to the chromatic number of the graphs in the sequence $G,\Sigma(G),\Sigma(\Sigma(G)),\dots$ for minor conditions $\Sigma$ that are non-trivial. The conjecture is that this sequence is increasing, or at least unbounded. As a start, one can focus on particular minor conditions from the literature and gain intuition from there. Apart from graph-theoretic methods, the students will have the opportunity to learn and employ methods from topological combinatorics or Ramsey theory.</p>
+</div>
+
+
+        <div class="topic" id="csp-structures-desc">
+      <h2 id="csp-structures">Constraint satisfaction problems over finite structures</h2>
+
         <p>Constraint satisfaction problems are decision problems of the form "Given a set of variables, a set, and constraints over the variables, does there exist a map from the variables to the domain that satisfies all the constraints?"
           Such problems are parameterized by the set of constraints that are allowed in the input, called the <em>constraint language</em>.
           For constraint languages consisting of relations on a finite set, the complexity of problems has been completely characterized by a celebrated recent result by Bulatov and Zhuk: every CSP is either in P or NP-complete, and the border between the two cases can be characterized algebraically using tools from the theory of universal algebra.<br />
             The following contains possible topics for a bachelor or a master thesis on the topic of constraint satisfaction problems and their generalizations.
-        </p>
-        
-        <div class="topic" id="csp-structures-desc">
-      <h2 id="csp-structures">Constraint satisfaction problems over finite structures</h2>
-        
+        </p>        
         
           Recently, some extension was proposed by Barto, DeMeo, and Mottet, where constraint languages with relations and operations were considered.
           A similar dichotomy P vs. NP-complete result was obtained for constraints over a two-element set, but the problem for general finite sets remains wide open.
@@ -70,6 +122,7 @@ MathJax.Hub.Config({
             </li>
         </ol>
         </div>
+        
         
         
         <div class="topic" id="promise-csps-desc">
@@ -100,6 +153,8 @@ MathJax.Hub.Config({
             Andrei Krokhin, Jakub Opršal.</li>
             <li><a href="https://arxiv.org/abs/1904.03214">The complexity of 3-coloring $H$-colorable graphs</a>.<br />
             Andrei Krokhin, Jakub Opršal.</li>
+            <li><a href="https://arxiv.org/abs/2501.13740">Algebraic and algorithmic synergies between promise and infinite-domain constraint satisfaction</a><br />
+            Antoine Mottet.</li>
         </ol>
         </div>
         
@@ -120,30 +175,6 @@ MathJax.Hub.Config({
         </ol>
     </div>
     
-    <div class="topic" id="smooth-apps-desc">
-    <h2 id="smooth-apps">Infinite-domain constraint satisfaction</h2>
-    
-    <p>By allowing the domain of the constraint language of a CSP to have an infinite domain, the associated class of problems captures <em>all</em> decision problems!
-    Looking for an extension of the Bulatov-Zhuk result to infinite-domain CSPs is therefore too ambitious in general, but one can restrict the class of constraint languages to so-called reducts of finitely bounded homogeneous structures.
-    The Bodirsky-Pinsker conjecture states that this class of CSPs also admits a P/NP-complete dichotomy, where this time the border between tractable and intractable problems is conjectured to be characterized by algebraic and topological conditions.
-
-    Recently, a new theory has been proposed by Mottet and Pinsker to approach this conjecture.
-    This theory relies on a new tool, called <em>smooth approximations</em>, with which one could provide unified proofs of all known results involving the Bodirsky-Pinsker conjecture.
-        </p>
-        
-        <h3>Goals</h3>
-        <p>
-    The goal of the internship is to develop the theory of smooth approximations to be able to overcome its current limitations. In particular, this internship will involve a mix of algorithmic, Ramsey theory, universal algebra, and model theory.</p>
-
-    <h3>References</h3>
-    <ol>
-      <li><a href="https://arxiv.org/abs/2011.03978">Smooth Approximations and CSPs over finitely bounded homogeneous structures</a>.<br />
-      Antoine Mottet, Michael Pinsker.
-      </li>
-        <li><a href="https://arxiv.org/abs/2102.07531">Smooth Approximations and Relational Width Collapses</a>.<br />
-            Antoine Mottet, Tom&aacute;&scaron; Nagy, Michael Pinsker, Michal Wrona.</li>
-    </ol>
-    </div>
     
     <div class="topic" id="circuit-complexity-desc">
     <h2 id="circuit-complexity">Circuit complexity of constraint satisfaction problems</h2>
@@ -182,7 +213,7 @@ MathJax.Hub.Config({
         </div>
         
     <div class="topic" id="minion-width-desc">
-    <h2 id="minion-width">A minion of graphs (taken)</h2>
+    <h2 id="minion-width">A minion of graphs (solved)</h2>
         
     <p>An <em>$n$-marked graph</em> is a graph $G=(V,E)$ such that $n$ of its vertices are labelled by the numbers $1$ to $n$.
     Given two $n$-marked graphs $G$ and $H$, one defines $G\oplus H$ to be the graph obtained by taking the disjoint union of the graphs and
