@@ -41,7 +41,7 @@ MathJax.Hub.Config({
 A "famous" example of such a graph is the so-called Petersen graph, which is $KG(5,2)$.</p>
 
 <p>A <em>proper coloring</em> of a graph $G$ with $r$ colors is a function $\chi$ from $V(G)$ to $\{1,\dots,r\}$ such that if $v,w\in V(G)$ are connected by an edge, then $\chi(v)\neq\chi(w)$. The <em>chromatic number</em> of a graph is the smallest $r$ for which there exists a proper coloring and is denoted by $\chi(G)$.
-Proving that $\chi(G)\leq r$ is in general easy: it suffices to give one proper coloring that uses at most $r$ colors. However, proving an inequality of the form $\chi(G)\geq r$ is in general quite hard: one must show that <em>no</em> coloring with $r-1$ colors exist. Apart from particularly simple examples such that complete graphs and cycles, it is in general hard to provide such proofs.</p>
+Proving that $\chi(G)\leq r$ is in general easy: it suffices to give one proper coloring that uses at most $r$ colors. However, proving an inequality of the form $\chi(G)\geq r$ is in general quite hard: one must show that <em>no</em> coloring with $r-1$ colors exist. Apart from particularly simple examples such as complete graphs and cycles, it is in general hard to provide such proofs.</p>
 
 <p>It was conjectured by Kneser that the chromatic number of $KG(n,k)$ is <em>exactly</em> $n-2k+2$, and here again the hard part of this conjecture is to prove that it is $\geq n-2k+2$. This conjecture was proven by Lovász using tools from topology and in particular <em>simplicial complexes</em>, <em>homotopy/homology</em>, and the Borsuk-Ulam theorem, giving birth to the field of <em>topological combinatorics</em>.</p>
 
@@ -77,7 +77,7 @@ The thesis should be constituted of some sections introducing the basics of such
 \[ f(x_{i_1},\dots,x_{i_n}) = g(x_{j_1},\dots,x_{j_m})\]
 in a signature $\tau$ where $f,g$ are operation symbols of some arity $n,m$ and the $x$'s are variables.
 For example,
-\[ f(x_1,x_2,x_2) = f(x_2,x_1,x_2) \land f(x_2,x_1,x_2) = x(x_2,x_2,x_1)\]
+\[ f(x_1,x_2,x_2) = f(x_2,x_1,x_2) \land f(x_2,x_1,x_2) = f(x_2,x_2,x_1)\]
 is a minor condition in the signature $\tau=\{f^3\}$ and with two variables.
 A minor condition is called <em>trivial</em> if there exists a function $\xi\colon\tau\to\mathbb N$ such that $\xi(f)\in\{1,\dots,n\}$ whenever $f$ has arity $n$ and such that, for every equation as the one above, one has $i_{\xi(f)} = j_{\xi(g)}$.</p>
 
