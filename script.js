@@ -437,6 +437,12 @@ talks.push({id:'lics25',
             event:'<a href="https://lics.siglog.org/lics25/">LICS 2025</a>',
             place:'singapore',
             date:'23-26/6/25'});
+talks.push({id:'oberwolfach25',
+  event: '<a href="https://www.mfo.de/www/activity/2551">Homogeneous structures: model theory meets universal algebra</a>',
+  place: 'oberwolfach',
+  date: '14-19/12/25',
+  invited:true
+});
 
 
 email = ['yorke', 'reznor','carroll','kundera','lowery','dumas'];
