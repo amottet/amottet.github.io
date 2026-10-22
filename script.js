@@ -115,6 +115,7 @@ places.push({id:'kolfuschg',mapid:'IT',x:0,y:0,label:'Kolfuschg'});
 places.push({id:'cervinia',mapid:'IT',x:0,y:0,label:'Cervinia'});
 places.push({id:'houches',mapid:'FR',x:0,y:0,label:'Les Houches'});
 places.push({id:'singapore', mapid:'singap', x:1561,y:563,label:'Singapore'});
+places.push({id:'livigno', mapid:'IT', x:1561,y:563,label:'Livigno'});
 
   var talks = new Array();
 talks.push({id:'cl2018',
@@ -441,6 +442,18 @@ talks.push({id:'oberwolfach25',
   event: '<a href="https://www.mfo.de/www/activity/2551">Homogeneous structures: model theory meets universal algebra</a>',
   place: 'oberwolfach',
   date: '14-19/12/25',
+  invited:true
+});
+talks.push({id:'cwc26',
+  event: '<a href="https://cspworldcongress.org">CSP World Congress</a>',
+  place: 'livigno',
+  date: '14-18/09/26',
+  invited:true
+});
+talks.push({id:'dagstuhl26',
+  event: '<a href="https://www.dagstuhl.de/en/seminars/seminar-calendar/seminar-details/26391">Finite Stability Theory</a>',
+  place: 'dagstuhl',
+  date: '20-25/09/26',
   invited:true
 });
 
